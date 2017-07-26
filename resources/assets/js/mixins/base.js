@@ -11,6 +11,8 @@ module.exports = {
      * The application's data.
      */
     data: {
+        user: App.state.user ? App.state.user : null,
+        title: App.title,
         loadingNotifications: false,
         notifications: null
     },

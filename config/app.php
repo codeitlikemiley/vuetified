@@ -167,7 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Vuetified\Providers\VuetifiedServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

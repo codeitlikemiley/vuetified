@@ -11,6 +11,7 @@ import privateChannel from './mixins/private-channel'
 import globalChannel from './mixins/global-channel'
 import groupChannel from './mixins/presence-channel'
 import listener from './mixins/listener'
+import initialState from './mixins/initial-state'
 
 /* Install Vuetify */
 Vue.use(Vuetify)
@@ -32,7 +33,7 @@ window.Bus = new Vue()
 
 /* Initialized Main Vue Instance */
 const app = new Vue({
-    mixins: [base, globalChannel, privateChannel, groupChannel, listener],
+    mixins: [base, initialState, globalChannel, privateChannel, groupChannel, listener],
     router,
     mounted () {
         this.getCreatedUser()

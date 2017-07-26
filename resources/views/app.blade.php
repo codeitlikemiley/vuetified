@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <title>{{ config('app.name') }} </title>
+    @include('partials.initial_state')
 </head>
 
 <body>

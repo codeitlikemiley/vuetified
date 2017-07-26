@@ -32,7 +32,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Vuetified\\": "vuetified/"
         }
     },
     "extra": {
