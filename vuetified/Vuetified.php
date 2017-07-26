@@ -11,5 +11,5 @@ class Vuetified
     /**
      * The Vuetified version.
      */
-    public static $version = '1.0.1';
+    public static $version = '1.0.2';
 }
