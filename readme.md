@@ -20,20 +20,92 @@
 ## Installation
 
 ```
-git clone repo myproject
-composer install
+git clone https://github.com/codeitlikemiley/vuetified
+cd vuetified
 cp .env.example .env
+composer install
 php artisan key:generate
 php artisan echo:generate
 php artisan passport:keys
 php artisan migrate:fresh --seed
 php artisan passport:client --password
-npm install or yarn install
-node websocket
+yarn install
+```
+
+Configure .env
+Add Your Correct Domain and URL
+```
+APP_NAME=Laravel
+APP_URL=http://laravel.app
+APP_DOMAIN=laravel.app
+```
+
+If You Dont Have Redis Server
+You Can Use Sqlite
+go to ./database
+```
+touch laravel-echo-server.sqlite
+```
+Change Also Your Broadcast Driver to log Instead of Redis
+```
+BROADCAST_DRIVER=log
+```
+
+Edit Your DB Config
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+```
+
+If You Dont Have MYSQL and Want Sqlite
+```
+DB_CONNECTION=sqlite
 ```
 
 Refresh With new Passport Client Password
 
 ```
 php artisan migrate:fresh --seed
+```
+
+Run Laravel Echo Server
+```
+node websocket
+```
+
+Run Laravel Mix
+```
+npm run watch
+```
+
+
+Test laravel Echo Add this to your web Routes...
+Make Sure it is Above the Wildcard Route Catcher for Vue
+
+```
+use App\User;
+
+$user = User::first();
+\Auth::loginUsingId($user->id);
+
+Route::get('get-auth', function () {
+    broadcast(new \App\Events\GetAuthUser(auth()->user()))->toOthers();
+    return response()->json(['message' => 'ok'],200);
+});
+
+Route::get('user-created', function () {
+    $user = App\User::all()->last();
+    broadcast(new \App\Events\UserCreated($user))->toOthers();
+    return response()->json(['message' => 'ok'],200);
+});
+
+Route::get('get-announcement', function () {
+    $user = App\User::all()->last();
+    broadcast(new \App\Events\NewMessage($user,'New Group Message!'))->toOthers();
+    return response()->json(['message' => 'ok'],200);
+});
 ```
