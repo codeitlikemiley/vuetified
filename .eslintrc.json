@@ -1,0 +1,53 @@
+{
+    "extends": [
+        "standard",
+        "plugin:vue/recommended"
+    ],
+    "settings": {
+        "html/html-extensions": [
+            ".html"
+        ],
+        "html/report-bad-indent": "error"
+    },
+    // required to lint *.vue files
+    "plugins": [
+        "html"
+    ],
+    // user especific/ project specific
+    "rules": {
+        "no-undef": 1,
+        "no-unused-vars": [
+            "error",
+            {
+                // assign all your global var with app pattern
+                "varsIgnorePattern": "app",
+                "args": "after-used",
+                // global args must be prefix with _
+                "argsIgnorePattern": "^_",
+                "ignoreRestSiblings": true
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "quotes": [
+            "error",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ]
+        
+    },
+    // lint vue natives
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "ecmaVersion": 7,
+        "sourceType": "module"
+    }
+}
