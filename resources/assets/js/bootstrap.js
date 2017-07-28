@@ -28,9 +28,14 @@ window.moment.defineLocale('en-short', {
     }
 })
 window.moment.locale('en')
-try {
+
+if (window.$ === undefined || window.jQuery === undefined) {
     window.$ = window.jQuery = require('jquery')
-} catch (e) {}
+}
+
+if ($('#app').length > 0) {
+    require('./vue-bootstrap')
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,10 +12,10 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-.extract(['lodash', 'axios', 'jquery'])
+    .extract(['lodash', 'axios', 'jquery'])
 
 mix.stylus('resources/assets/stylus/app.styl', 'public/css')
 if (mix.inProduction()) {
-mix.version()
-mix.disableNotifications()
+    mix.version()
+    mix.disableNotifications()
 }

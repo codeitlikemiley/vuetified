@@ -88,8 +88,7 @@ npm run watch
 ```
 
 ## Test laravel Echo
-Test laravel Echo Add this to your web Routes...
-Make Sure it is Above the Wildcard Route Catcher for Vue
+Test laravel Echo Uncomment This Test ROutes in web.php
 
 ```
 use App\User;
@@ -113,6 +112,13 @@ Route::get('get-announcement', function () {
     broadcast(new \App\Events\NewMessage($user,'New Group Message!'))->toOthers();
     return response()->json(['message' => 'ok'],200);
 });
+```
+
+Also Uncomment this in your app.js
+```
+// this.getCreatedUser()
+// this.getAuth()
+// this.getAnnouncement()
 ```
 
 ## Authentication With Laravel Passport

@@ -1,44 +1,25 @@
+/* Boostrap Our App */
 import './bootstrap'
-import 'babel-polyfill'
-import './global-components'
-import Echo from 'laravel-echo'
+/* Vue Data */
 import base from './mixins/base'
+/* Vue Routing */
 import router from './routes'
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import VueEcho from 'vue-echo'
+/* Echo Channels */
 import privateChannel from './mixins/private-channel'
 import globalChannel from './mixins/global-channel'
 import groupChannel from './mixins/presence-channel'
+/* Global Event Bus */
 import listener from './mixins/listener'
-import initialState from './mixins/initial-state'
 
-/* Install Vuetify */
-Vue.use(Vuetify)
-
-/* Initialized Laravel Echo */
-
-if (typeof io !== 'undefined') {
-    let EchoInstance = new Echo({
-        namespace: 'App\\Events',
-        broadcaster: 'socket.io',
-        host: `${window.location.hostname}:6001`
-    })
-    /* Install VueEcho */
-    Vue.use(VueEcho, EchoInstance)
-}
-
-/* Add Global Event Bus */
-window.Bus = new Vue()
-
-/* Initialized Main Vue Instance */
+/* Vue Instance */
 const app = new Vue({
-    mixins: [base, initialState, globalChannel, privateChannel, groupChannel, listener],
+    mixins: [base, globalChannel, privateChannel, groupChannel, listener],
     router,
     mounted () {
-        this.getCreatedUser()
-        this.getAuth()
-        this.getAnnouncement()
+        /* Uncomment If You Want To Test Examples */
+        // this.getCreatedUser()
+        // this.getAuth()
+        // this.getAnnouncement()
     },
     methods: {
         getAuth () {
