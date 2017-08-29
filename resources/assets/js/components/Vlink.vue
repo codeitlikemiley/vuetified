@@ -12,23 +12,23 @@
 </template>
 
 <script>
-  export default {
+export default {
     props: {
-      href: {
-      type: String,
-      required: true
-      },
-      name: {
-      type: String,
-      },
-      icon: {
-      type: String,
-      },
+        href: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String
+        },
+        icon: {
+            type: String
+        }
     },
     computed: {
-      isActive () {
-        return this.href === window.location.pathname
-      }
+        isActive () {
+            return this.href === window.location.pathname
+        }
     }
-  }
+}
 </script>
