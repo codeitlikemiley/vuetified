@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <title>{{ config('app.name') }} </title>
     @include('partials.initial_state')
+    @routes
 </head>
 
 <body>
