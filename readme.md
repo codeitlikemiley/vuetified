@@ -98,7 +98,7 @@ php artisan migrate:fresh --seed
 ```
 
 ## Run Laravel Echo Server
-***If You Dont Want to Register Routes For Broad cast Uncomment this in config/app.php***
+***If You Dont Want to Register Routes For Broadcast Uncomment this in config/app.php***
 - this is on by default so you can start broadcasting events
 ```
 // App\Providers\BroadcastServiceProvider::class,
@@ -148,3 +148,8 @@ api/login ,api/logout ,api/refresh ,api/register ,api/social_auth
 ```
 
 ***Remove All Sample Events For Laravel Echo If You Need it I placed in Inside Vuetified Namespace***
+
+## Todo:
+- In Addition to Ziggy Fluent Routing, This App Has Dynamic Component For Pages or Widget  which we can Loaded At Any Time. 
+(Create A Routes to Fetch All Components Depending on Type: Partials, Layout, Widget, Page)
+- Add Voyager, But Already Test this , Had Some Minor Issue , already got the fix still waiting for the owner to add it though. (Will Add Soon)
