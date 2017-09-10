@@ -3,7 +3,7 @@
     <v-toolbar-side-icon :style="toggleBarStyle" @click.native.stop="toggleDrawer()"></v-toolbar-side-icon>
         <!-- Title -->
         <v-toolbar-title class="text-xs-center">
-            <v-icon :style="{color: iconColor }" class="ml-3" v-if="showIcon">{{ icon }}</v-icon>
+            <v-icon :style="{color: iconColor }" class="ml-3 hidden-md-and-down" v-if="showIcon">{{ icon }}</v-icon>
             <span class="hidden-md-and-down" :style="titleStyle">{{ title }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>

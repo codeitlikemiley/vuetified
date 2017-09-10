@@ -448,7 +448,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('v-toolbar-title', {
     staticClass: "text-xs-center"
   }, [(_vm.showIcon) ? _c('v-icon', {
-    staticClass: "ml-3",
+    staticClass: "ml-3 hidden-md-and-down",
     style: ({
       color: _vm.iconColor
     })
