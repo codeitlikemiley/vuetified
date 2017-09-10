@@ -1,6 +1,6 @@
 # Laravel Vuetify Realtime Starter App
 <p align="center">
-![vuetified-logo](https://user-images.githubusercontent.com/28816690/30248403-c4681e22-9659-11e7-9ed9-7e3f58ae061d.png)
+<img src="https://user-images.githubusercontent.com/28816690/30248403-c4681e22-9659-11e7-9ed9-7e3f58ae061d.png"/>
 </p>
 
 ## Server and development requirements
