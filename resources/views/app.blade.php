@@ -8,6 +8,7 @@
     <!-- Necessary To Authenticate Request Using Axios -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="shortcut icon" href="/img/favicon.ico?v=2" type="image/x-icon"/>
     <title>{{ config('app.name') }} </title>
     @include('partials.initial_state')
     <!-- Our Laravel Api Routes Name -->
