@@ -167,9 +167,6 @@ return [
          * Package Service Providers...
          */
         Vuetified\Providers\VuetifiedServiceProvider::class,
-        Vuetified\Providers\PassportAuthServiceProvider::class,
-        Vuetified\Providers\SocialAuthServiceProvider::class,
-        
         /*
          * Application Service Providers...
          */
