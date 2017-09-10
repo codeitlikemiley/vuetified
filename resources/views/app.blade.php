@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <title>{{ config('app.name') }} </title>
     @include('partials.initial_state')
+    <!-- Our Laravel Api Routes Name -->
+    @routes
 </head>
 
 <body>

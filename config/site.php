@@ -20,13 +20,13 @@ return [
         'color' => '#BA9A5A' , //gold
     ],
     'icon' => [
-        'name' => 'fa-globe', // font-awesome or material icon
-        'color' => '#BA9A5A',
+        'name' => 'fa-compass', // font-awesome or material icon
+        'color' => '#26A69A',
         'show'  => true
     ],
     'logo' => [
-        'url' => 'http://nelib.org/wp-content/uploads/sites/6/2016/06/CL_Logo_RGB_PNG-768x336.png',
-        'width' => '150px',
+        'url' => '/img/logo.png',
+        'width' => '50px',
         'height' => '50px',
         'show'  => true
     ],

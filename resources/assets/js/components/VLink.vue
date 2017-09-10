@@ -17,7 +17,7 @@ export default {
         dark: {
             type: Boolean,
             default () {
-                return false
+                return App.theme.dark
             }
         },
         href: {

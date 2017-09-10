@@ -696,7 +696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         dark: {
             type: Boolean,
             default: function _default() {
-                return false;
+                return App.theme.dark;
             }
         },
         href: {
@@ -918,7 +918,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['items', 'dark'],
+    props: ['items'],
+    data: function data() {
+        return {
+            dark: App.theme.dark
+        };
+    },
     methods: {
         loadview: function loadview(item, component) {
             if (!this.isGroupActive(item)) {
@@ -1345,7 +1350,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             right: true,
             bottom: true,
             left: false,
-            absolute: true,
+            absolute: false,
             transition: 'slide-y-reverse-transition',
             buttons: [{ name: 'home', href: '/', class: 'green', icon: 'fa-fa', requiresAuth: false }, { name: 'login', href: '/login', class: 'indigo', icon: 'fa-plug', requiresAuth: false }, { name: 'logout', href: '/logout', class: 'red', icon: 'fa-power-off', requiresAuth: true }, { name: 'scroll-up', href: null, class: 'amber', icon: 'fa-chevron-up', requiresAuth: false }],
             activeFab: {
@@ -1414,7 +1419,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "direction": _vm.direction,
       "hover": _vm.hover,
       "transition": _vm.transition,
-      "absolute": false,
+      "absolute": _vm.absolute,
       "fixed": _vm.fixed
     },
     model: {

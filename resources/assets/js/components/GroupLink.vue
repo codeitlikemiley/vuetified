@@ -47,7 +47,10 @@
 
 <script>
 export default {
-    props: ['items', 'dark'],
+    props: ['items'],
+    data: () => ({
+        dark: App.theme.dark
+    }),
     methods: {
         loadview (item, component) {
             if (!this.isGroupActive(item)) {

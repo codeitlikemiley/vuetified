@@ -15,7 +15,8 @@
         "laravel/framework": "5.5.*",
         "laravel/passport": "^3.0",
         "laravel/tinker": "~1.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "tightenco/ziggy": "^0.4.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

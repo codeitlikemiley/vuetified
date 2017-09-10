@@ -8,7 +8,7 @@
       :direction="direction"
       :hover="hover"
       :transition="transition"
-      :absolute="false"
+      :absolute="absolute"
       :fixed="fixed"
     >
       <v-btn
@@ -47,7 +47,7 @@ export default {
         right: true,
         bottom: true,
         left: false,
-        absolute: true,
+        absolute: false,
         transition: 'slide-y-reverse-transition',
         buttons: [
             { name: 'home', href: '/', class: 'green', icon: 'fa-fa', requiresAuth: false },
