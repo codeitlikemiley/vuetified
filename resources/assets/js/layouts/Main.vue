@@ -1,12 +1,10 @@
 <template>
- <v-app dark id="main-app" standalone v-cloak>
+ <v-app :dark="App.theme.dark"  standalone v-cloak>
     <left-side-bar></left-side-bar>
-    <app-nav-bar :title="title"></app-nav-bar>
+    <app-nav-bar></app-nav-bar>
     <main>
-      <v-container>
-        <transition>
+      <v-container transition="slide-x-transition">
           <slot></slot>
-        </transition>
       </v-container>
     </main>
     <fab-button></fab-button>
@@ -20,13 +18,8 @@ import AppNavBar from '../partials/AppNavBar.vue'
 import LeftSideBar from '../partials/LeftSideBar.vue'
 import FabButton from '../components/FabButton.vue'
 export default {
-    data () {
-        return {
-            title: 'Vlogger'
-        }
-    },
     mounted () {
-        console.log('Layout Loaded')
+        console.log('Main Layout Loaded')
     },
     components: {
         AppFooter,

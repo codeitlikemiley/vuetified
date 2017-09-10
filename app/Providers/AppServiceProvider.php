@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Observers\UserObserver;
-use Illuminate\Support\Facades\Blade;
-use App\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,8 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        User::observe(UserObserver::class);
-        $this->isSignedIn();
+        //
     }
 
     /**
@@ -30,10 +26,4 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    private function isSignedIn()
-    {
-         Blade::if('auth', function () {
-            return auth()->check();
-        });
-    }
 }

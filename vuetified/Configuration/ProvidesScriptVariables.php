@@ -18,11 +18,12 @@ trait ProvidesScriptVariables
         return [
             'csrfToken' => csrf_token(),
             'env' => config('app.env'),
-            'domain' => config('app.domain'),
-            'url' => config('app.url'),
             'state' => self::getState(),
             'userId' => Auth::id(),
-            'title' => config('app.name')
+            'site'  => config('site'), // Should Be Fetch From DB Settings
+            'menu' => config('menu'), // Should Be Fetch From DB Menu and GroupMenu
+            'grouplinks' => config('grouplinks'),
+            'theme' => config('theme')
         ];
     }
 

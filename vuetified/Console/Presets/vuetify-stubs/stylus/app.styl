@@ -1,0 +1,41 @@
+// Import Fonts Font-awesome and Material Icons
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600')
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons')
+// Import Vuetify Colors
+@import '../../../node_modules/vuetify/src/stylus/settings/_colors'
+// Customize Vuetify Theme
+$theme := {
+  primary: $red.darken-2
+  accent: $red.accent-2
+  secondary: $grey.lighten-1
+  info: $blue.lighten-1
+  warning: $amber.darken-2
+  error: $red.accent-4
+  success: $green.lighten-2
+}
+// Import Vuetify Main styling
+@import '../../../node_modules/vuetify/src/stylus/main'
+// All Custom Style In Your App
+[v-cloak] 
+    display: none
+#main-app,
+#main-app .container
+    min-height: 700px
+    overflow: hidden
+    z-index: 0
+#main-app .input-group__details:after
+    background-color: rgba(255, 255, 255, 0.32) !important
+#main-app .input-group--focused .input-group__append-icon
+    color: inherit !important
+.router-link-active
+    color: #d32f2f
+.fab-float
+    position:absolute
+    bottom: 50px
+    right: 50px
+.fade-transition
+  transition: opacity 0.2s ease
+.fade-enter, .fade-leave
+  opacity: 0
+

@@ -1,0 +1,28 @@
+Add To Array
+protected $middlewareGroups = [
+'web' => [
+    \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+],
+
+'api' => [
+    \Barryvdh\Cors\HandleCors::class,
+    ],
+
+Add To
+config/app.php
+
+Vuetified\Providers\VuetifiedServiceProvider::class,
+'Keygen' => Keygen\Keygen::class,
+// Only Add this two if it is run by command
+// vuetified:auth --passport --social
+Vuetified\Providers\PassportAuthServiceProvider::class,
+Vuetified\Providers\SocialAuthServiceProvider::class,
+
+// This will Install Also the Routes
+
+Uncomment in config/app.php
+// App\Providers\BroadcastServiceProvider::class,
+
+
+
+

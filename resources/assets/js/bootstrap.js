@@ -1,11 +1,8 @@
 
 window._ = require('lodash')
 window.moment = require('moment')
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+window.Promise = require('promise')
+
 /*
  * Define Moment locales
  */
@@ -33,6 +30,25 @@ if (window.$ === undefined || window.jQuery === undefined) {
     window.$ = window.jQuery = require('jquery')
 }
 
+/**
+ * Add Turbolinks
+ */
+
+var Turbolinks = require('turbolinks')
+Turbolinks.start()
+
+/**
+ * Load Only Once Babel Polyfill
+ */
+
+if (!global._babelPolyfill) {
+    require('babel-polyfill')
+}
+
+/**
+ * Load Our Vue App
+ */
+
 if ($('#app').length > 0) {
     require('./vue-bootstrap')
 }
@@ -45,18 +61,21 @@ if ($('#app').length > 0) {
 
 window.axios = require('axios')
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-let token = document.head.querySelector('meta[name="csrf-token"]')
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': App.csrfToken
 }
+
+window.axios.interceptors.response.use((response) => {
+    return response
+}, (error) => {
+    switch (error.response.status) {
+    case 401:
+        console.log('show login modal')
+        break
+    case 402:
+        console.log('show subscription modal')
+        break
+    }
+    return Promise.reject(error)
+})

@@ -52,7 +52,6 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'domain' => env('APP_DOMAIN', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -168,16 +167,17 @@ return [
          * Package Service Providers...
          */
         Vuetified\Providers\VuetifiedServiceProvider::class,
+        Vuetified\Providers\PassportAuthServiceProvider::class,
+        Vuetified\Providers\SocialAuthServiceProvider::class,
         
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SocialAuthServiceProvider::class
     ],
 
     /*
@@ -226,7 +226,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Keygen' => Keygen\Keygen::class,
 
     ],
 

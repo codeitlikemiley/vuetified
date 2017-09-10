@@ -42,9 +42,12 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "promise": "^8.0.1",
+    "turbolinks": "^5.0.3",
     "vue": "^2.4.2",
     "vue-echo": "^1.0.1",
     "vue-router": "^2.7.0",
+    "vue-turbolinks": "^2.0.0",
     "vuetify": "^0.14.6"
   }
 }

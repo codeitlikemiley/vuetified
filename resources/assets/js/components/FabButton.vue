@@ -8,7 +8,8 @@
       :direction="direction"
       :hover="hover"
       :transition="transition"
-      class="fab-float"
+      :absolute="false"
+      :fixed="fixed"
     >
       <v-btn
         slot="activator"
@@ -23,25 +24,15 @@
       </v-btn>
       <v-btn
         v-for="button in buttons" :key="button.name"
+        v-if="isVisible(button)"
         fab
         dark
         small
-        :href="button.href"
         :class="[button.class]"
-        @click.native="changeFab(button)"
+        @click.native="navigate(button)"
       >
         <v-icon>{{ button.icon }}</v-icon>
       </v-btn>
-      <v-btn
-        fab
-        dark
-        small
-        class="amber"
-        href="#main-app"
-      >
-        <v-icon>fa-chevron-up</v-icon>
-      </v-btn>
-
     </v-speed-dial>
 </template>
 
@@ -49,17 +40,20 @@
 export default {
     data: () => ({
         direction: 'top',
+        fixed: true,
         fab: false,
         hover: false,
         top: false,
         right: true,
         bottom: true,
         left: false,
+        absolute: true,
         transition: 'slide-y-reverse-transition',
         buttons: [
-            { name: 'home', href: '/', class: 'green', icon: 'fa-fa' },
-            { name: 'login', href: '/login', class: 'indigo', icon: 'fa-plug' },
-            { name: 'logout', href: '/logout', class: 'red', icon: 'fa-power-off' }
+            { name: 'home', href: '/', class: 'green', icon: 'fa-fa', requiresAuth: false },
+            { name: 'login', href: '/login', class: 'indigo', icon: 'fa-plug', requiresAuth: false },
+            { name: 'logout', href: '/logout', class: 'red', icon: 'fa-power-off', requiresAuth: true },
+            { name: 'scroll-up', href: null, class: 'amber', icon: 'fa-chevron-up', requiresAuth: false }
         ],
         activeFab: {
             'class': 'teal lighten-1', icon: 'explore'
@@ -81,11 +75,32 @@ export default {
         }
     },
     methods: {
-        changeFab (button) {
-            this.activeFab = { class: button.class, icon: button.icon }
+        navigate (button) {
+            let self = this
+            self.activeFab = { class: button.class, icon: button.icon }
+
+            setTimeout(() => {
+                self.activeFab = {
+                    'class': 'teal lighten-1', icon: 'explore'
+                }
+                if (button.href !== null) {
+                    self.$router.push({ path: `${button.href}` })
+                } else {
+                    self.goTop()
+                }
+            }, 500)
         },
         goTop () {
-
+            window.scrollTo(0, 0)
+        },
+        isVisible (button) {
+            if (button.requiresAuth === false && button.name === 'login') {
+                return App.userId === null
+            } else if (button.requiresAuth === true && button.name === 'logout') {
+                return App.userId !== null
+            } else if (button.requiresAuth === false) {
+                return true
+            }
         }
     }
 }

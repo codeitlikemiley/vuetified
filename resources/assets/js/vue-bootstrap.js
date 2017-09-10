@@ -1,10 +1,16 @@
 /* IE 11 Compatible */
-import 'babel-polyfill'
 import Echo from 'laravel-echo'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueEcho from 'vue-echo'
 import initialState from './mixins/initial-state'
+import TurbolinksAdapter from 'vue-turbolinks'
+
+/*
+ * Load Wrapper for Turbolink
+ */
+
+Vue.use(TurbolinksAdapter)
 
 /*
  * Load Vue
@@ -15,13 +21,13 @@ if (window.Vue === undefined) {
     window.Bus = new Vue()
 }
 /*
- * All Global Mixins
+ * Load Our Initial State From Our Backend
  *
  */
 Vue.mixin(initialState)
 
 /**
- * Load the Vuetified form utilities.
+ * Form Helpers
  */
 require('./forms/form-bootstrap')
 

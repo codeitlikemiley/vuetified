@@ -5,14 +5,16 @@
 // Import Vuetify Colors
 @import '../../../node_modules/vuetify/src/stylus/settings/_colors'
 // Customize Vuetify Theme
+$gold = #BA9A5A
+$accent = #103050
 $theme := {
-  primary: $red.darken-2
-  accent: $red.accent-2
-  secondary: $grey.lighten-1
-  info: $blue.lighten-1
-  warning: $amber.darken-2
-  error: $red.accent-4
-  success: $green.lighten-2
+  primary: $gold
+  accent: $accent
+  secondary: $indigo.darken-4
+  info: $teal.lighten-2
+  warning: $yellow.accent-4
+  error: $red.darken-4
+  success: $lime.lighten-1
 }
 // Import Vuetify Main styling
 @import '../../../node_modules/vuetify/src/stylus/main'
@@ -28,14 +30,9 @@ $theme := {
     background-color: rgba(255, 255, 255, 0.32) !important
 #main-app .input-group--focused .input-group__append-icon
     color: inherit !important
-.router-link-active
-    color: #d32f2f
-.fab-float
-    position:absolute
-    bottom: 50px
-    right: 50px
 .fade-transition
   transition: opacity 0.2s ease
 .fade-enter, .fade-leave
   opacity: 0
-
+.main--text
+  color: #607D8B

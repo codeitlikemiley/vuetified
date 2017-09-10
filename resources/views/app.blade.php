@@ -14,13 +14,12 @@
 
 <body>
     <div id="app">
-            <transition name="fade" mode="out-in">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </transition>
+        <main-vue></main-vue>
     </div>
+<!-- If Laravel Echo is Disable in Our Config Dont Load this -->
+@if(config('echo.realtime')===true)
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+@endif
 <script src="{{ mix('/js/manifest.js') }}"></script>
 <script src="{{mix('/js/vendor.js')}}"></script>
 <script src="{{mix('/js/app.js')}}"></script>
