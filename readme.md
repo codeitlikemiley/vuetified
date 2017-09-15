@@ -10,7 +10,6 @@
 - Node (^8.1.0) && NPM (^5.0.3)
 - Redis (^3.2.100)
 - PHP (^7.1)
-- Laravel (^5.5)
 - Composer (^1.4.1)
 - VSCODE Insiders && Plugins (ESLINT)
 - Laravel (^5.5)
