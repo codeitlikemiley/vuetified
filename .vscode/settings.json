@@ -1,0 +1,149 @@
+// Place your settings in this file to overwrite the default settings
+{
+    // Override Your Fonts
+    "createtmpfile.deleteOnExit": true,
+    "window.openFilesInNewWindow": "on",
+    "workbench.statusBar.visible": false,
+    "explorer.openEditors.visible": 0,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.fontFamily": "DejaVuSansMonoForPowerline NF",
+    "terminal.integrated.fontSize": 16,
+    "window.zoomLevel": 0,
+    "editor.fontFamily": "Fira Code Light",
+    "editor.fontSize": 19,
+    "editor.fontLigatures": true,
+    "files.associations": {
+        "*.blade.php": "blade"
+    },
+    "emmet.includeLanguages": {
+        "blade": "html",
+        "vue-html": "html"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    // Edit Both Start and Ending of Tags For Specific language
+    "auto-rename-tag.activationOnLanguage": [
+        "html",
+        "xml",
+        "php",
+        "javascript",
+        "blade",
+        "vue"
+    ],
+    // Exclude Vendor Folders During Search and Replace
+    "files.watcherExclude": {
+        "**/vendor/**": false,
+        "**/node_modules/**": true
+    },
+    "search.exclude": {
+        "**/vendor/**": false,
+        "**/node_modules/**": true
+    },
+    "search.useIgnoreFiles": false,
+    // remove crlf error on eslint
+    "files.eol": "\n",
+    // remove dynamic import error after adding eslint package to it
+    "javascript.validate.enable": false,
+    // eslint configs
+    "eslint.enable": true,
+    "eslint.options": {
+        "extensions": [
+            ".html",
+            ".js",
+            ".vue",
+            ".jsx"
+        ]
+    },
+    "eslint.validate": [
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.run": "onSave",
+    "eslint.autoFixOnSave": true,
+    "php.validate.run": "onType",
+    "php.suggest.basic": false,
+    "phpformatter.composer": true,
+    "composer.executablePath": "C:\\ProgramData\\ComposerSetup\\bin\\composer.bat",
+    // Downloaded from http://windows.php.net/download/
+    "php.validate.executablePath": "C:\\php\\php.exe",
+    "[html]": {
+        
+    },
+    "auto-close-tag.enableAutoCloseTag": true,
+    "auto-close-tag.excludedTags": [
+        "area",
+        "base",
+        "br",
+        "col",
+        "command",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "keygen",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr"
+    ],
+    "auto-close-tag.enableAutoCloseSelfClosingTag": true,
+    "css.fileExtensions": [ "css", "scss","styl"],
+    "css.remoteStyleSheets": [
+        // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      ],
+    "advancedNewFile.exclude": {
+        "node_modules": true,
+        "node_modules_electron": true,
+        "dev": true,
+        "dist": true
+    },
+    "advancedNewFile.showInformationMessages": false,
+    "editor.tabCompletion": true,
+    "namespaceResolver.exclude": "**/node_modules/**",  // Exclude glob pattern while finding files
+    "namespaceResolver.showMessageOnStatusBar": false,  // Show message on status bar instead of notification box
+    "namespaceResolver.autoSort": true,                 // Auto sort after imports
+    "namespaceResolver.sortAlphabetically": false,      // Sort imports in alphabetical order instead of line length
+    "namespaceResolver.leadingSeparator": true,
+    "workbench.colorTheme": "Material Palenight",
+    "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
+    "sync.lastUpload": "2017-11-22T09:53:46.675Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#FF4081",
+        "list.activeSelectionForeground": "#FF4081",
+        "list.inactiveSelectionForeground": "#FF4081",
+        "list.highlightForeground": "#FF4081",
+        "scrollbarSlider.activeBackground": "#FF408150",
+        "editorSuggestWidget.highlightForeground": "#FF4081",
+        "textLink.foreground": "#FF4081",
+        "progressBar.background": "#FF4081",
+        "pickerGroup.foreground": "#FF4081",
+        "tab.activeBorder": "#FF4081"
+    },
+    "materialTheme.cache.workbench.settings": {
+        "accent": "Pink"
+    } // Expand class with leading namespace separator
+}
