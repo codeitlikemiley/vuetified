@@ -1,6 +1,8 @@
 # Vuetified 
 ## Laravel Vuetify Real Time Starter App
 
+![vuetified](https://user-images.githubusercontent.com/28816690/34463373-b7649ca8-ee94-11e7-9dbc-a97de8574279.png)
+
 # Table of Contents
 1. [Requirements](#requirements)
 2. [Installation](#installation)
