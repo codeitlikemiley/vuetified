@@ -22,7 +22,7 @@ import {
     VDataTable,
     VCheckbox,
     VSelect,
-    Vtabs,
+    VTabs,
     VAlert,
     VBreadcrumbs,
     VParallax
@@ -49,7 +49,7 @@ Vue.use(Vuetify, {
         VDataTable,
         VCheckbox,
         VSelect,
-        Vtabs,
+        VTabs,
         VAlert,
         VBreadcrumbs,
         VParallax
