@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import Echo from 'laravel-echo' /* Make App Realtime */
 import VueEcho from 'vue-echo' /* Vue Wrapper for laravel echo */
 
