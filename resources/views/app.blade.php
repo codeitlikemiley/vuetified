@@ -77,7 +77,7 @@
 <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 @endif
 
-@if(config('app.env') === 'local' || 'testing')
+@if(config('app.env') !== 'production')
 <!-- Local ENV Assets -->
 <script src="{{mix('/js/app.js')}}"></script>
 @else
