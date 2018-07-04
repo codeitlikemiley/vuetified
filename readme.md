@@ -1,5 +1,6 @@
-# Vuetified 
-## Laravel Vuetify Real Time Starter App
+# Vuetified
+
+## Laravel + Vuetify realtime starter app.
 
 ![vuetified](https://user-images.githubusercontent.com/28816690/34463373-b7649ca8-ee94-11e7-9dbc-a97de8574279.png)
 
@@ -25,19 +26,19 @@
 - Laravel Valet (NGINX) or use Laradock or Homestead
 
 ## Installation
-1. git clone https://github.com/codeitlikemiley/vuetified YOURPROJECTNAME
-2. cd YOURPROJECTNAME
-3. composer install
-4. yarn
-5. cp env.example .env
-6. php artisan passport:install
-7. echo:generate
+1. `git clone https://github.com/codeitlikemiley/vuetified YOURPROJECTNAME`
+2. `cd YOURPROJECTNAME`
+3. `composer install`
+4. `yarn`
+5. `cp env.example .env`
+6. `php artisan passport:install`
+7. `echo:generate
 8. set your .env
-- if you want to use laravel echo then change this to true
+- If you want to use Laravel echo then change this to true
 ```
 ECHO_ON=false
 ```
-9. php artisan migrate:fresh --seed
+9. `php artisan migrate:fresh --seed`
 10. node websocket
 11. Serve Your Site
     - laravel valet - valet link YOURSITE
@@ -47,50 +48,49 @@ ECHO_ON=false
 ## Stacks Used
 - Laravel 
 - Vue
-- Laravel Passport for Oauth and Authentication 
+- Laravel Passport for Oauth and authentication 
 - Vuetified for UI
-- Laravel Echo for Realtime Broadcasting
-- Laravel Horizon for Queueing Jobs
-- Laravel Socialite for Integration of Third Party OAuth
-- VS Code Plugins For Intelligent Code Fix and Linting
+- Laravel Echo for real-time broadcasting
+- Laravel Horizon for queueing jobs
+- Laravel Socialite for integration of third-party OAuth
+- VS Code plugins for intelligent code fixing and linting
 
 ## Plugins
 
-Here You can Add Extra Plugins to Your App
+Here you can add extra plugins to your app:
 
 ```
-//! Order is Important if Other Services Dependes On it */
-//! Primary Services Add Here
-
+//! Order is important if other services depend on it */
+//! Primary Services add here
 
 import './services/vuetify' //! Configuring Themes and Components
 
-import './services/vue-axios' //! For Making Api Calls
+import './services/vue-axios' //! For making API calls
 
-import './services/bus' //! Global Event Bus
+import './services/bus' //! Global event bus
 
-import './services/vuex' //! State Management
+import './services/vuex' //! State management
 
 import './services/echo' //! Websocket
 
-import './services/initial-state' //! Seed Initial Data To Your App 
+import './services/initial-state' //! Seed initial data to your app 
 //! @ Vuetified/Configuration/ProvidesScriptVariables.php
 
-import('./services/forms') //! Declare Your Global Form Object Here
+import('./services/forms') //! Declare your global form objects here
 
-import './services/vee-validate' //! Form Validation
+import './services/vee-validate' //! Form validation
 
-import './services/youtube' //! Youtube Component
+import './services/youtube' //! YouTube component
 
 
-//! Secondary Services That Depends On the Primary Services
-//! i.e: Vuex in our ACL Service
+//! Secondary services that depend on the primary services
+//! i.e: Vuex in our ACL service
 import './services/acl'
 ```
 
 ## Theme
 
-open resources/assets/js/services/vuetify.js edit theme object
+open resources/assets/js/services/vuetify.js edit theme object:
 
 ```
 theme: {
@@ -103,11 +103,12 @@ theme: {
         warning: '#ffc107'
     }
 ```
+
 ## Inital State
 
 Open Vuetified/Configuration/ProvidesScriptVariables.php
 
-Add Your Initial Data As an Array
+Add your initial data as an array:
 
 ```
 public static function scriptVariables()
@@ -120,15 +121,16 @@ public static function scriptVariables()
         ];
     }
 ```
-## Linting
-If Your Using VS Code which i highly recommend since they offer great Plugins For Vue and ES lint
 
-You can Pm me Directly at [Facebook](https://www.facebook.com/uriah.san) So i Can Share My Settings 
+## Linting
+If your using VS Code which I highly recommend since they offer great plugins for Vue and ES lint
+
+You can PP me directly at [Facebook](https://www.facebook.com/uriah.san) So I can share my settings 
 
 Install VS Code , then install this plugin [Settings Sync](https://github.com/shanalikhan/code-settings-sync.git)
 
 ## Issues
-If You Have Any Seen Any Bugs Please Report Make an [Issue](https://github.com/codeitlikemiley/vuetified/issues)
+If you have seen any bugs please report it by making an [issue](https://github.com/codeitlikemiley/vuetified/issues)
 
 ## Pull Request
-If You Want To Add Components To Be Part Of Vuetified Please Make a [Pull Request](https://github.com/codeitlikemiley/vuetified/pulls)
+If you want to add components to be part of vuetified please make a [pull request](https://github.com/codeitlikemiley/vuetified/pulls)
