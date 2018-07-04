@@ -32,7 +32,7 @@
 4. `yarn`
 5. `cp env.example .env`
 6. `php artisan passport:install`
-7. `echo:generate
+7. `echo:generate`
 8. set your `.env`
 - If you want to use Laravel echo then change this to true
 ```
@@ -45,6 +45,7 @@ ECHO_ON=false
     - laradock - docker-compose up -d nginx redis mysql
     - homestead - homestead up
     [yourprojectname.test/](yourprojectname.test)
+    
 ## Stacks Used
 - Laravel 
 - Vue
@@ -123,14 +124,14 @@ public static function scriptVariables()
 ```
 
 ## Linting
-If your using VS Code which I highly recommend since they offer great plugins for Vue and ES lint
+If your using VS Code which I highly recommend since they offer great plugins for Vue and ES lint.
 
-You can PM me directly at [Facebook](https://www.facebook.com/uriah.san) So I can share my settings 
+You can PM me directly at [Facebook](https://www.facebook.com/uriah.san) So I can share my settings.
 
-Install VS Code, then install this plugin [Settings Sync](https://github.com/shanalikhan/code-settings-sync.git)
+Install VS Code, then install this plugin [Settings Sync](https://github.com/shanalikhan/code-settings-sync.git).
 
 ## Issues
-If you have seen any bugs please report it by making an [issue](https://github.com/codeitlikemiley/vuetified/issues)
+If you have seen any bugs please report it by making an [issue](https://github.com/codeitlikemiley/vuetified/issues).
 
 ## Pull Request
-If you want to add components to be part of vuetified please make a [pull request](https://github.com/codeitlikemiley/vuetified/pulls)
+If you want to add components to be part of vuetified please make a [pull request](https://github.com/codeitlikemiley/vuetified/pulls).
