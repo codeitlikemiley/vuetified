@@ -91,7 +91,7 @@ import './services/acl'
 
 ## Theme
 
-open resources/assets/js/services/vuetify.js edit theme object:
+Open `resources/assets/js/services/vuetify.js` and the edit theme object:
 
 ```
 theme: {
@@ -107,7 +107,7 @@ theme: {
 
 ## Inital State
 
-Open Vuetified/Configuration/ProvidesScriptVariables.php
+Open `Vuetified/Configuration/ProvidesScriptVariables.php`
 
 Add your initial data as an array:
 
