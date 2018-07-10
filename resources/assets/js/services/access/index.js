@@ -1,98 +1,90 @@
 class Acl {
+  init(router, store, permissions, fail, save) {
+    this.router = router;
+    this._store = store;
+    this.save = save;
+    const perms = this._store.getters["acl/getAccess"];
+    if (perms != null) permissions = perms;
 
-    init(router, store, permissions, fail, save) {
-        this.router = router
-        this._store = store
-        this.save = save
-        const perms = this._store.getters['acl/getAccess']
-        if(perms != null)
-            permissions = perms
+    this.permissions = this.clearPermissions(permissions);
+    this.savePermissions();
+    this.fail = fail;
+  }
 
-        this.permissions = this.clearPermissions(permissions)
-        this.savePermissions()
-        this.fail = fail
-    }
+  check(permission) {
+    if (permission == undefined) return false;
 
-    check(permission) {
-        
-        if (permission == undefined)
-            return false
-        
-        const permissions = (permission.indexOf('|') !== -1) ? permission.split('|') : [permission]
-            
-        return this.findPermission(permissions) !== undefined;
-    }
+    const permissions =
+      permission.indexOf("|") !== -1 ? permission.split("|") : [permission];
 
-    findPermission(pem) {
-        return pem.find((permission) => {
-            const needed = (permission.indexOf('&') !== -1) ? permission.split('&') : permission
-            if (Array.isArray(needed))
-                return needed.every( need => (this.permissions.indexOf(need) !== -1) )
+    return this.findPermission(permissions) !== undefined;
+  }
 
-            return this.permissions.indexOf(needed) !== -1
-        })
-    }
+  findPermission(pem) {
+    return pem.find(permission => {
+      const needed =
+        permission.indexOf("&") !== -1 ? permission.split("&") : permission;
+      if (Array.isArray(needed))
+        return needed.every(need => this.permissions.indexOf(need) !== -1);
 
-    clearPermissions(permissions) {
-        if (permissions.indexOf('&') !== -1)
-            permissions = permissions.split('&')
+      return this.permissions.indexOf(needed) !== -1;
+    });
+  }
 
-        return Array.isArray(permissions) ? permissions : [permissions]
-    }
+  clearPermissions(permissions) {
+    if (permissions.indexOf("&") !== -1) permissions = permissions.split("&");
 
-    savePermissions() {
-        if(this.save != true)
-            return
+    return Array.isArray(permissions) ? permissions : [permissions];
+  }
 
-        let perm = this.permissions
-        if (Array.isArray(this.permissions))
-            perm = this.permissions.join('&')
-        this._store.commit('acl/changeAccess',perm)
-    }
+  savePermissions() {
+    if (this.save != true) return;
 
-    set router(router) {
-        router.beforeEach((to, from, next) => {
-            if(to.meta.permission == 'guest')
-                return next()
+    let perm = this.permissions;
+    if (Array.isArray(this.permissions)) perm = this.permissions.join("&");
+    this._store.commit("acl/changeAccess", perm);
+  }
 
-            let fail = to.meta.fail || this.fail || from.fullPath
+  set router(router) {
+    router.beforeEach((to, from, next) => {
+      if (to.meta.permission == "guest") return next();
 
-            if (!this.check(to.meta.permission))
-                return next(fail)
+      let fail = to.meta.fail || this.fail || from.fullPath;
 
-            return next()
-        })
-    }
+      if (!this.check(to.meta.permission)) return next(fail);
+
+      return next();
+    });
+  }
 }
 
-let acl = new Acl()
+let acl = new Acl();
 
 Acl.install = (Vue, { router, store, init, fail, save }) => {
+  const bus = new Vue();
 
-    const bus = new Vue()
+  acl.init(router, store, init, fail, save);
 
-    acl.init(router, store, init, fail, save)
+  Vue.prototype.$can = permission => acl.check(permission);
 
-    Vue.prototype.$can = (permission) => acl.check(permission)
+  Vue.mixin({
+    data() {
+      return {
+        access: acl.clearPermissions(init)
+      };
+    },
+    watch: {
+      access(value) {
+        acl.permissions = acl.clearPermissions(value);
+        bus.$emit("access-changed", acl.permissions);
+        acl.savePermissions();
+        this.$forceUpdate();
+      }
+    },
+    mounted() {
+      bus.$on("access-changed", permission => (this.access = permission));
+    }
+  });
+};
 
-    Vue.mixin({
-        data() {
-            return {
-                access: acl.clearPermissions(init)
-            }
-        },
-        watch: {
-            access(value) {
-                acl.permissions = acl.clearPermissions(value)
-                bus.$emit('access-changed', acl.permissions)
-                acl.savePermissions()
-                this.$forceUpdate()
-            }
-        },
-        mounted() {
-            bus.$on('access-changed', (permission) => this.access = permission)
-        }
-    })
-}
-
-export default Acl
+export default Acl;

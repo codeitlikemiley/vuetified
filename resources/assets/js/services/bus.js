@@ -1,5 +1,5 @@
-import Vue from 'vue'
+import Vue from "vue";
 
-var Bus = window.Bus = new Vue()
+var Bus = (window.Bus = new Vue());
 
-export default Bus
+export default Bus;
