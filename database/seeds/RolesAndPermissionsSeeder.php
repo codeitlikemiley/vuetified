@@ -7,10 +7,10 @@ use Spatie\Permission\Models\Permission;
 class RolesAndPermissionsSeeder extends Seeder
 {
     public function run()
-	{
-    	// Reset cached roles and permissions
+    {
+        // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
-        
+
         Permission::create(['name' => 'edit_profile']);
         Permission::create(['name' => 'activate_link']);
         Permission::create(['name' => 'deactivate_link']);
@@ -28,7 +28,6 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'manage_permissions']);
 
         Permission::create(['name' => 'access_all']);
-
 
         $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo('edit_profile');
@@ -62,6 +61,5 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('edit_media');
         $role->givePermissionTo('delete_media');
 
-        
     }
 }

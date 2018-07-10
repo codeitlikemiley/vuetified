@@ -11,13 +11,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->passportInstall();
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(AdminSeeder::class);
-        \Artisan::call('passport:client', [
-        '--password' => true,
-        '-n'    => true,
+
+        if (App::environment(['local', 'staging'])) {
+            // This Seeder Would Not Be Run on Production
+            $this->call(DummyUserSeeder::class);
+        }
+    }
+
+    private function passportInstall()
+    {
+        \Artisan::call('passport:keys', [
+            '--force' => true,
+            '-n'      => true
         ]);
-        /* Can Uncomment The Seeder Below This In Production */
-        $this->call(DummyUserSeeder::class);
+        \Artisan::call('passport:client', [
+            '--password' => true,
+            '-n'         => true
+        ]);
     }
 }
