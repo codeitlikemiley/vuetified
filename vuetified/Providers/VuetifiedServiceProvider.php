@@ -3,23 +3,22 @@
 namespace Vuetified\Providers;
 
 use Vuetified\Vuetified;
+use Illuminate\Support\ServiceProvider;
 use Vuetified\Console\Commands\VersionCommand;
+use Vuetified\Console\Commands\GenerateEchoKeys;
 use Vuetified\Console\Commands\GenerateEchoAppID;
 use Vuetified\Console\Commands\GenerateEchoAppKey;
-use Vuetified\Console\Commands\GenerateEchoKeys;
-use Illuminate\Support\ServiceProvider;
 
 class VuetifiedServiceProvider extends ServiceProvider
 {
-
     public function boot()
-    {   
+    {
         //
     }
 
     public function register()
     {
-        if (! class_exists('Vuetified')) {
+        if (!class_exists('Vuetified')) {
             class_alias('Vuetified\Vuetified', 'Vuetified');
         }
 
@@ -28,7 +27,7 @@ class VuetifiedServiceProvider extends ServiceProvider
                 VersionCommand::class,
                 GenerateEchoAppID::class,
                 GenerateEchoAppKey::class,
-                GenerateEchoKeys::class,
+                GenerateEchoKeys::class
                 // Add Console Command Here
             ]);
         }
@@ -43,15 +42,13 @@ class VuetifiedServiceProvider extends ServiceProvider
      */
     protected function registerServices()
     {
-        
         $services = [
-        //   Contracts                       =   Implementation Of Contracts
-            'Contracts\InitialFrontendState' => 'InitialFrontendState',
+            //   Contracts                       =   Implementation Of Contracts
+            'Contracts\InitialFrontendState' => 'InitialFrontendState'
         ];
 
         foreach ($services as $key => $value) {
             $this->app->singleton('Vuetified\\'.$key, 'Vuetified\\'.$value);
         }
     }
-
 }

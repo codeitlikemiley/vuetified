@@ -2,7 +2,6 @@
 
 namespace Vuetified\Configuration;
 
-
 trait ManageModelOptions
 {
     /**
@@ -15,22 +14,12 @@ trait ManageModelOptions
     /**
      * Set the user model class name.
      *
-     * @param  string  $userModel
+     * @param  string $userModel
      * @return void
      */
     public static function useUserModel($userModel)
     {
         static::$userModel = $userModel;
-    }
-
-    /**
-     * Get the user model class name.
-     *
-     * @return string
-     */
-    public static function userModel()
-    {
-        return static::$userModel;
     }
 
     /**
@@ -43,4 +32,13 @@ trait ManageModelOptions
         return new static::$userModel;
     }
 
+    /**
+     * Get the user model class name.
+     *
+     * @return string
+     */
+    public static function userModel()
+    {
+        return static::$userModel;
+    }
 }

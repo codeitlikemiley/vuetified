@@ -7,18 +7,18 @@ use Illuminate\Console\Command;
 class GenerateEchoKeys extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'echo:generate';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Generate Client App ID and Client App Key in Laravel Echo Server';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'echo:generate';
 
     /**
      * Create a new command instance.

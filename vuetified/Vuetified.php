@@ -5,11 +5,11 @@ namespace Vuetified;
 class Vuetified
 {
     use Configuration\ProvidesScriptVariables,
-        Configuration\CallsInteractions,
-        Configuration\ManageModelOptions;
+    Configuration\CallsInteractions,
+    Configuration\ManageModelOptions;
 
     /**
      * The Vuetified version.
      */
-    public static $version = '1.0.0';
+    public static $version = '1.1.0';
 }

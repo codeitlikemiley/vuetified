@@ -2,7 +2,6 @@
 
 namespace Vuetified\Configuration;
 
-use Closure;
 use Illuminate\Support\Str;
 
 trait CallsInteractions
@@ -18,7 +17,7 @@ trait CallsInteractions
      * Run an interaction method.
      *
      * @param  string  $interaction
-     * @param  array  $parameters
+     * @param  array   $parameters
      * @return mixed
      */
     public static function call($interaction, array $parameters = [])
@@ -30,12 +29,12 @@ trait CallsInteractions
      * Run an interaction method.
      *
      * @param  string  $interaction
-     * @param  array  $parameters
+     * @param  array   $parameters
      * @return mixed
      */
     public static function interact($interaction, array $parameters = [])
     {
-        if (! Str::contains($interaction, '@')) {
+        if (!Str::contains($interaction, '@')) {
             $interaction = $interaction.'@handle';
         }
 
@@ -55,10 +54,22 @@ trait CallsInteractions
     }
 
     /**
+     * Swap the implementation of an interaction method.
+     *
+     * @param  string $interaction
+     * @param  mixed  $callback
+     * @return void
+     */
+    public static function swap($interaction, $callback)
+    {
+        static::$interactions[$interaction] = $callback;
+    }
+
+    /**
      * Run a swapped interaction method.
      *
      * @param  string  $interaction
-     * @param  array  $parameters
+     * @param  array   $parameters
      * @return mixed
      */
     protected static function callSwappedInteraction($interaction, array $parameters, $class)
@@ -72,17 +83,5 @@ trait CallsInteractions
         $method = static::$interactions[$interaction]->bindTo($instance, $instance);
 
         return call_user_func_array($method, $parameters);
-    }
-
-    /**
-     * Swap the implementation of an interaction method.
-     *
-     * @param  string  $interaction
-     * @param  mixed  $callback
-     * @return void
-     */
-    public static function swap($interaction, $callback)
-    {
-        static::$interactions[$interaction] = $callback;
     }
 }

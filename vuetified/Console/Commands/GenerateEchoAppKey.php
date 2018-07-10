@@ -8,22 +8,23 @@ use Illuminate\Console\ConfirmableTrait;
 
 class GenerateEchoAppKey extends Command
 {
-
     use ConfirmableTrait;
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'echo:key 
-                        {--show : Display the key instead of modifying files}
-                        {--force : Force the operation to run when in production}';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Set Laravel Echo Server Client Key';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'echo:key
+                        {--show : Display the key instead of modifying files}
+                        {--force : Force the operation to run when in production}';
 
     /**
      * Create a new command instance.
@@ -48,10 +49,12 @@ class GenerateEchoAppKey extends Command
             return $this->line('<comment>'.$key.'</comment>');
         }
 
-        // Next, we will replace the application key in the environment file so it is
-        // automatically setup for this developer. This key gets generated using a
-        // secure random byte generator and is later base64 encoded for storage.
-        if (! $this->setKeyInEnvironmentFile($key)) {
+// Next, we will replace the application key in the environment file so it is
+
+// automatically setup for this developer. This key gets generated using a
+
+// secure random byte generator and is later base64 encoded for storage.
+        if (!$this->setKeyInEnvironmentFile($key)) {
             return;
         }
 
@@ -67,11 +70,26 @@ class GenerateEchoAppKey extends Command
         );
     }
 
+    /**
+     * Get a regex pattern that will match env APP_KEY with any random key.
+     *
+     * @return string
+     */
+    protected function keyReplacementPattern()
+    {
+        $escaped = preg_quote('='.$this->laravel['config']['echo.client_key'], '/');
+
+        return "/^ECHO_CLIENT_KEY{$escaped}/m";
+    }
+
+    /**
+     * @param $key
+     */
     protected function setKeyInEnvironmentFile($key)
     {
         $currentKey = $this->laravel['config']['echo.client_key'];
 
-        if (strlen($currentKey) !== 0 && (! $this->confirmToProceed())) {
+        if (strlen($currentKey) !== 0 && (!$this->confirmToProceed())) {
             return false;
         }
 
@@ -83,7 +101,7 @@ class GenerateEchoAppKey extends Command
     /**
      * Write a new environment file with the given key.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return void
      */
     protected function writeNewEnvironmentFileWith($key)
@@ -93,17 +111,5 @@ class GenerateEchoAppKey extends Command
             'ECHO_CLIENT_KEY='.$key,
             file_get_contents($this->laravel->environmentFilePath())
         ));
-    }
-
-    /**
-     * Get a regex pattern that will match env APP_KEY with any random key.
-     *
-     * @return string
-     */
-    protected function keyReplacementPattern()
-    {
-        $escaped = preg_quote('='.$this->laravel['config']['echo.client_key'], '/');
-
-        return "/^ECHO_CLIENT_KEY{$escaped}/m";
     }
 }
