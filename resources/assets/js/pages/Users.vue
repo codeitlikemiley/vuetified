@@ -52,23 +52,6 @@
               <v-icon>arrow_upward</v-icon>
               {{ header.text }}
             </th>
-            <th text-xs-right>
-              <span 
-                v-if="selected.length < 1"
-                :class="$vuetify.breakpoint.width >= 600 && 'title'"
-              >
-                Actions
-              </span>
-              <v-btn
-                v-else 
-                flat 
-                icon 
-                color="error" 
-                @click.native="deleteSelected()"
-              >
-                <v-icon>fa-trash</v-icon>
-              </v-btn>
-            </th>
           </tr>
         </template>
         <template 
@@ -134,14 +117,18 @@
             </td>
             <td class="title text-xs-center">
               <v-btn 
-                :class="{'amber--text': props.expanded, 'amber': props.expanded, 'teal': !props.expanded, 'teal--text': !props.expanded }" 
+                :disabled="!can('manage_users')"
                 light 
                 flat 
                 icon 
                 @click="props.expanded = !props.expanded"
               >
-                <v-icon v-if="!props.expanded">fa-expand</v-icon>
-                <v-icon v-if="props.expanded">fa-compress</v-icon>
+                <v-icon 
+                  v-if="!props.expanded" 
+                  color="teal">fa-expand</v-icon>
+                <v-icon 
+                  v-if="props.expanded" 
+                  color="amber">fa-compress</v-icon>
               </v-btn>
               <v-btn 
                 :disabled="!can('manage_users')" 
@@ -255,14 +242,13 @@
                     wrap
                   >
                     <v-flex xs12>
-                      <v-select
+                      <v-combobox
                         :items="roles"
-                        :disabled="props.item.id === 1"
                         v-model="props.item.roles"
+                        :disabled="props.item.id < 1000"
                         color="blue-grey"
                         light
-                        chips
-                        tags
+                        multiple
                         clearable
                         deletable-chips
                         prepend-icon="fa-tags"
@@ -286,7 +272,7 @@
                             {{ data.item }}
                           </v-chip>
                         </template>
-                      </v-select>
+                      </v-combobox>
                     </v-flex>
                   </v-layout>
                   <p 
@@ -307,13 +293,13 @@
                         clearable
                         @input="changePermissions(props.item)"
                         -->
-                      <v-select
+                      <v-combobox
                         :items="permissions"
                         v-model="props.item.permissions"
                         color="brown"
                         light
                         disabled
-                        tags
+                        multiple
                         prepend-icon="fa-tags"
                       >
                         <template 
@@ -337,7 +323,7 @@
                             {{ data.item }}
                           </v-chip>
                         </template>
-                      </v-select>
+                      </v-combobox>
                     </v-flex>
                   </v-layout>
                   <p 
@@ -402,7 +388,8 @@ export default {
         align: "left",
         sortable: true
       },
-      { text: "Roles", value: "roles", align: "left", sortable: false }
+      { text: "Roles", value: "roles", align: "left", sortable: false },
+      { text: "Actions", value: "", align: "left", sortable: false }
     ],
     items: [],
     selected: [],
@@ -447,24 +434,56 @@ export default {
       return !!link;
     },
     async activateLink(user) {
+      let toggleModal = swal.mixin({
+        confirmButtonClass: "v-btn blue-grey  subheading white--text",
+        buttonsStyling: false
+      });
       try {
         let payload = await axios.get(
           route("api.user.link.activate", { id: user.id })
         );
+        toggleModal({
+          title: "Success!",
+          html: `<p class="title">${payload.data.message}</p>`,
+          type: "success",
+          confirmButtonText: "Back"
+        });
         user.referral_link.active = true;
       } catch ({ message }) {
         if (message) {
+          toggleModal({
+            title: "Error!",
+            html: `<p class="title">${message}</p>`,
+            type: "error",
+            confirmButtonText: "Back"
+          });
         }
       }
     },
     async deactivateLink(user) {
+      let toggleModal = swal.mixin({
+        confirmButtonClass: "v-btn blue-grey  subheading white--text",
+        buttonsStyling: false
+      });
       try {
         let payload = await axios.get(
           route("api.user.link.deactivate", { id: user.id })
         );
         user.referral_link.active = false;
+        toggleModal({
+          title: "Success!",
+          html: `<p class="title">${payload.data.message}</p>`,
+          type: "success",
+          confirmButtonText: "Back"
+        });
       } catch ({ message }) {
         if (message) {
+          toggleModal({
+            title: "Error!",
+            html: `<p class="title">${message}</p>`,
+            type: "error",
+            confirmButtonText: "Back"
+          });
         }
       }
     },
@@ -542,19 +561,34 @@ export default {
     },
     async changeRoles(item) {
       let self = this;
+      let toggleModal = swal.mixin({
+        confirmButtonClass: "v-btn blue-grey  subheading white--text",
+        buttonsStyling: false
+      });
       self.rolesForm.roles = item.roles;
       try {
         self.rolesForm.busy = true;
-        const payload = await App.post(
-          route("api.user.roles.sync", { id: item.id }),
-          self.rolesForm
+        const payload = await self.rolesForm.post(
+          route("api.user.roles.sync", { id: item.id })
         );
         item.permissions = payload.data.permissions;
         self.rolesForm.busy = false;
-        self.rolesForm = new AppForm(App.forms.rolesForm);
-      } catch ({ message }) {
-        if (message) {
-        }
+        self.rolesForm = new Form({
+          roles: []
+        });
+        toggleModal({
+          title: "Success",
+          html: `<p class="title">User Role Change!</p>`,
+          type: "success",
+          confirmButtonText: "Back"
+        });
+      } catch (errors) {
+          toggleModal({
+            title: "Error!",
+            html: `<p class="title">${errors.response.data.message}</p>`,
+            type: "error",
+            confirmButtonText: "Back"
+          });
         self.rolesForm.busy = false;
       }
     },

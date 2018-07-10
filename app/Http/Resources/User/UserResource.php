@@ -30,7 +30,7 @@ class UserResource extends Resource
             /* load sponsor and link details */
             'sponsor'       => new SponsorResource($this->whenLoaded('sponsor')),
             /* list all roles */
-            'roles'         => $this->role_list,
+            'roles'         => $this->all_roles,
             /* list all users inherited permissions from any role */
             'permissions'   => $this->all_permissions,
             /* list all granted permissions to a user */

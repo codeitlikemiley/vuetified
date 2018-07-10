@@ -24,7 +24,7 @@ class ActivationController extends Controller
         if ($link) {
             $link->active = true;
             $link->save();
-            return response()->json(['message' => $user->name.' Link Activated!']);
+            return response()->json(['message' => 'User : '.$user->name.', Link Activated!']);
         } else {
             throw new LinkNotFound;
         }
@@ -41,7 +41,7 @@ class ActivationController extends Controller
         if ($link) {
             $link->active = false;
             $link->save();
-            return response()->json(['message' => $user->name.' Link Deactivated!']);
+            return response()->json(['message' => 'User : ' . $user->name.' Link Deactivated!']);
         } else {
             throw new LinkNotFound;
         }

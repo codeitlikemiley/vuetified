@@ -26,7 +26,8 @@ import {
   VAlert,
   VBreadcrumbs,
   VParallax,
-  VTextarea
+  VTextarea,
+  VCombobox
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -54,7 +55,8 @@ Vue.use(Vuetify, {
     VAlert,
     VBreadcrumbs,
     VParallax,
-    VTextarea
+    VTextarea,
+    VCombobox
   },
   //! Define Your Theme Here
   theme: {

@@ -9,7 +9,7 @@ use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Exceptions\UserNotFound;
 use App\Exceptions\RevokeAdminUpdate;
-use App\Http\Resources\User\UserResouce;
+use App\Http\Resources\User\UserResource;
 
 class PermissionRolesController extends Controller
 {
@@ -36,15 +36,16 @@ class PermissionRolesController extends Controller
      */
     public function syncPermissions($id, Request $request)
     {
-        if ($request->user()->id === $id) {
+        $user = User::find($id);
+
+        if ($user->isSuperAdmin()) {
             throw new RevokeAdminUpdate;
         }
 
-        $user = User::find($id);
-
         if ($user) {
             $user->syncPermissions($request->permissions);
-            return (new UserResouce($user->load('profile', 'referralLink', 'roles', 'permissions')))->additional(['message' => 'Permissions Updated!']);
+            $user->load('profile', 'referralLink', 'roles', 'permissions');
+            return new UserResource($user);
         } else {
             throw new UserNotFound;
         }
@@ -56,15 +57,16 @@ class PermissionRolesController extends Controller
      */
     public function syncRoles($id, Request $request)
     {
-        if ($request->user()->id === $id) {
+        $user = User::find($id);
+
+        if ($user->isSuperAdmin()) {
             throw new RevokeAdminUpdate;
         }
 
-        $user = User::find($id);
-
         if ($user) {
             $user->syncRoles($request->roles);
-            return (new UserResouce($user->load('profile', 'referralLink', 'roles', 'permissions')))->additional(['message' => 'Roles Updated!']);
+            $user->load('profile', 'referralLink', 'roles', 'permissions');
+            return new UserResource($user);
         } else {
             throw new UserNotFound;
         }
