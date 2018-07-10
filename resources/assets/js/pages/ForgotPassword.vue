@@ -41,7 +41,8 @@
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.username"
-                  :error-messages="errors.collect('username')"
+                  :error-messages="errorMessages('username')"
+                  :class="{ 'error--text': hasErrors('username') }"
                   class="primary--text"
                   name="username"
                   label="Type Your Registered Email"
@@ -104,7 +105,7 @@ export default {
     let self = this;
     /* Make Sure We Only Load Forgot Password Page If Not Authenticated */
     if (self.isAuthenticated) {
-      /* nextick make sure our modal wount be visible before redirect */
+      /* nextick make sure our modal would'nt be visible before redirect */
       return self.$nextTick(() => self.$router.go(-1));
     }
   },

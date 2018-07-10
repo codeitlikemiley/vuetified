@@ -46,7 +46,8 @@
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.email"
-                  :error-messages="errors.collect('email')"
+                  :error-messages="errorMessages('email')"
+                  :class="{ 'error--text': hasErrors('email') }"
                   class="primary--text"
                   name="email"
                   label="Your Registered Email"
@@ -72,7 +73,8 @@
                   v-model="form.password"
                   :append-icon="icon"
                   :type="!password_visible ? 'password' : 'text'"
-                  :error-messages="errors.collect('password')"
+                  :error-messages="errorMessages('password')"
+                  :class="{ 'error--text': hasErrors('password') }"
                   class="primary--text"
                   name="password"
                   label="New Password"
@@ -140,7 +142,6 @@
 <script>
 import validationError from "Mixins/validation-error";
 import { Form } from "vform";
-import swal from "sweetalert2";
 import ModalLayout from "Layouts/ModalLayout.vue";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("auth");
