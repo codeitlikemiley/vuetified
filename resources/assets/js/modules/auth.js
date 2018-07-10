@@ -111,16 +111,14 @@ const actions = {
     async passwordreset ({ commit, dispatch }, form) {
         form.busy = true
         try {
-            await App.post(route('api.auth.reset-password'), form).then(() => {
+            await form.post(route('api.auth.reset-password')).then((response) => {
                 commit('isAuthenticated', {
                     isAuthenticated: vueAuth.isAuthenticated()
                 })
-                form.busy = false
             })
             await dispatch('fetchMe')
-            
-        } catch ({errors, message}) {
-            form.errors.set(errors)
+            vm.$router.push({ name: "dashboard" });
+        } catch (errors) {
             form.busy = false
         }
     }

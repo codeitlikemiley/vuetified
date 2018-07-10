@@ -112,6 +112,9 @@
         offset-md2
       >
         <v-btn 
+          :loading="form.busy"
+          :disabled="errors.any()"
+          :class="{primary: !form.busy, error: form.busy}" 
           block 
           color="accent" 
           dark
@@ -135,12 +138,12 @@ export default {
   mixins: [validationError],
   data: () => ({
     form: new Form({
-      name: '',
-      email: '',
-      username: '',
-      old_password: '',
-      password: '',
-      password_confirmation: ''
+      name: "",
+      email: "",
+      username: "",
+      old_password: "",
+      password: "",
+      password_confirmation: ""
     }),
     password_visible: false
   }),
@@ -165,7 +168,7 @@ export default {
     prepareForm() {
       let self = this;
 
-      if (self.form.old_password == '') {
+      if (self.form.old_password == "") {
         delete self.form.old_password;
         delete self.form.password;
         delete self.form.password_confirmation;
@@ -174,22 +177,25 @@ export default {
     updateAccount() {
       let self = this;
       self.form.busy = true;
-      self.prepareForm();
-      self.form
-        .post(route("api.user.updateAccount"))
-        .then(response => {
-          console.log(response.data.data);
-          self.setMe(response.data.data);
-          self.form.old_password = null;
-          self.form.password = null;
-          self.form.password_confirmation = null;
-          self.form.clear();
-          self.errors.clear();
-          self.showModal(response.data.message);
-        })
-        .catch(response => {
-          self.form.busy = false;
-        });
+      self.$validator.validateAll();
+      if (!self.errors.any()) {
+        self.prepareForm();
+        self.form
+          .post(route("api.user.updateAccount"))
+          .then(response => {
+            console.log(response.data.data);
+            self.setMe(response.data.data);
+            self.form.old_password = null;
+            self.form.password = null;
+            self.form.password_confirmation = null;
+            self.form.clear();
+            self.errors.clear();
+            self.showModal(response.data.message);
+          })
+          .catch(response => {
+            self.form.busy = false;
+          });
+      }
     },
     showModal(message) {
       const Modal = swal.mixin({

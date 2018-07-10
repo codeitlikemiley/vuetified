@@ -151,11 +151,7 @@ export default {
   mounted() {
     let self = this;
     /* Make Sure We Only Show Logout Page If Authenticated */
-    if (!self.isAuthenticated) {
-      /* nextick make sure our modal wount be visible before redirect */
-      return self.$nextTick(() => self.$router.go(-1));
-    }
-    self.visible = true;
+    self.visible = self.isAuthenticated;
   },
   methods: {
     redirectBack() {

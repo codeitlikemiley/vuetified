@@ -163,6 +163,7 @@
         <v-btn 
           :loading="form.busy"
           :disabled="errors.any()"
+          :class="{primary: !form.busy, error: form.busy}" 
           block 
           color="accent" 
           dark
