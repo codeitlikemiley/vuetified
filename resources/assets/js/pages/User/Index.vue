@@ -460,7 +460,7 @@
 
 <script>
 import MainLayout from "Layouts/Main.vue";
-import Acl from "../mixins/acl";
+import Acl from "Mixins/acl";
 import validationError from "Mixins/validation-error";
 import { Form } from "vform";
 import swal from "sweetalert2";

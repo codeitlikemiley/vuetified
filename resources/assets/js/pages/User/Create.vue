@@ -225,7 +225,7 @@
           offset-md2
         >
           <v-text-field
-            v-model="form.state"
+            v-model="form.state_province"
             label="State"
             prepend-icon="map"
           />
@@ -244,20 +244,6 @@
             prepend-icon="markunread_mailbox"
             data-vv-name="zip"
           />
-        </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2
-        >
-          <v-textarea
-            v-model="form.notes"
-            color="teal"
-          >
-            <div slot="label">
-              Notes <small>(optional)</small>
-            </div>
-          </v-textarea>
         </v-flex>
         <v-flex 
           xs12 
@@ -305,10 +291,9 @@ export default {
       address_1: null,
       address_2: null,
       city: null,
-      state: null,
+      state_province: null,
       zip: null,
       country: null,
-      notes: null
     }),
     roles: [],
     password_visible: false

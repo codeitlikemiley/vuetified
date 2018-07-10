@@ -28,7 +28,8 @@ import {
   VParallax,
   VTextarea,
   VCombobox,
-  VSwitch
+  VSwitch,
+  VAutocomplete
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -58,7 +59,8 @@ Vue.use(Vuetify, {
     VParallax,
     VTextarea,
     VCombobox,
-    VSwitch
+    VSwitch,
+    VAutocomplete
   },
   //! Define Your Theme Here
   theme: {
