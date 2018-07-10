@@ -4,7 +4,6 @@ namespace Api\Account;
 
 use Api\Controller;
 use App\Models\User;
-use App\Rules\ValidateZip;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Rules\MustMatchPassword;
@@ -65,48 +64,33 @@ class AccountController extends Controller
         $user = $request->user_id ? \User::find($request->user_id) : $request->user();
         $data = request()->validate([
             'first_name'     => [
-                'sometimes',
-                'required',
+                'nullable',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
             'last_name'      => [
-                'sometimes',
-                'required',
+                'nullable',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
             'contact_no'     => [
-                'sometimes',
-                'required',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
+                'nullable',
             ],
             'address_1'      => [
-                'sometimes',
-                'required',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
+                'nullable',
             ],
             'address_2'      => [
-                'sometimes',
-                'required',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
+                'nullable',
             ],
             'city'           => [
-                'sometimes',
-                'required',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
+                'nullable',
             ],
             'country'        => [
-                'sometimes',
-                'required',
-                'regex:/(^[A-Za-z0-9 ]+$)+/'
+                'nullable',
             ],
             'zip_code'       => [
-                'sometimes',
-                'required',
-                new ValidateZip
+                'nullable',
             ],
             'state_province' => [
-                'sometimes',
-                'required',
+                'nullable',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ]
         ]);

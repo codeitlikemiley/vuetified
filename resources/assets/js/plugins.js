@@ -6,7 +6,7 @@ import './services/bus'
 import './services/vuex'
 import './services/echo'
 import './services/initial-state'
-import('./services/forms')
+// import('./services/forms')
 import './services/vee-validate'
 import './services/youtube'
 //! Secondary Services That Depends On the Primary Services

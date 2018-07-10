@@ -33,12 +33,13 @@
         >
           <v-text-field
             v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
-            v-model="link"
-            :error-messages="errors.collect('referral link')"
+            v-model="form.link"
+            :error-messages="errorMessages('link')"
+            :class="{ 'error--text': hasErrors('link') }"
             label="Referral Link"
             prepend-icon="fa-link"
             light
-            data-vv-name="referral link"
+            data-vv-name="link"
           />
         </v-flex>
         <v-flex 
@@ -61,6 +62,9 @@
 </template>
 
 <script>
+import validationError from "Mixins/validation-error";
+import { Form } from "vform";
+import swal from "sweetalert2";
 import VLink from "../VLink.vue";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapMutations } = createNamespacedHelpers("auth");
@@ -69,53 +73,59 @@ export default {
   components: {
     VLink
   },
+  mixins: [validationError],
   data: () => ({
-    linkForm: new AppForm(App.forms.linkForm),
-    link: null
+    form: new Form({
+      link: "",
+      link_id: "",
+      user_id: ""
+    })
   }),
   computed: {
     ...mapGetters({
       getMe: "getMe"
     }),
     href() {
-      return `http://${this.link}.${window.location.hostname}`;
+      return `http://${this.form.link}.${window.location.hostname}`;
     }
   },
   mounted() {
     let self = this;
-    self.link = self.getMe.referral_link.link;
-    self.link_id = self.getMe.referral_link.id;
-    self.user_id = self.getMe.id;
+    self.form.link = self.getMe.referral_link.link;
+    self.form.link_id = self.getMe.referral_link.id;
+    self.form.user_id = self.getMe.id;
   },
   methods: {
     ...mapMutations({
       setMe: "setMe"
     }),
-    prepareLinkForm() {
+    updateLink() {
       let self = this;
-      self.linkForm.link = self.link;
-      self.linkForm.link_id = self.link_id;
-      self.linkForm.user_id = self.user_id;
-    },
-    resetLinkForm() {
-      this.linkForm = new AppForm(App.forms.linkForm);
-    },
-    async updateLink() {
-      let self = this;
-      self.linkForm.busy = true;
-      self.prepareLinkForm();
-      try {
-        const payload = await App.post(
-          route("api.user.updateReferralLink"),
-          self.linkForm
-        );
-        self.resetLinkForm();
-        self.setMe(payload.data);
-        /* logout ->redirect to main link /login */
-      } catch ({ errors, message }) {
-        self.linkForm.errors.set(errors);
-        self.linkForm.busy = false;
+      self.form.busy = true;
+      self.$validator.validateAll();
+      if (!self.errors.any()) {
+        self.form
+        .post(route("api.user.updateReferralLink"))
+        .then(response => {
+          self.setMe(response.data.data);
+          self.showModal(response.data.message);
+        })
+        .catch(response => {
+          self.form.busy = false;
+        });
       }
+    },
+    showModal(message) {
+      const Modal = swal.mixin({
+        confirmButtonClass: "v-btn success  subheading white--text",
+        buttonsStyling: false
+      });
+      Modal({
+        title: "Success!",
+        html: '<p class="title">' + message + "</p>",
+        type: "success",
+        confirmButtonText: "Ok"
+      });
     }
   }
 };

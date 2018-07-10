@@ -135,12 +135,12 @@ export default {
   mixins: [validationError],
   data: () => ({
     form: new Form({
-      name: null,
-      email: null,
-      username: null,
-      old_password: null,
-      password: null,
-      password_confirmation: null
+      name: '',
+      email: '',
+      username: '',
+      old_password: '',
+      password: '',
+      password_confirmation: ''
     }),
     password_visible: false
   }),
@@ -165,30 +165,43 @@ export default {
     prepareForm() {
       let self = this;
 
-      if (self.form.old_password === null) {
+      if (self.form.old_password == '') {
         delete self.form.old_password;
         delete self.form.password;
         delete self.form.password_confirmation;
       }
     },
-    async updateAccount() {
+    updateAccount() {
       let self = this;
       self.form.busy = true;
       self.prepareForm();
-      try {
-        const payload = await App.post(
-          route("api.user.updateAccount"),
-          self.form
-        );
-        self.setMe(payload.data);
-        self.form.old_password = null;
-        self.form.password = null;
-        self.form.password_confirmation = null;
-        self.form.clear();
-        self.errors.clear();
-      } catch ({ errors, message }) {
-        self.form.busy = false;
-      }
+      self.form
+        .post(route("api.user.updateAccount"))
+        .then(response => {
+          console.log(response.data.data);
+          self.setMe(response.data.data);
+          self.form.old_password = null;
+          self.form.password = null;
+          self.form.password_confirmation = null;
+          self.form.clear();
+          self.errors.clear();
+          self.showModal(response.data.message);
+        })
+        .catch(response => {
+          self.form.busy = false;
+        });
+    },
+    showModal(message) {
+      const Modal = swal.mixin({
+        confirmButtonClass: "v-btn success  subheading white--text",
+        buttonsStyling: false
+      });
+      Modal({
+        title: "Success!",
+        html: '<p class="title">' + message + "</p>",
+        type: "success",
+        confirmButtonText: "Ok"
+      });
     }
   }
 };
