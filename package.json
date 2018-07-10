@@ -23,15 +23,16 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.5.0",
-    "expect": "^22.0.3",
-    "jsdom": "^11.5.1",
+    "expect": "^23.3.0",
+    "jsdom": "^11.11.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^4.0.1",
-    "mocha-webpack": "^1.0.1",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "^1.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-loader": "^13.6.0",
-    "vue-test-utils": "^1.0.0-beta.8"
+    "vue-test-utils": "^1.0.0-beta.11",
+    "vue-template-compiler": "^2.5.16"
   },
   "dependencies": {
     "@websanova/vue-auth": "^2.21.11-beta",
