@@ -12,8 +12,9 @@
       >
         <v-text-field
           v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
-          v-model="username"
-          :error-messages="errors.collect('username')"
+          v-model="form.username"
+          :error-messages="errorMessages('username')"
+          :class="{ 'error--text': hasErrors('username') }"
           label="Username"
           prepend-icon=" fa-at"
           data-vv-name="username"
@@ -26,8 +27,9 @@
       >
         <v-text-field
           v-validate="{ required: true, email: true }"
-          v-model="email"
-          :error-messages="errors.collect('email')"
+          v-model="form.email"
+          :error-messages="errorMessages('email')"
+          :class="{ 'error--text': hasErrors('email') }"
           label="Email"
           prepend-icon=" mail"
           data-vv-name="email"
@@ -40,8 +42,9 @@
       >
         <v-text-field
           v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
-          v-model="name"
-          :error-messages="errors.collect('name')"
+          v-model="form.name"
+          :error-messages="errorMessages('name')"
+          :class="{ 'error--text': hasErrors('name') }"
           label="Account Name"
           prepend-icon=" fa-address-card"
           data-vv-name="name"
@@ -54,13 +57,14 @@
       >
         <v-text-field
           v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
-          v-model="old_password"
+          v-model="form.old_password"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
-          :error-messages="errors.collect('current password')"
+          :error-messages="errorMessages('old_password')"
+          :class="{ 'error--text': hasErrors('old_password') }"
           label="Current Password"
           prepend-icon="fa-hashtag"
-          data-vv-name="current password"
+          data-vv-name="old_password"
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
@@ -70,15 +74,16 @@
         offset-md2
       >
         <v-text-field
-          v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
-          v-model="password"
+          v-validate="'required|min:6|confirmed:confirmation'"
+          v-model="form.password"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
-          :error-messages="errors.collect('new password')"
+          :error-messages="errorMessages('password')"
+          :class="{ 'error--text': hasErrors('password') }"
           label="New Password"
           name="password"
           prepend-icon="fiber_new"
-          data-vv-name="new password"
+          data-vv-name="password"
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
@@ -88,14 +93,16 @@
         offset-md2
       >
         <v-text-field
-          v-validate="'confirmed:password'"
+          v-validate="'required|min:6'"
+          ref="confirmation"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
-          v-model="password_confirmation"
-          :error-messages="errors.collect('confirm new password')"
+          v-model="form.password_confirmation"
+          :error-messages="errorMessages('password_confirmation')"
+          :class="{ 'error--text': hasErrors('password_confirmation') }"
           label="Confirm New Password"
           prepend-icon="done_all"
-          data-vv-name="confirm new password"
+          data-vv-name="password_confirmation"
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
@@ -118,18 +125,23 @@
 </template>
 
 <script>
+import validationError from "Mixins/validation-error";
+import { Form } from "vform";
+import swal from "sweetalert2";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapMutations } = createNamespacedHelpers("auth");
 
 export default {
+  mixins: [validationError],
   data: () => ({
-    accountForm: new AppForm(App.forms.accountForm),
-    name: null,
-    email: null,
-    username: null,
-    old_password: null,
-    password: null,
-    password_confirmation: null,
+    form: new Form({
+      name: null,
+      email: null,
+      username: null,
+      old_password: null,
+      password: null,
+      password_confirmation: null
+    }),
     password_visible: false
   }),
   computed: {
@@ -142,53 +154,40 @@ export default {
   },
   mounted() {
     let self = this;
-    self.name = self.getMe.name;
-    self.email = self.getMe.email;
-    self.username = self.getMe.username;
+    self.form.name = self.getMe.name;
+    self.form.email = self.getMe.email;
+    self.form.username = self.getMe.username;
   },
   methods: {
     ...mapMutations({
       setMe: "setMe"
     }),
-    prepareAccountForm() {
+    prepareForm() {
       let self = this;
-      self.accountForm.name = self.name;
-      self.accountForm.username = self.username;
-      self.accountForm.email = self.email;
-      self.accountForm.old_password = self.old_password;
-      self.accountForm.password = self.password;
-      self.accountForm.password_confirmation = self.password_confirmation;
-      if (self.old_password === null) {
-        delete self.accountForm.old_password;
-        delete self.accountForm.password;
-        delete self.accountForm.password_confirmation;
+
+      if (self.form.old_password === null) {
+        delete self.form.old_password;
+        delete self.form.password;
+        delete self.form.password_confirmation;
       }
-    },
-    resetAccountForm() {
-      let self = this;
-      self.accountForm = new AppForm(App.forms.accountForm);
     },
     async updateAccount() {
       let self = this;
-      self.accountForm.busy = true;
-      self.prepareAccountForm();
+      self.form.busy = true;
+      self.prepareForm();
       try {
         const payload = await App.post(
           route("api.user.updateAccount"),
-          self.accountForm
+          self.form
         );
-        self.resetAccountForm();
         self.setMe(payload.data);
-        self.old_password = null;
-        self.password = null;
-        self.password_confirmation = null;
+        self.form.old_password = null;
+        self.form.password = null;
+        self.form.password_confirmation = null;
+        self.form.clear();
+        self.errors.clear();
       } catch ({ errors, message }) {
-        self.accountForm.errors.set(errors);
-        self.accountForm.busy = false;
-        /* for wrong password */
-        if (errors.old_password[0]) {
-        } else {
-        }
+        self.form.busy = false;
       }
     }
   }

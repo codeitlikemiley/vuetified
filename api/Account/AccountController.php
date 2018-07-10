@@ -25,6 +25,10 @@ class AccountController extends Controller
         $user = $request->user_id ? User::find($request->user_id) : $request->user();
 
         $data = request()->validate([
+            'name'                  => [
+                'sometimes',
+                'required'
+            ],
             'email'                 => [
                 'sometimes',
                 'required',
