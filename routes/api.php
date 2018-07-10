@@ -11,6 +11,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/{id}/syncPermissions', 'Auth\PermissionRolesController@syncPermissions')->name('api.user.permissions.sync');
     Route::get('/users/{id}/activateLink', 'Link\ActivationController@activateLink')->name('api.user.link.activate');
     Route::get('/users/{id}/deactivateLink', 'Link\ActivationController@deactivateLink')->name('api.user.link.deactivate');
+    Route::post('/users/delete', 'User\UsersController@delete')->name('api.user.delete');
+
     //? Settings Page
     Route::post('/users/settings/updateAccount', 'Account\AccountController@updateAccount')->name('api.user.updateAccount');
     Route::post('/users/settings/updateProfile', 'Account\AccountController@updateProfile')->name('api.user.updateProfile');

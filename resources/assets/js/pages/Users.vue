@@ -8,11 +8,11 @@
       >
         <v-card-title>
           <v-text-field
+            v-model="search"
             append-icon="search"
             label="Search Users"
             single-line
             hide-details
-            v-model="search"
             light
           />
         </v-card-title>
@@ -22,10 +22,10 @@
         :headers="headers"
         :items="items"
         :search="search"
+        :pagination.sync="pagination"
         select-all
         light
         item-key="id"
-        :pagination.sync="pagination"
         expand
       >
         <template
@@ -35,12 +35,12 @@
           <tr>
             <th>
               <v-checkbox
+                :input-value="props.all"
+                :indeterminate="props.indeterminate"
                 light
                 primary
                 hide-details
                 @click.native="toggleAll"
-                :input-value="props.all"
-                :indeterminate="props.indeterminate"
               />
             </th>
             <th 
@@ -79,8 +79,8 @@
             <td class="title text-xs-left">
               <v-checkbox
                 :active="props.selected"
-                @click="props.selected = !props.selected"
                 :input-value="props.selected"
+                @click="props.selected = !props.selected"
               />
             </td>
             <td class="title text-xs-left accent--text">
@@ -101,10 +101,10 @@
 
             <td class="title text-xs-left accent--text">
               <v-btn 
-                flat 
-                color="cyan"
-                v-if="activeLink(props.item.referral_link.active)"
+                v-if="activeLink(props.item.referral_link.active)" 
                 :href="`http://${ props.item.referral_link.link }.${ domain }`"
+                flat
+                color="cyan"
                 target="_blank"
               >
                 <v-icon left>fa-link</v-icon>
@@ -114,9 +114,9 @@
             </td>
             <td class="title text-xs-left accent--text">
               <v-chip
+                v-for="(role,key) in props.item.roles"
+                :key="key" 
                 dark
-                v-for="(role,key) in props.item.roles" 
-                :key="key"
               >
                 <v-avatar
                   :class="{
@@ -134,10 +134,10 @@
             </td>
             <td class="title text-xs-center">
               <v-btn 
+                :class="{'amber--text': props.expanded, 'amber': props.expanded, 'teal': !props.expanded, 'teal--text': !props.expanded }" 
                 light 
                 flat 
                 icon 
-                :class="{'amber--text': props.expanded, 'amber': props.expanded, 'teal': !props.expanded, 'teal--text': !props.expanded }" 
                 @click="props.expanded = !props.expanded"
               >
                 <v-icon v-if="!props.expanded">fa-expand</v-icon>
@@ -200,19 +200,19 @@
               </v-card-media>
               <v-card-actions>
                 <v-btn 
+                  v-if="!props.item.referral_link.active" 
                   flat 
-                  @click="activateLink(props.item)" 
                   color="success" 
-                  v-if="!props.item.referral_link.active"
+                  @click="activateLink(props.item)"
                 >
                   Activate Link 
                   <v-icon right>done_all</v-icon>
                 </v-btn>
                 <v-btn 
+                  v-if="props.item.referral_link.active" 
                   flat 
-                  @click="deactivateLink(props.item)" 
                   color="error" 
-                  v-if="props.item.referral_link.active"
+                  @click="deactivateLink(props.item)"
                 >
                   Deactivate Link 
                   <v-icon right>fa-ban </v-icon>
@@ -227,8 +227,8 @@
                   >
                     <v-flex xs12>
                       <v-text-field
-                        label="Username"
                         v-model="props.item.username"
+                        label="Username"
                         prepend-icon="fa-at"
                         light
                         readonly
@@ -236,8 +236,8 @@
                     </v-flex>
                     <v-flex xs12>
                       <v-text-field
-                        label="Email"
                         v-model="props.item.email"
+                        label="Email"
                         prepend-icon="fa-envelope"
                         light
                         readonly
@@ -245,8 +245,8 @@
                     </v-flex>
                   </v-layout>
                   <p 
-                    class="title accent--text" 
-                    v-if="props.item.roles"
+                    v-if="props.item.roles" 
+                    class="title accent--text"
                   >
                     Assigned Roles
                   </p>
@@ -256,27 +256,27 @@
                   >
                     <v-flex xs12>
                       <v-select
-                        @input="changeRoles(props.item)"
-                        color="blue-grey"
                         :items="roles"
+                        :disabled="props.item.id === 1"
+                        v-model="props.item.roles"
+                        color="blue-grey"
                         light
                         chips
                         tags
-                        :disabled="props.item.id === 1"
                         clearable
                         deletable-chips
                         prepend-icon="fa-tags"
-                        v-model="props.item.roles"
+                        @input="changeRoles(props.item)"
                       >
                         <template 
                           slot="selection" 
                           slot-scope="data"
                         >
                           <v-chip
+                            :selected="data.selected"
                             light
                             close
                             @input="removeRole(data.item,props.item.roles)"
-                            :selected="data.selected"
                           >
                             <v-avatar
                               class="blue-grey white--text"
@@ -290,8 +290,8 @@
                     </v-flex>
                   </v-layout>
                   <p 
-                    class="title accent--text" 
-                    v-if="props.item.permissions"
+                    v-if="props.item.permissions" 
+                    class="title accent--text"
                   >
                     Role Inherited Permissions
                   </p>
@@ -308,13 +308,13 @@
                         @input="changePermissions(props.item)"
                         -->
                       <v-select
-                        color="brown"
                         :items="permissions"
+                        v-model="props.item.permissions"
+                        color="brown"
                         light
                         disabled
                         tags
                         prepend-icon="fa-tags"
-                        v-model="props.item.permissions"
                       >
                         <template 
                           slot="selection" 
@@ -326,8 +326,8 @@
                             @input="removePermission(data.item,props.item.permissions)"
                             -->
                           <v-chip
-                            light
                             :selected="data.selected"
+                            light
                           >
                             <v-avatar
                               class="primary white--text"
@@ -341,8 +341,8 @@
                     </v-flex>
                   </v-layout>
                   <p 
-                    class="title accent--text" 
-                    v-if="props.item.profile"
+                    v-if="props.item.profile" 
+                    class="title accent--text"
                   >
                     Profile Details
                   </p>
@@ -351,9 +351,9 @@
                     wrap
                   >
                     <v-flex 
-                      xs12 
-                      v-for="(profile,key) in props.item.profile"
+                      v-for="(profile,key) in props.item.profile" 
                       :key="key"
+                      xs12
                     >
                       <v-text-field
                         :label="toProperCase(key)"
@@ -377,193 +377,228 @@
 </template>
 
 <script>
-import MainLayout from 'Layouts/Main.vue'
-import Acl from '../mixins/acl'
+import MainLayout from "Layouts/Main.vue";
+import Acl from "../mixins/acl";
+import validationError from "Mixins/validation-error";
+import { Form } from "vform";
+import swal from "sweetalert2";
 
 export default {
-    components: {
-        MainLayout
+  components: {
+    MainLayout
+  },
+  mixins: [Acl, validationError],
+  data: () => ({
+    contentClass: { grey: true, "lighten-4": true, "accent--text": true },
+    dialog: false,
+    /* table */
+    headers: [
+      { text: "ID", value: "id", align: "left", sortable: true },
+      { text: "Name", value: "name", align: "left", sortable: true },
+      { text: "Sponsor", value: "sponsor.name", align: "left", sortable: true },
+      {
+        text: "Referrak Link",
+        value: "referral_link.link",
+        align: "left",
+        sortable: true
+      },
+      { text: "Roles", value: "roles", align: "left", sortable: false }
+    ],
+    items: [],
+    selected: [],
+    pagination: {
+      sortBy: "name"
     },
-    mixins: [Acl],
-    data: () => ({
-        contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
-        dialog: false,
-        /* table */
-        headers: [
-            { text: 'ID', value: 'id', align: 'left', sortable: true },
-            { text: 'Name', value: 'name', align: 'left', sortable: true },
-            { text: 'Sponsor', value: 'sponsor.name', align: 'left', sortable: true },
-            { text: 'Referrak Link', value: 'referral_link.link', align: 'left', sortable: true },
-            { text: 'Roles', value: 'roles', align: 'left', sortable: false }
-        ],
-        items: [],
-        selected: [],
-        pagination: {
-            sortBy: 'name'
-        },
-        current_user: {},
-        usersForm: new AppForm(App.forms.usersForm),
-        toggleForm: new AppForm(App.forms.toggleForm),
-        search: '',
-        roles: [],
-        permissions: [],
-        rolesForm: new AppForm(App.forms.rolesForm),
-        permissionsForm: new AppForm(App.forms.permissionsForm),
-        domain: window.location.hostname
+    current_user: {},
+    usersForm: new Form({}),
+    toggleForm: new Form({
+      toggle: false
     }),
-    watch: {
-        items: {
-            handler: function (newValue) {
-
-            },
-            deep: true
-        },
-        roles (newValue) {
-
-        },
-        permissions (newValue) {
-
-        }
+    search: "",
+    roles: [],
+    permissions: [],
+    rolesForm: new Form({
+      roles: []
+    }),
+    permissionsForm: new Form({
+      permissions: []
+    }),
+    deleteUserForm: new Form({
+      user_id: null
+    }),
+    domain: window.location.hostname
+  }),
+  watch: {
+    items: {
+      handler: function(newValue) {},
+      deep: true
     },
-    mounted () {
-        let self = this
-        self.fetchRoles()
-        self.fetchPermissions()
-        self.fetchUsers()
+    roles(newValue) {},
+    permissions(newValue) {}
+  },
+  mounted() {
+    let self = this;
+    self.fetchRoles();
+    self.fetchPermissions();
+    self.fetchUsers();
+  },
+  methods: {
+    activeLink(link) {
+      return !!link;
     },
-    methods: {
-        activeLink (link) {
-            return !!link
-        },
-        async activateLink (user) {
-            try {
-                let payload = (await axios.get(route('api.user.link.activate', {id: user.id})))
-                user.referral_link.active = true
-            } catch ({message}) {
-                if (message) {
-                }
-            }
-        },
-        async deactivateLink (user) {
-            try {
-                let payload = (await axios.get(route('api.user.link.deactivate', {id: user.id})))
-                user.referral_link.active = false
-            } catch ({message}) {
-                if (message) {
-                }
-            }
-        },
-        async fetchRoles () {
-            let self = this
-            try {
-                const payload = (await axios.get(route('api.roles.index')))
-                self.roles = payload.data
-            } catch ({errors, message}) {
-                if (errors) {
-                    console.log('fetchRoles:errors', errors)
-                }
-                if (message) {
-                    console.log('fetchRoles:error-message', message)
-                }
-            }
-        },
-        async fetchPermissions () {
-            let self = this
-            try {
-                const payload = (await axios.get(route('api.permissions.index')))
-                self.permissions = payload.data
-            } catch ({errors, message}) {
-                if (errors) {
-                    console.log('fetchRoles:errors', errors)
-                }
-                if (message) {
-                    console.log('fetchRoles:error-message', message)
-                }
-            }
-        },
-        async fetchUsers () {
-            let self = this
-            self.usersForm.busy = true
-            try {
-                const payload = (await App.post(route('api.user.index'), self.usersForm))
-                self.items = payload.data
-                self.usersForm = new AppForm(App.forms.usersForm)
-            } catch ({errors, message}) {
-                if (errors) {
-                    self.usersForm.errors.set(errors)
-                }
-                if (message) {
-                }
-                self.usersForm.busy = false
-            }
-        },
-        deleteUser (user) {
-            let self = this
-            /* delete item */
-            // you cant delete an admin account
-            // but we can only downgrade it to other role
-            // except if your email is = admin@
-            let index = _.findIndex(self.items, { id: user.id })
-            self.$delete(self.items, index)
-        },
-        toProperCase (key) {
-            let newStr = key.replace(/_/g, ' ')
-            return newStr.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() })
-        },
-        async changeRoles (item) {
-            let self = this
-            self.rolesForm.roles = item.roles
-            try {
-                self.rolesForm.busy = true
-                const payload = (await App.post(route('api.user.roles.sync', {id: item.id}), self.rolesForm))
-                item.permissions = payload.data.permissions
-                self.rolesForm.busy = false
-                self.rolesForm = new AppForm(App.forms.rolesForm)
-            } catch ({message}) {
-                if (message) {
-                }
-                self.rolesForm.busy = false
-            }
-        },
-        removeRole (role, roles) {
-            roles.splice(roles.indexOf(role), 1)
-            roles = [...roles]
-        },
-        async changePermissions (item) {
-            /* make ajax call to update permissions to this user */
-            let self = this
-            self.permissionsForm.permissions = item.permissions
-            try {
-                self.permissionsForm.busy = true
-                const payload = (await App.post(route('api.user.permissions.sync', {id: item.id}), self.permissionsForm))
-                self.permissionsForm.busy = false
-                self.permissionsForm = new AppForm(App.forms.permissionsForm)
-            } catch ({message}) {
-                if (message) {
-                }
-                self.permissionsForm.busy = false
-            }
-        },
-        removePermission (permission, permissions) {
-            permissions.splice(permissions.indexOf(permission), 1)
-            permissions = [...permissions]
-        },
-        deleteAll () {
-            this.items = []
-            this.selected = []
-        },
-        deleteSelected () {
-            let self = this
-            let newItems = _.difference(self.items, self.selected)
-            self.items = newItems
-            self.selected = []
-            //! Send Api Call To Delete The Social Account
-        },
-        toggleAll () {
-            if (this.selected.length) this.selected = []
-            else this.selected = this.items.slice()
+    async activateLink(user) {
+      try {
+        let payload = await axios.get(
+          route("api.user.link.activate", { id: user.id })
+        );
+        user.referral_link.active = true;
+      } catch ({ message }) {
+        if (message) {
         }
-
+      }
+    },
+    async deactivateLink(user) {
+      try {
+        let payload = await axios.get(
+          route("api.user.link.deactivate", { id: user.id })
+        );
+        user.referral_link.active = false;
+      } catch ({ message }) {
+        if (message) {
+        }
+      }
+    },
+    async fetchRoles() {
+      let self = this;
+      try {
+        const payload = await axios.get(route("api.roles.index"));
+        self.roles = payload.data;
+      } catch ({ errors, message }) {
+        if (errors) {
+          console.log("fetchRoles:errors", errors);
+        }
+        if (message) {
+          console.log("fetchRoles:error-message", message);
+        }
+      }
+    },
+    async fetchPermissions() {
+      let self = this;
+      try {
+        const payload = await axios.get(route("api.permissions.index"));
+        self.permissions = payload.data;
+      } catch ({ errors, message }) {
+        if (errors) {
+          console.log("fetchRoles:errors", errors);
+        }
+        if (message) {
+          console.log("fetchRoles:error-message", message);
+        }
+      }
+    },
+    async fetchUsers() {
+      let self = this;
+      self.usersForm.busy = true;
+      try {
+        const payload = await self.usersForm.post(route("api.user.index"));
+        self.items = payload.data.data;
+        self.usersForm = new Form({});
+      } catch (errors) {
+        self.usersForm.busy = false;
+      }
+    },
+    deleteUser(user) {
+      let self = this;
+      self.deleteUserForm.user_id = user.id;
+      let index = _.findIndex(self.items, { id: user.id });
+      let toggleModal = swal.mixin({
+        confirmButtonClass: "v-btn blue-grey  subheading white--text",
+        buttonsStyling: false
+      });
+      self.deleteUserForm.post(route("api.user.delete")).then(response => {
+        if (response.data.status === true) {
+          toggleModal({
+            title: "Success",
+            html: `<p class="title">User Deleted!</p>`,
+            type: "success",
+            confirmButtonText: "Back"
+          });
+          self.$delete(self.items, index);
+        } else {
+          toggleModal({
+            title: "Forbidden Action!",
+            html: `<p class="title">Cannot Delete Super Admin!</p>`,
+            type: "warning",
+            confirmButtonText: "Back"
+          });
+        }
+      });
+    },
+    toProperCase(key) {
+      let newStr = key.replace(/_/g, " ");
+      return newStr.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    },
+    async changeRoles(item) {
+      let self = this;
+      self.rolesForm.roles = item.roles;
+      try {
+        self.rolesForm.busy = true;
+        const payload = await App.post(
+          route("api.user.roles.sync", { id: item.id }),
+          self.rolesForm
+        );
+        item.permissions = payload.data.permissions;
+        self.rolesForm.busy = false;
+        self.rolesForm = new AppForm(App.forms.rolesForm);
+      } catch ({ message }) {
+        if (message) {
+        }
+        self.rolesForm.busy = false;
+      }
+    },
+    removeRole(role, roles) {
+      roles.splice(roles.indexOf(role), 1);
+      roles = [...roles];
+    },
+    async changePermissions(item) {
+      /* make ajax call to update permissions to this user */
+      let self = this;
+      self.permissionsForm.permissions = item.permissions;
+      try {
+        self.permissionsForm.busy = true;
+        const payload = await App.post(
+          route("api.user.permissions.sync", { id: item.id }),
+          self.permissionsForm
+        );
+        self.permissionsForm.busy = false;
+        self.permissionsForm = new AppForm(App.forms.permissionsForm);
+      } catch ({ message }) {
+        if (message) {
+        }
+        self.permissionsForm.busy = false;
+      }
+    },
+    removePermission(permission, permissions) {
+      permissions.splice(permissions.indexOf(permission), 1);
+      permissions = [...permissions];
+    },
+    deleteAll() {
+      this.items = [];
+      this.selected = [];
+    },
+    deleteSelected() {
+      let self = this;
+      let newItems = _.difference(self.items, self.selected);
+      self.items = newItems;
+      self.selected = [];
+      //! Send Api Call To Delete The Social Account
+    },
+    toggleAll() {
+      if (this.selected.length) this.selected = [];
+      else this.selected = this.items.slice();
     }
-}
+  }
+};
 </script>

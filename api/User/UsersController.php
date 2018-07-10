@@ -18,6 +18,25 @@ class UsersController extends Controller
     }
 
     /**
+     * @param Request $request
+     */
+    public function delete(Request $request)
+    {
+        $user    = User::find($request->user_id);
+        $deleted = false;
+
+        if (!$user->isSuperAdmin()) {
+            $deleted = $user->delete();
+
+            if (!$deleted) {
+                throw new UpdatingRecordFailed;
+            }
+        }
+
+        return response()->json(['status' => $deleted], 200);
+    }
+
+    /**
      * @param $email
      */
     public function findByEmail($email)
