@@ -23,7 +23,7 @@ class DummyUserSeeder extends Seeder
             $currentLink->sp_link_id = optional($sponsor->referralLink)->id;
             $currentLink->save();
             $user->sp_id = optional($sponsor)->id;
-            $user->assignRole('freemium');
+            $user->assignRole('customer');
             $user->save();
             $profile = factory(Profile::class, 1)->create()->first();
             $user->profile()->save($profile);
@@ -37,7 +37,7 @@ class DummyUserSeeder extends Seeder
             $currentLink->sp_link_id = optional($sponsor->referralLink)->id;
             $currentLink->save();
             $user->sp_id = optional($sponsor)->id;
-            $user->assignRole('premium');
+            $user->assignRole('customer');
             $user->save();
             $profile = factory(Profile::class, 1)->create()->first();
             $user->profile()->save($profile);

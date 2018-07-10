@@ -1,5 +1,7 @@
 <template>
-  <modal-layout v-if="visible" class="white">
+  <modal-layout 
+    v-if="visible" 
+    class="white">
     <v-card :flat="true">
       <v-toolbar class="primary">
         <v-btn 
@@ -28,8 +30,8 @@
         <v-container fluid>
           <form @submit.prevent="logout()">
             <v-layout 
-              row 
-              v-if="user"
+              v-if="user" 
+              row
             >
               <v-flex 
                 x12 
@@ -92,21 +94,21 @@
               >
                 <v-card-actions>
                   <v-btn 
-                    @click.native="redirectBack()" 
                     block 
                     flat 
                     class="white--text" 
-                    color="info"
+                    color="info" 
+                    @click.native="redirectBack()"
                   >
                     No, I Want To Stay
                   </v-btn>
                   <v-btn
+                    :loading="form.busy"
+                    :disabled="form.busy"
                     block
                     flat
                     color="red lighten-2"
                     class="white--text"
-                    :loading="logoutForm.busy"
-                    :disabled="logoutForm.busy"
                     type="submit"
                   >Yes, Log Me Out</v-btn>
                 </v-card-actions>
@@ -121,54 +123,59 @@
 </template>
 
 <script>
-import ModalLayout from 'Layouts/ModalLayout.vue'
-import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers('auth')
+import ModalLayout from "Layouts/ModalLayout.vue";
+import { createNamespacedHelpers } from "vuex";
+const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers(
+  "auth"
+);
+import { Form } from "vform";
 
 export default {
-    data: () => ({
-        tile: false,
-        avatarSize: '200px',
-        logoutForm: new AppForm(App.forms.logoutForm),
-        visible: false
+  components: {
+    ModalLayout
+  },
+  data: () => ({
+    tile: false,
+    avatarSize: "200px",
+    form: new Form({
+      submit: true
     }),
-    computed: {
-        ...mapGetters({
-            isAuthenticated: 'isAuthenticated',
-            user: 'getMe'
-        })
-    },
-    mounted () {
-        let self = this
-        /* Make Sure We Only Show Logout Page If Authenticated */
-        if (!self.isAuthenticated) {
-            /* nextick make sure our modal wount be visible before redirect */
-            return self.$nextTick(() => self.$router.go(-1))
-        }
-        self.visible = true
-    },
-    methods: {
-        redirectBack () {
-            let self = this
-            return self.$nextTick(() => self.$router.go(-1))
-        },
-        logout () {
-            let self = this
-            self.logoutForm.busy = true
-            return self.$nextTick(() => self.submit(self.logoutForm))
-        },
-        ...mapActions({
-            submit: 'logout'
-        }),
-        ...mapMutations({
-            setToken: 'setToken',
-            setRefreshToken: 'setRefreshToken',
-            setExpiration: 'setExpiration',
-            setMe: 'setMe'
-        })
-    },
-    components: {
-        ModalLayout
+    visible: false
+  }),
+  computed: {
+    ...mapGetters({
+      isAuthenticated: "isAuthenticated",
+      user: "getMe"
+    })
+  },
+  mounted() {
+    let self = this;
+    /* Make Sure We Only Show Logout Page If Authenticated */
+    if (!self.isAuthenticated) {
+      /* nextick make sure our modal wount be visible before redirect */
+      return self.$nextTick(() => self.$router.go(-1));
     }
-}
+    self.visible = true;
+  },
+  methods: {
+    redirectBack() {
+      let self = this;
+      return self.$nextTick(() => self.$router.go(-1));
+    },
+    logout() {
+      let self = this;
+      self.form.busy = true;
+      self.submit(self.form);
+    },
+    ...mapActions({
+      submit: "logout"
+    }),
+    ...mapMutations({
+      setToken: "setToken",
+      setRefreshToken: "setRefreshToken",
+      setExpiration: "setExpiration",
+      setMe: "setMe"
+    })
+  }
+};
 </script>

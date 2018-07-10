@@ -45,13 +45,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('manage_permissions');
         $role->givePermissionTo('access_all');
 
-        $role = Role::create(['name' => 'freemium']);
+        $role = Role::create(['name' => 'customer']);
         $role->givePermissionTo('edit_profile');
         $role->givePermissionTo('edit_link');
         $role->givePermissionTo('activate_link');
         $role->givePermissionTo('upload_avatar');
 
-        $role = Role::create(['name' => 'premium']);
+        $role = Role::create(['name' => 'merchant']);
         $role->givePermissionTo('edit_profile');
         $role->givePermissionTo('edit_link');
         $role->givePermissionTo('activate_link');

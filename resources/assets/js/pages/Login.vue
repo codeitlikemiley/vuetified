@@ -39,12 +39,13 @@
                 offset-xl4
               >
                 <v-text-field
+                  v-validate="'required|email'"
+                  v-model="form.username"
+                  :error-messages="errorMessages('username')"
+                  :class="{ 'error--text': hasErrors('username') }"
                   class="primary--text"
                   name="username"
                   label="Type Your Account Email"
-                  v-model="loginForm.username"
-                  :error-messages="errors.collect('username')"
-                  v-validate="'required|email'"
                   data-vv-name="username"
                   prepend-icon="email"
                   counter="255"
@@ -63,19 +64,20 @@
                 offset-xl4
               >
                 <v-text-field
+                  v-validate="'required|min:6'"
+                  v-model="form.password"
+                  :append-icon="icon"
+                  :type="!password_visible ? 'password' : 'text'"
+                  :error-messages="errorMessages('password')"
+                  :class="{ 'error--text': hasErrors('password') }"
                   class="primary--text"
                   name="password"
                   label="Enter your password"
                   hint="At least 6 characters"
-                  v-model="loginForm.password"
-                  :append-icon="icon"
-                  :append-icon-cb="() => (password_visible = !password_visible)"
-                  :type="!password_visible ? 'password' : 'text'"
-                  v-validate="'required|min:6'"
-                  :error-messages="errors.collect('password')"
                   data-vv-name="password"
                   counter="255"
                   prepend-icon="fa-key"
+                  @click:append="() => (password_visible = !password_visible)"
                 />
               </v-flex>
             </v-layout>
@@ -91,9 +93,9 @@
               text-xs-center
             >
               <v-btn 
-                block 
-                :loading="loginForm.busy" 
+                :loading="form.busy" 
                 :disabled="errors.any()" 
+                block 
                 type="submit" 
                 color="primary"
               >
@@ -113,10 +115,10 @@
               pa-0
             >
               <v-btn 
-                @click.native="goToRegister()" 
                 dark 
                 block 
-                color="secondary"
+                color="secondary" 
+                @click.native="goToRegister()"
               >
                 No Account Yet?
               </v-btn>
@@ -127,10 +129,10 @@
               pa-0
             >
               <v-btn 
-                @click.native="resetPassword()" 
-                dark
-                block 
-                color="error"
+                dark 
+                block
+                color="error" 
+                @click.native="resetPassword()"
               >
                 Forgot Password?
               </v-btn>
@@ -144,61 +146,69 @@
 </template>
 
 <script>
-import ModalLayout from 'Layouts/ModalLayout.vue'
-import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapState } = createNamespacedHelpers('auth')
+import ModalLayout from "Layouts/ModalLayout.vue";
+import { createNamespacedHelpers } from "vuex";
+const { mapActions, mapState } = createNamespacedHelpers("auth");
+import validationError from "Mixins/validation-error";
+import { Form } from "vform";
 
 export default {
-    components: {
-        ModalLayout
-    },
-    data: () => ({
-        loginForm: new AppForm(App.forms.loginForm),
-        password_visible: false
+  components: {
+    ModalLayout
+  },
+  mixins: [validationError],
+  data: () => ({
+    form: new Form({
+      username: "",
+      email: "",
+      password: "",
+      remember: false
     }),
-    computed: {
-        icon () {
-            return this.password_visible ? 'visibility' : 'visibility_off'
-        },
-        ...mapState({
-            isAuthenticated: 'isAuthenticated'
-        })
+    password_visible: false
+  }),
+  computed: {
+    icon() {
+      return this.password_visible ? "visibility" : "visibility_off";
     },
-    mounted () {
-        let self = this
-        /* Make Sure We Only Load Login Page If Not Authenticated */
-        if (self.isAuthenticated) {
-            /* nextick make sure our modal wount be visible before redirect */
-            return self.$nextTick(() => self.$router.go(-1))
-        }
-    },
-    methods: {
-        resetPassword () {
-            let self = this
-            self.$nextTick(() => self.$router.push({name: 'forgotpassword'}))
-        },
-        goHome () {
-            let self = this
-            self.$nextTick(() => self.$router.push({name: 'home'}))
-        },
-        goToRegister () {
-            let self = this
-            self.$nextTick(() => self.$router.push({name: 'register'}))
-        },
-        redirectBack () {
-            let self = this
-            return self.$nextTick(() => self.$router.go(-1))
-        },
-        login () {
-            let self = this
-            self.$validator.validateAll()
-            if (!self.errors.any()) {
-                self.submit(self.loginForm)
-            }
-        },
-        ...mapActions({
-            submit: 'login'
-        })
+    ...mapState({
+      isAuthenticated: "isAuthenticated"
+    })
+  },
+  mounted() {
+    let self = this;
+    /* Make Sure We Only Load Login Page If Not Authenticated */
+    if (self.isAuthenticated) {
+      /* nextick make sure our modal wount be visible before redirect */
+      return self.$nextTick(() => self.$router.go(-1));
     }
-}
+  },
+  methods: {
+    resetPassword() {
+      let self = this;
+      self.$nextTick(() => self.$router.push({ name: "forgotpassword" }));
+    },
+    goHome() {
+      let self = this;
+      self.$nextTick(() => self.$router.push({ name: "home" }));
+    },
+    goToRegister() {
+      let self = this;
+      self.$nextTick(() => self.$router.push({ name: "register" }));
+    },
+    redirectBack() {
+      let self = this;
+      return self.$nextTick(() => self.$router.go(-1));
+    },
+    login() {
+      let self = this;
+      self.$validator.validateAll();
+      if (!self.errors.any()) {
+        self.submit(self.form);
+      }
+    },
+    ...mapActions({
+      submit: "login"
+    })
+  }
+};
 </script>
