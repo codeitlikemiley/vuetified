@@ -75,6 +75,36 @@ class UsersController extends Controller
     /**
      * @param Request $request
      */
+    public function massActivate(Request $request)
+    {
+        $ids     = $this->selectExceptSuperAdmin();
+        $updated = User::whereIn('id', $ids)->update(['active' => true]);
+
+        if (count($ids) !== $updated) {
+            throw new UpdatingRecordFailed;
+        }
+
+        return response()->json(['message' => 'Selected Users Activated!', 'updated' => $ids]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function massDeactivate(Request $request)
+    {
+        $ids     = $this->selectExceptSuperAdmin();
+        $updated = User::whereIn('id', $ids)->update(['active' => false]);
+
+        if (count($ids) !== $updated) {
+            throw new UpdatingRecordFailed;
+        }
+
+        return response()->json(['message' => 'Selected Users Deactivated!', 'updated' => $ids]);
+    }
+
+    /**
+     * @param Request $request
+     */
     public function me(Request $request)
     {
         $user = $request->user();
@@ -84,5 +114,46 @@ class UsersController extends Controller
         }
 
         return new UserResource($user->load('profile', 'referralLink', 'sponsor.referralLink'));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function toggleStatus(Request $request)
+    {
+        $user = User::find($request->user_id);
+
+        if ($user->isSuperAdmin()) {
+            return response()->json(['message' => 'You Cannot Modify Super Admin!'], 400);
+        }
+
+        $user->active = $request->toggle;
+        $saved        = $user->save();
+
+        if (!$saved) {
+            throw new UpdatingRecordFailed;
+        }
+
+        return response()->json(['status' => $user->active], 200);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function selectExceptSuperAdmin()
+    {
+        $ids = request()->input('selected');
+
+        $except = array_filter($ids, function ($id) {
+            return $id < 1000;
+        });
+
+        if (count($except) > 0) {
+            foreach ($except as $key => $value) {
+                unset($ids[$key]);
+            }
+        }
+
+        return $ids;
     }
 }

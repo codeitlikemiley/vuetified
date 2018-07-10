@@ -23,6 +23,7 @@ class UserResource extends Resource
             'username'      => $this->username,
             'email'         => $this->email,
             'photo_url'     => $this->photo_url,
+            'active'        => $this->active,
             /* load the user profile that will be use as default for payment and shipment */
             'profile'       => new ProfileResource($this->whenLoaded('profile')),
             /* load referral link details */

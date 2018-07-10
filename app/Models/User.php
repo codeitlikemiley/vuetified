@@ -25,7 +25,7 @@ class User extends Authenticatable
     Relationships,
     HasRoles,
     Notifiable,
-    Sluggable;
+        Sluggable;
 
     /**
      * @var mixed
@@ -36,6 +36,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = ['all_permissions', 'can', 'all_roles'];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'active' => 'boolean'
+    ];
 
     /**
      * The attributes that should be casted by Carbon
@@ -83,18 +90,26 @@ class User extends Authenticatable
             /* change this */
             $sponsorID = \Cookie::get('sponsor');
 
-            /* if cookie is present */
+/* if cookie is present */
             if ($sponsorID) {
                 $sponsor     = self::find($sponsorID);
                 $user->sp_id = $sponsor->id;
             }
 
-            /* override cookie with current request */
+/* override cookie with current request */
             if ($sponsorID = request()->sponsor_id) {
                 $sponsor     = self::find($sponsorID);
                 $user->sp_id = $sponsor->id;
             }
         });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isSuperAdmin()
+    {
+        return $this->id < 1000;
     }
 
     /**
@@ -117,10 +132,5 @@ class User extends Authenticatable
                 'source' => 'name'
             ]
         ];
-    }
-
-    public function isSuperAdmin()
-    {
-        return $this->id < 1000;
     }
 }

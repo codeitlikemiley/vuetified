@@ -2,21 +2,104 @@
   <main-layout>
     <v-container fluid>
       <!-- User Main Detail -->
-      <v-card 
-        light 
-        flat
-      >
-        <v-card-title>
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Search Users"
-            single-line
-            hide-details
-            light
-          />
-        </v-card-title>
-      </v-card>
+      <v-layout 
+        row 
+        wrap>
+        <v-flex 
+          d-flex 
+          xs12 
+          sm7>
+          <v-layout 
+            row 
+            wrap>
+            <v-flex d-flex>
+              <v-card 
+                light 
+                flat
+              >
+                <v-card-title>
+                  <v-text-field
+                    v-model="search"
+                    append-icon="search"
+                    label="Search Users"
+                    single-line
+                    hide-details
+                    light
+                  />
+                </v-card-title>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+        <v-flex 
+          d-flex 
+          xs12 
+          sm5 
+          child-flex>
+          <v-layout 
+            row 
+            wrap>
+            <v-flex 
+              xs12 
+              class="white"
+              d-flex>
+              <v-btn 
+                block 
+                color="accent" 
+                dark
+                flat
+                @click="createUser">
+                Create New Account
+                <v-icon
+                  right
+                  color="accent" 
+                >
+                  fa-user-plus
+                </v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex 
+              xs12 
+              d-flex>
+              <v-flex class="xs6 white">
+                <v-btn 
+                  v-if="selected.length > 0"
+                  block 
+                  color="blue darken-4" 
+                  dark
+                  flat
+                  @click="massActivate">
+                  <v-icon
+                    large
+                    color="blue darken-4" 
+                  >
+                    link
+                  </v-icon>
+                  Activate Selected
+                </v-btn>
+              </v-flex>
+              <v-flex class="xs6 white">
+                <v-btn 
+                  v-if="selected.length > 0"
+                  block 
+                  flat
+                  color="error" 
+                  dark
+                  @click="massDeactivate">
+                  <v-icon
+                    large
+                    color="error" 
+                  >
+                    link_off
+                  </v-icon>
+                  Deactivate Selected
+                </v-btn>
+              </v-flex>
+            </v-flex>
+          </v-layout>
+          
+        </v-flex>
+      </v-layout>
       <v-data-table
         v-model="selected"
         :headers="headers"
@@ -114,6 +197,13 @@
                 </v-avatar>
                 {{ role }}
               </v-chip>
+            </td>
+            <td class="title text-xs-left accent--text">
+              <v-switch
+                v-model="props.item.active"
+                :label="getStatus(props.item.active)"
+                @change="toggleStatus(props.item)"
+              />
             </td>
             <td class="title text-xs-center">
               <v-btn 
@@ -389,6 +479,7 @@ export default {
         sortable: true
       },
       { text: "Roles", value: "roles", align: "left", sortable: false },
+      { text: "Status", value: "active", align: "left", sortable: true },
       { text: "Actions", value: "", align: "left", sortable: false }
     ],
     items: [],
@@ -430,6 +521,126 @@ export default {
     self.fetchUsers();
   },
   methods: {
+    toggleStatus(user) {
+      let self = this;
+      self.toggleForm.toggle = user.active;
+      self.toggleForm.user_id = user.id;
+      if (user.id < 1000) {
+        let toggleModal = swal.mixin({
+          confirmButtonClass: "v-btn blue-grey  subheading white--text",
+          buttonsStyling: false
+        });
+        toggleModal({
+          title: "Oops! Forbidden Action!",
+          html: `<p class="title">Cannot Modify Super Admin Account Type!</p>`,
+          type: "warning",
+          confirmButtonText: "Back"
+        });
+        user.active = true;
+        return;
+      }
+      axios
+        .post(route("api.user.toggleStatus"), self.toggleForm)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(errors => {
+          let toggleModal = swal.mixin({
+            confirmButtonClass: "v-btn blue-grey  subheading white--text",
+            buttonsStyling: false
+          });
+          toggleModal({
+            title: "Oops! Forbidden Action!",
+            html: '<p class="title">' + errors.response.data.message + "</p>",
+            type: "warning",
+            confirmButtonText: "Back"
+          });
+        });
+    },
+    getStatus(status) {
+      if (status) {
+        return "Active";
+      } else {
+        return "Inactive";
+      }
+    },
+    createUser() {
+      vm.$router.push({ name: "create-user" });
+    },
+    async massDeactivate() {
+      let self = this;
+      let selected = _.map(self.selected, "id");
+      let toggleStatusForm = new Form({
+        selected
+      });
+
+      try {
+        const payload = await axios.post(
+          route("api.user.massDeactivate"),
+          toggleStatusForm
+        );
+        let updated = payload.data.updated;
+        console.log(updated);
+        _.map(updated, id => {
+          let index = _.findIndex(self.items, { id });
+          self.items[index].active = false;
+        });
+        let toggleModal = swal.mixin({
+          confirmButtonClass: "v-btn blue-grey  subheading white--text",
+          buttonsStyling: false
+        });
+        toggleModal({
+          title: "Success",
+          html: `<p class="title">${payload.data.message}</p>`,
+          type: "success",
+          confirmButtonText: "Back"
+        });
+      } catch ({ errors, message }) {
+        if (errors) {
+          console.log(errors);
+        }
+        if (message) {
+          console.log(message);
+        }
+      }
+    },
+    async massActivate() {
+      let self = this;
+      let selected = _.map(self.selected, "id");
+      let toggleStatusForm = new Form({
+        selected
+      });
+
+      try {
+        const payload = await axios.post(
+          route("api.user.massActivate"),
+          toggleStatusForm
+        );
+        let updated = payload.data.updated;
+        console.log(updated);
+        _.map(updated, id => {
+          let index = _.findIndex(self.items, { id });
+          self.items[index].active = true;
+        });
+        let toggleModal = swal.mixin({
+          confirmButtonClass: "v-btn blue-grey  subheading white--text",
+          buttonsStyling: false
+        });
+        toggleModal({
+          title: "Success",
+          html: `<p class="title">${payload.data.message}</p>`,
+          type: "success",
+          confirmButtonText: "Back"
+        });
+      } catch ({ errors, message }) {
+        if (errors) {
+          console.log(errors);
+        }
+        if (message) {
+          console.log(message);
+        }
+      }
+    },
     activeLink(link) {
       return !!link;
     },
@@ -583,12 +794,12 @@ export default {
           confirmButtonText: "Back"
         });
       } catch (errors) {
-          toggleModal({
-            title: "Error!",
-            html: `<p class="title">${errors.response.data.message}</p>`,
-            type: "error",
-            confirmButtonText: "Back"
-          });
+        toggleModal({
+          title: "Error!",
+          html: `<p class="title">${errors.response.data.message}</p>`,
+          type: "error",
+          confirmButtonText: "Back"
+        });
         self.rolesForm.busy = false;
       }
     },

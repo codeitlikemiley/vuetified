@@ -10,7 +10,7 @@ class ActivationController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['roles:admin']);
+        $this->middleware(['role:admin']);
     }
 
     /**
@@ -41,7 +41,7 @@ class ActivationController extends Controller
         if ($link) {
             $link->active = false;
             $link->save();
-            return response()->json(['message' => 'User : ' . $user->name.' Link Deactivated!']);
+            return response()->json(['message' => 'User : '.$user->name.' Link Deactivated!']);
         } else {
             throw new LinkNotFound;
         }
