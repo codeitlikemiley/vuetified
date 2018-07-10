@@ -1,8 +1,8 @@
 <?php
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Link;
+use App\Models\User;
 use App\Models\Profile;
+use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
 {
@@ -14,18 +14,18 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'id' => 1,
-            'name' => config('admin.name'),
-            'email' => config('admin.email'),
+            'id'       => 1,
+            'name'     => config('admin.name'),
+            'email'    => config('admin.email'),
             'password' => config('admin.password'),
             'username' => config('admin.username')
         ]);
-        
+
         $user->assignRole('admin');
-        $link = new Link();
-        $link->id = 1;
-        $link->link = $user->username;
-        $link->active = true;
+        $link                 = new Link();
+        $link->id             = 1;
+        $link->link           = $user->username;
+        $link->active         = true;
         $link->date_activated = \Carbon\Carbon::now();
 
         $user->referralLink()->save($link);
@@ -34,10 +34,9 @@ class AdminSeeder extends Seeder
         $link->save();
         $profile = Profile::create([
             'first_name' => 'Super',
-            'last_name'  => 'Admin',
+            'last_name'  => 'Admin'
         ]);
         $user->profile()->save($profile);
         $user->save();
-        
     }
 }

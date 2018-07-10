@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use App\Models\User;
+use Illuminate\Contracts\Validation\Rule;
 
 class CheckSponsor implements Rule
 {
@@ -18,18 +18,6 @@ class CheckSponsor implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
-    {
-        return User::find($value) !== null;
-    }
-
-    /**
      * Get the validation error message.
      *
      * @return string
@@ -37,5 +25,17 @@ class CheckSponsor implements Rule
     public function message()
     {
         return 'Sponsor Not Found!';
+    }
+
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
+    {
+        return User::find($value) !== null;
     }
 }

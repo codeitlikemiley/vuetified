@@ -42,6 +42,5 @@ class DummyUserSeeder extends Seeder
             $profile = factory(Profile::class, 1)->create()->first();
             $user->profile()->save($profile);
         });
-
     }
 }

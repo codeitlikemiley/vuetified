@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use App\Models\Link;
+use App\Models\User;
 use App\Exceptions\LinkNotFound;
 use App\Exceptions\UserNameNotFound;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +12,11 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     /**
+     * @var string
+     */
+    protected $api_namespace = 'Api';
+
+    /**
      * This namespace is applied to your controller routes.
      *
      * In addition, it is set as the URL generator's root namespace.
@@ -19,8 +24,6 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-
-    protected $api_namespace = 'Api';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -38,18 +41,21 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('username', '[a-z0-9_-]{3,16}');
         Route::bind('username', function ($value) {
             $user = User::where('username', $value)->first();
-            if($user){
+
+            if ($user) {
                 return $user;
             }
+
             throw new UserNameNotFound;
         });
         Route::pattern('referrallink', '[a-z0-9_-]{3,16}');
         Route::bind('referrallink', function ($value) {
             $link = Link::findByLink($value);
-            if(optional($link)->active){
+
+            if (optional($link)->active) {
                 return $link;
-            }else {
-             throw new LinkNotFound;
+            } else {
+                throw new LinkNotFound;
             }
         });
         Route::pattern('name', '[a-z]+');
@@ -74,20 +80,6 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
-    {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
-    }
-
-    /**
      * Define the "api" routes for the application.
      *
      * These routes are typically stateless.
@@ -97,8 +89,22 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->api_namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->api_namespace)
+            ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 }

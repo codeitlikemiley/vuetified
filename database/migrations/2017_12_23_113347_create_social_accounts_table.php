@@ -7,6 +7,16 @@ use Illuminate\Database\Migrations\Migration;
 class CreateSocialAccountsTable extends Migration
 {
     /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('social_accounts');
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -22,15 +32,5 @@ class CreateSocialAccountsTable extends Migration
             $table->index(['provider_user_id', 'provider']);
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('social_accounts');
     }
 }

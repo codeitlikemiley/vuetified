@@ -10,14 +10,17 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
+    /**
+     * @param Request $request
+     */
     public function contact(Request $request)
     {
         $data = request()->validate([
-            'name' => [
+            'name'    => [
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'email' => [
+            'email'   => [
                 'required',
                 'email'
             ],
@@ -28,11 +31,11 @@ class ContactUsController extends Controller
             'message' => [
                 'present',
                 'required'
-            ],
+            ]
         ]);
         $user = User::findByUsername('admin');
         Mail::to($user)
-        ->queue(new ContactUsMail($data));
-        return response()->json(['message' => 'Mail Sent'],200);
+            ->queue(new ContactUsMail($data));
+        return response()->json(['message' => 'Mail Sent'], 200);
     }
 }

@@ -60,6 +60,5 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('add_media');
         $role->givePermissionTo('edit_media');
         $role->givePermissionTo('delete_media');
-
     }
 }

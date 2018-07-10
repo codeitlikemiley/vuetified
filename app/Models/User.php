@@ -6,17 +6,17 @@ use App\Traits\User\Scopes;
 use App\Traits\User\Methods;
 use App\Traits\User\Mutators;
 use App\Traits\GenerateUniqueID;
-use Laravel\Passport\HasApiTokens;
 use App\Traits\User\Relationships;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\PasswordResetNotification;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use 
+    use
     Scopes,
     Methods,
     Mutators,
@@ -27,9 +27,23 @@ class User extends Authenticatable
     Notifiable,
     Sluggable;
 
+    /**
+     * @var mixed
+     */
     public $incrementing = false;
 
-    protected $table = 'users';
+    /**
+     * @var array
+     */
+    protected $appends = ['all_permissions', 'can', 'all_roles'];
+
+    /**
+     * The attributes that should be casted by Carbon
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,17 +59,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     /**
-     * The attributes that should be casted by Carbon
-     *
-     * @var array
+     * @var string
      */
-    protected $dates = ['created_at', 'updated_at'];
-
-    protected $appends = ['all_permissions','can', 'all_roles'];
+    protected $table = 'users';
 
     /**
      * Check For Sponsor During Account Creation
@@ -72,20 +82,30 @@ class User extends Authenticatable
             $user->sp_id = optional(self::first())->id;
             /* change this */
             $sponsorID = \Cookie::get('sponsor');
-            
+
             /* if cookie is present */
             if ($sponsorID) {
-                $sponsor = self::find($sponsorID);
-                $user->sp_id = $sponsor->id;
-            }
-            /* override cookie with current request */
-            if($sponsorID = request()->sponsor_id){
-                $sponsor = self::find($sponsorID);
+                $sponsor     = self::find($sponsorID);
                 $user->sp_id = $sponsor->id;
             }
 
+            /* override cookie with current request */
+            if ($sponsorID = request()->sponsor_id) {
+                $sponsor     = self::find($sponsorID);
+                $user->sp_id = $sponsor->id;
+            }
         });
     }
+
+    /**
+     * Override Password Reset Default Built in Laravel
+     *
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
     /**
      * The attributes that should be Slugify
      *
@@ -97,13 +117,5 @@ class User extends Authenticatable
                 'source' => 'name'
             ]
         ];
-    }
-    /**
-     * Override Password Reset Default Built in Laravel
-     *
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new PasswordResetNotification($token));
     }
 }

@@ -1,28 +1,28 @@
-<?php 
+<?php
 
 namespace App\Http\Grant;
 
-use App\Models\SocialAccount;
 use Illuminate\Http\Request;
+use App\Models\SocialAccount;
 use Laravel\Passport\Bridge\User;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\AbstractGrant;
-use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use League\OAuth2\Server\Grant\AbstractGrant;
+use League\OAuth2\Server\Entities\UserEntityInterface;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
+use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 
-class SocialGrant extends AbstractGrant{
-
-	/**
+class SocialGrant extends AbstractGrant
+{
+    /**
      * @param UserRepositoryInterface         $userRepository
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
      */
     public function __construct(
-        UserRepositoryInterface $userRepository,
+        UserRepositoryInterface         $userRepository,
         RefreshTokenRepositoryInterface $refreshTokenRepository
     ) {
         $this->setUserRepository($userRepository);
@@ -34,21 +34,29 @@ class SocialGrant extends AbstractGrant{
     /**
      * {@inheritdoc}
      */
+    public function getIdentifier()
+    {
+        return 'social';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function respondToAccessTokenRequest(
         ServerRequestInterface $request,
-        ResponseTypeInterface $responseType,
-        \DateInterval $accessTokenTTL
+        ResponseTypeInterface  $responseType,
+        \DateInterval          $accessTokenTTL
     ) {
         // Validate request
         $client = $this->validateClient($request);
         $scopes = $this->validateScopes($this->getRequestParameter('scope', $request));
-        $user = $this->validateUser($request, $client);
+        $user   = $this->validateUser($request, $client);
 
         // Finalize the requested scopes
         $scopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
 
         // Issue and persist new tokens
-        $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $scopes);
+        $accessToken  = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $scopes);
         $refreshToken = $this->issueRefreshToken($accessToken);
 
         // Inject tokens into response
@@ -59,26 +67,26 @@ class SocialGrant extends AbstractGrant{
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ClientEntityInterface  $client
-     *
+     * @param  ServerRequestInterface $request
+     * @param  ClientEntityInterface  $client
      * @throws OAuthServerException
-     *
      * @return UserEntityInterface
      */
     protected function validateUser(ServerRequestInterface $request, ClientEntityInterface $client)
     {
         $provider = $this->getRequestParameter('provider', $request);
-        if (is_null($provider)) {
+
+        if (null === $provider) {
             throw OAuthServerException::invalidRequest('provider');
         }
 
         $provider_user_id = $this->getRequestParameter('provider_user_id', $request);
-        if (is_null($provider_user_id)) {
+
+        if (null === $provider_user_id) {
             throw OAuthServerException::invalidRequest('provider_user_id');
         }
 
-        $user = $this->getUserFromSocialNetwork(new Request($request->getParsedBody())); 
+        $user = $this->getUserFromSocialNetwork(new Request($request->getParsedBody()));
 
         if ($user instanceof UserEntityInterface === false) {
             $this->getEmitter()->emit(new RequestEvent(RequestEvent::USER_AUTHENTICATION_FAILED, $request));
@@ -89,32 +97,30 @@ class SocialGrant extends AbstractGrant{
         return $user;
     }
 
-    private function getUserFromSocialNetwork(Request $request){
+    /**
+     * @param Request $request
+     * @return null
+     */
+    private function getUserFromSocialNetwork(Request $request)
+    {
+        $provider = config('auth.guards.api.provider');
 
-    	$provider = config('auth.guards.api.provider');
-
-        if (is_null($model = config('auth.providers.'.$provider.'.model'))) {
+        if (null === $model = config('auth.providers.'.$provider.'.model')) {
             throw new RuntimeException('Unable to determine authentication model from configuration.');
         }
 
         $socialAccount = SocialAccount::where('provider', $request->provider)->where('provider_user_id', $request->provider_user_id)->first();
 
-        if(!$socialAccount) return;
+        if (!$socialAccount) {
+            return;
+        }
 
         $user = $socialAccount->user()->first();
 
-        if(!$user) return;
+        if (!$user) {
+            return;
+        }
 
         return new User($user->getAuthIdentifier());
-
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentifier()
-    {
-        return 'social';
-    }
-
 }

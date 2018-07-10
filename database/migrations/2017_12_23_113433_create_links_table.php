@@ -7,6 +7,16 @@ use Illuminate\Database\Migrations\Migration;
 class CreateLinksTable extends Migration
 {
     /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('links');
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -24,15 +34,5 @@ class CreateLinksTable extends Migration
             $table->timestamp('date_activated')->nullable();
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('links');
     }
 }

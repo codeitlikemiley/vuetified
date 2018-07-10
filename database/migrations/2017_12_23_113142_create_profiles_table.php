@@ -7,6 +7,16 @@ use Illuminate\Database\Migrations\Migration;
 class CreateProfilesTable extends Migration
 {
     /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('profiles');
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -28,15 +38,5 @@ class CreateProfilesTable extends Migration
             $table->string('state_province')->nullable();
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('profiles');
     }
 }

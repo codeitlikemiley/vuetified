@@ -4,94 +4,98 @@ namespace Api\Account;
 
 use Api\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Rules\ValidateZip;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Rules\MustMatchPassword;
 use App\Http\Resources\User\UserResource;
 
 class AccountController extends Controller
 {
-
     public function __construct()
     {
         // $this->middleware(['can:edit-profile']);
     }
 
+    /**
+     * @param Request $request
+     */
     public function updateAccount(Request $request)
     {
         $user = $request->user_id ? User::find($request->user_id) : $request->user();
 
         $data = request()->validate([
-            'email' => [
+            'email'                 => [
                 'sometimes',
                 'required',
                 'email',
-                Rule::unique('users')->ignore($user->id),
+                Rule::unique('users')->ignore($user->id)
             ],
-			'username' => [
+            'username'              => [
                 'sometimes',
                 'required',
-               Rule::unique('users')->ignore($user->id),
+                Rule::unique('users')->ignore($user->id)
             ],
-            'old_password' => [
+            'old_password'          => [
                 'sometimes',
                 'required',
                 new MustMatchPassword($user->password)
             ],
-			'password' => 'required_with:old_password|min:6|confirmed',
+            'password'              => 'required_with:old_password|min:6|confirmed',
             'password_confirmation' => 'required_with:password'
         ]);
         // fill will only assign those in the fillable fields of user
         $user->fill($data);
         $save = $user->save();
-        if($save){
-            return (new UserResource($user->load('profile','referralLink')))->additional(['message' => 'Account Updated!']);
-        }
 
+        if ($save) {
+            return (new UserResource($user->load('profile', 'referralLink')))->additional(['message' => 'Account Updated!']);
+        }
     }
 
+    /**
+     * @param Request $request
+     */
     public function updateProfile(Request $request)
     {
-        
         $user = $request->user_id ? \User::find($request->user_id) : $request->user();
         $data = request()->validate([
-            'first_name' => [
+            'first_name'     => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'last_name' => [
+            'last_name'      => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'contact_no' => [
+            'contact_no'     => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'address_1' => [
+            'address_1'      => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'address_2' => [
+            'address_2'      => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'city' => [
+            'city'           => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'country' => [
+            'country'        => [
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ],
-            'zip_code' => [
+            'zip_code'       => [
                 'sometimes',
                 'required',
                 new ValidateZip
@@ -100,15 +104,19 @@ class AccountController extends Controller
                 'sometimes',
                 'required',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
-            ],
+            ]
         ]);
         $profile = $user->profile;
         $updated = $profile->update($data);
-        if($updated){
-            return (new UserResource($user->load('profile','referralLink')))->additional(['message' => 'Profile Updated!']);
+
+        if ($updated) {
+            return (new UserResource($user->load('profile', 'referralLink')))->additional(['message' => 'Profile Updated!']);
         }
     }
 
+    /**
+     * @param Request $request
+     */
     public function updateReferralLink(Request $request)
     {
         $user = $request->user_id ? User::find($request->user_id) : $request->user();
@@ -116,13 +124,14 @@ class AccountController extends Controller
         $data = request()->validate([
             'link' => [
                 'regex:/^[a-zA-Z0-9 +@#]+$/',
-                Rule::unique('links')->ignore($link->id),
+                Rule::unique('links')->ignore($link->id)
             ]
         ]);
-        
+
         $updated = $link->update($data);
-        if($updated){
-            return (new UserResource($user->load('profile','referralLink')))->additional(['message' => 'Referral Link Updated!']);
+
+        if ($updated) {
+            return (new UserResource($user->load('profile', 'referralLink')))->additional(['message' => 'Referral Link Updated!']);
         }
     }
 }

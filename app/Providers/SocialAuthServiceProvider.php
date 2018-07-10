@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
+use Laravel\Passport\Passport;
 use App\Http\Grant\SocialGrant;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Laravel\Passport\Bridge\UserRepository;
-use Laravel\Passport\Passport;
 use League\OAuth2\Server\AuthorizationServer;
+use Laravel\Passport\Bridge\RefreshTokenRepository;
 
 class SocialAuthServiceProvider extends ServiceProvider
 {
@@ -34,8 +34,11 @@ class SocialAuthServiceProvider extends ServiceProvider
         });
     }
 
-
-    private function makeGrant(){
+    /**
+     * @return mixed
+     */
+    private function makeGrant()
+    {
         $grant = new SocialGrant(
             $this->app->make(UserRepository::class),
             $this->app->make(RefreshTokenRepository::class)

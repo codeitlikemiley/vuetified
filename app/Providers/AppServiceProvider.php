@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use App\Models\Link;
-use App\Observers\UserObserver;
+use App\Models\User;
 use App\Observers\LinkObserver;
+use App\Observers\UserObserver;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
