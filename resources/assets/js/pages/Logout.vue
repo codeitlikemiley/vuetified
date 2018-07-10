@@ -125,9 +125,7 @@
 <script>
 import ModalLayout from "Layouts/ModalLayout.vue";
 import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers(
-  "auth"
-);
+const { mapActions, mapGetters, mapMutations } = createNamespacedHelpers("auth");
 import { Form } from "vform";
 
 export default {
