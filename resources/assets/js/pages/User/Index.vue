@@ -227,6 +227,14 @@
                   color="amber">fa-compress</v-icon>
               </v-btn>
               <v-btn 
+                flat 
+                icon 
+                color="blue" 
+                @click="editUser(props.item)"
+              >
+                <v-icon>fa-pencil</v-icon>
+              </v-btn>
+              <v-btn 
                 :disabled="!can('manage_users')" 
                 flat 
                 icon 
@@ -527,6 +535,9 @@ export default {
     self.fetchUsers();
   },
   methods: {
+    editUser(user) {
+      vm.$router.push({ name: "edit-user", params: { id: `${user.id}` } });
+    },
     toggleStatus(user) {
       let self = this;
       self.toggleForm.toggle = user.active;

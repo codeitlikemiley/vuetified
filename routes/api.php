@@ -7,13 +7,17 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/email/{email}', 'User\UsersController@findByEmail')->name('api.user.findByEmail');
     Route::get('/permissions', 'Auth\PermissionRolesController@getAllPermissions')->name('api.permissions.index');
     Route::get('/roles', 'Auth\PermissionRolesController@getAllRoles')->name('api.roles.index');
+    // ? Users Management Api
     Route::post('/users/{id}/syncRoles', 'Auth\PermissionRolesController@syncRoles')->name('api.user.roles.sync');
     Route::post('/users/{id}/syncPermissions', 'Auth\PermissionRolesController@syncPermissions')
-    ->name('api.user.permissions.sync');
+        ->name('api.user.permissions.sync');
     Route::get('/users/{id}/activateLink', 'Link\ActivationController@activateLink')
-    ->name('api.user.link.activate');
+        ->name('api.user.link.activate');
     Route::get('/users/{id}/deactivateLink', 'Link\ActivationController@deactivateLink')
-    ->name('api.user.link.deactivate');
+        ->name('api.user.link.deactivate');
+    Route::post('/users/create', 'User\UsersController@create')->name('api.user.create');
+    Route::get('/users/{user}/edit', 'User\UsersController@edit')->name('api.user.edit');
+    Route::post('/users/{user}/update', 'User\UsersController@update')->name('api.user.update');
     Route::post('/users/delete', 'User\UsersController@delete')->name('api.user.delete');
     Route::post('/users/massActivate', 'User\UsersController@massActivate')->name('api.user.massActivate');
     Route::post('/users/massDeactivate', 'User\UsersController@massDeactivate')->name('api.user.massDeactivate');
