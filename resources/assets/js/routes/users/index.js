@@ -28,6 +28,7 @@ export default [
     path: "/users/:id",
     component: Edit,
     name: "edit-user",
+    props: true,
     meta: {
       requiresAuth: true,
       permission: "guest",

@@ -171,7 +171,7 @@
 
 <script>
 import ModalLayout from "Layouts/ModalLayout.vue";
-import validationError from "Mixins/validation-error"
+import validationError from "Mixins/validation-error";
 import { Form } from "vform";
 
 export default {

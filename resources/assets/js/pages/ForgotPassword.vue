@@ -91,6 +91,7 @@ export default {
   components: {
     ModalLayout
   },
+  mixins: [validationError],
   data: () => ({
     form: new Form({
       username: ""

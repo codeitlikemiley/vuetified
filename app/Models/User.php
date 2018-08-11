@@ -90,13 +90,13 @@ class User extends Authenticatable
             /* change this */
             $sponsorID = \Cookie::get('sponsor');
 
-/* if cookie is present */
+            /* if cookie is present */
             if ($sponsorID) {
                 $sponsor     = self::find($sponsorID);
                 $user->sp_id = $sponsor->id;
             }
 
-/* override cookie with current request */
+            /* override cookie with current request */
             if ($sponsorID = request()->sponsor_id) {
                 $sponsor     = self::find($sponsorID);
                 $user->sp_id = $sponsor->id;
@@ -109,7 +109,7 @@ class User extends Authenticatable
      */
     public function isSuperAdmin()
     {
-        return $this->id < 1000;
+        return $this->id <= 1000;
     }
 
     /**

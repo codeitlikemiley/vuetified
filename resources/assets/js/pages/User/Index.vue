@@ -150,33 +150,7 @@
               />
             </td>
             <td class="title text-xs-left accent--text">
-              {{ props.item.id }}
-            </td>
-            <td class="title text-xs-left accent--text">
               {{ props.item.name }}
-            </td>
-            <td class="title text-xs-left accent--text">
-              <v-avatar v-if="props.item.sponsor">
-                <img 
-                  :src="props.item.sponsor.photo_url" 
-                  :alt="props.item.sponsor.name"
-                >
-              </v-avatar>
-              <span v-if="props.item.sponsor">{{ props.item.sponsor.name }}</span>
-            </td>
-
-            <td class="title text-xs-left accent--text">
-              <v-btn 
-                v-if="activeLink(props.item.referral_link.active)" 
-                :href="`http://${ props.item.referral_link.link }.${ domain }`"
-                flat
-                color="cyan"
-                target="_blank"
-              >
-                <v-icon left>fa-link</v-icon>
-                <span>{{ props.item.referral_link.link }}</span>
-              </v-btn>
-
             </td>
             <td class="title text-xs-left accent--text">
               <v-chip
@@ -206,8 +180,8 @@
             </td>
             <td class="title text-xs-left accent--text">
               <v-switch
-                v-model="props.item.active"
                 :label="getStatus(props.item.active)"
+                v-model="props.item.active"
                 @change="toggleStatus(props.item)"
               />
             </td>
@@ -217,6 +191,7 @@
                 light 
                 flat 
                 icon 
+                class="compress--icon"
                 @click="props.expanded = !props.expanded"
               >
                 <v-icon 
@@ -230,6 +205,7 @@
                 flat 
                 icon 
                 color="blue" 
+                class="compress--icon"
                 @click="editUser(props.item)"
               >
                 <v-icon>fa-pencil</v-icon>
@@ -239,7 +215,8 @@
                 flat 
                 icon 
                 color="error" 
-                @click="deleteUser(props.item)"
+                class="compress--icon"
+                @click="openDialog(props.item)"
               >
                 <v-icon>fa-trash</v-icon>
               </v-btn>
@@ -285,38 +262,54 @@
                         >
                       </v-avatar>
                       <span class="headline">{{ props.item.name }}</span>
+                      <v-btn 
+                        v-if="activeLink(props.item.referral_link.active)" 
+                        :href="`http://${ props.item.referral_link.link }.${ domain }`"
+                        flat
+                        color="cyan lighten-3"
+                        target="_blank"
+                      >
+                        <v-icon left>fa-link</v-icon>
+                        <span>{{ props.item.referral_link.link }}</span>
+                      </v-btn>
                     </v-flex>
                   </v-layout>
                 </v-container>
               </v-card-media>
-              <v-card-actions>
-                <v-btn 
-                  v-if="!props.item.referral_link.active" 
-                  flat 
-                  color="success" 
-                  @click="activateLink(props.item)"
-                >
-                  Activate Link 
-                  <v-icon right>done_all</v-icon>
-                </v-btn>
-                <v-btn 
-                  v-if="props.item.referral_link.active" 
-                  flat 
-                  color="error" 
-                  @click="deactivateLink(props.item)"
-                >
-                  Deactivate Link 
-                  <v-icon right>fa-ban </v-icon>
-                </v-btn>
-              </v-card-actions>
               <v-card-title>
                 <v-container fluid>
+                  <p 
+                    v-if="props.item.sponsor"
+                    class="title accent--text" 
+                  >Sponsor Details</p>
+                  <v-layout 
+                    v-if="props.item.sponsor"
+                    row 
+                    wrap>
+                    <v-flex 
+                      xs12
+                      px-2>
+                      <v-avatar>
+
+                        <img 
+                          :src="props.item.sponsor.photo_url" 
+                          :alt="props.item.sponsor.name"
+                        >
+                      </v-avatar>
+                      <span 
+                        class="subheading"
+                      >{{ props.item.sponsor.name }}</span>
+                    </v-flex>
+                  </v-layout>
+                
                   <p class="title accent--text">Account Details</p>
                   <v-layout 
                     row 
                     wrap
                   >
-                    <v-flex xs12>
+                    <v-flex 
+                      xs6
+                      px-1>
                       <v-text-field
                         v-model="props.item.username"
                         label="Username"
@@ -325,7 +318,20 @@
                         readonly
                       />
                     </v-flex>
-                    <v-flex xs12>
+                    <v-flex 
+                      xs6
+                      px-1>
+                      <v-text-field
+                        v-model="props.item.phone"
+                        label="Phone"
+                        light
+                        readonly
+                        prepend-icon="phone"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1>
                       <v-text-field
                         v-model="props.item.email"
                         label="Email"
@@ -334,73 +340,105 @@
                         readonly
                       />
                     </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.address_1"
+                        label="Address 1"
+                        light
+                        readonly
+                        prepend-icon="looks_one"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.address_2"
+                        label="Address 2"
+                        light
+                        readonly
+                        prepend-icon="looks_two"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.city"
+                        label="City"
+                        light
+                        readonly
+                        prepend-icon="location_city"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.state"
+                        label="State"
+                        light
+                        readonly
+                        prepend-icon="map"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.zip"
+                        label="Zip"
+                        light
+                        readonly
+                        prepend-icon="markunread_mailbox"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                      px-1
+                    >
+                      <v-text-field
+                        :value="props.item.country"
+                        label="Country"
+                        light
+                        readonly
+                        prepend-icon="fa-fa"
+                      />
+                    </v-flex>
+                    <v-flex 
+                      xs6
+                    >
+                      <v-switch
+                        v-model="props.item.active"
+                        :label="getStatus(props.item.active)"
+                        readonly
+                      />
+                    </v-flex>
+                    
                   </v-layout>
-                  <p 
-                    v-if="props.item.roles" 
-                    class="title accent--text"
-                  >
-                    Assigned Roles
-                  </p>
+                  
                   <v-layout 
                     row 
                     wrap
                   >
+                    <p 
+                      v-if="props.item.roles" 
+                      class="title accent--text"
+                    >
+                      Account Type
+                    </p>
                     <v-flex xs12>
                       <v-combobox
                         :items="roles"
                         v-model="props.item.roles"
-                        :disabled="props.item.id < 1000"
-                        color="blue-grey"
-                        light
-                        multiple
-                        clearable
-                        deletable-chips
-                        prepend-icon="fa-tags"
-                        @input="changeRoles(props.item)"
-                      >
-                        <template 
-                          slot="selection" 
-                          slot-scope="data"
-                        >
-                          <v-chip
-                            :selected="data.selected"
-                            light
-                            close
-                            @input="removeRole(data.item,props.item.roles)"
-                          >
-                            <v-avatar
-                              class="blue-grey white--text"
-                            >
-                              <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
-                            </v-avatar>
-                            {{ data.item }}
-                          </v-chip>
-                        </template>
-                      </v-combobox>
-                    </v-flex>
-                  </v-layout>
-                  <p 
-                    v-if="props.item.permissions" 
-                    class="title accent--text"
-                  >
-                    Role Inherited Permissions
-                  </p>
-                  <v-layout 
-                    row 
-                    wrap
-                  >
-                    <v-flex xs12>
-                      <!-- Enable update permissions -->
-                      <!--
-                        chips
-                        deletable-chips
-                        clearable
-                        @input="changePermissions(props.item)"
-                        -->
-                      <v-combobox
-                        :items="permissions"
-                        v-model="props.item.permissions"
-                        color="brown"
+                        color="primary"
                         light
                         disabled
                         multiple
@@ -410,11 +448,6 @@
                           slot="selection" 
                           slot-scope="data"
                         >
-                          <!-- Enable update permissions -->
-                          <!--
-                            close
-                            @input="removePermission(data.item,props.item.permissions)"
-                            -->
                           <v-chip
                             :selected="data.selected"
                             light
@@ -431,37 +464,55 @@
                     </v-flex>
                   </v-layout>
                   <p 
-                    v-if="props.item.profile" 
+                    v-if="props.item.permissions" 
                     class="title accent--text"
                   >
-                    Profile Details
+                    Permissions
                   </p>
                   <v-layout 
                     row 
                     wrap
                   >
-                    <v-flex 
-                      v-for="(profile,key) in props.item.profile" 
-                      :key="key"
-                      xs12
-                    >
-                      <v-text-field
-                        :label="toProperCase(key)"
-                        :value="profile"
+                    <v-flex xs12>
+                      <v-combobox
+                        :items="permissions"
+                        v-model="props.item.permissions"
+                        color="brown"
                         light
-                        readonly
-                      />
+                        disabled
+                        multiple
+                        prepend-icon="pan_tool"
+                      >
+                        <template 
+                          slot="selection" 
+                          slot-scope="data"
+                        >
+                          <v-chip
+                            :selected="data.selected"
+                            light
+                          >
+                            <v-avatar
+                              class="primary white--text"
+                            >
+                              <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
+                            </v-avatar>
+                            {{ data.item }}
+                          </v-chip>
+                        </template>
+                      </v-combobox>
                     </v-flex>
                   </v-layout>
-
                 </v-container>
               </v-card-title>
 
             </v-card>
+            
           </v-container>
         </template>
-
       </v-data-table>
+      <confirm 
+        :callback="confirmed(deleteUser)" 
+      />
     </v-container>
   </main-layout>
 </template>
@@ -472,26 +523,21 @@ import Acl from "Mixins/acl";
 import validationError from "Mixins/validation-error";
 import { Form } from "vform";
 import swal from "sweetalert2";
+import Confirm from "Components/modal/Confirm.vue";
+import confirmation from "Mixins/confirmation";
 
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    Confirm
   },
-  mixins: [Acl, validationError],
+  mixins: [Acl, validationError,confirmation],
   data: () => ({
     contentClass: { grey: true, "lighten-4": true, "accent--text": true },
     dialog: false,
     /* table */
     headers: [
-      { text: "ID", value: "id", align: "left", sortable: true },
       { text: "Name", value: "name", align: "left", sortable: true },
-      { text: "Sponsor", value: "sponsor.name", align: "left", sortable: true },
-      {
-        text: "Referrak Link",
-        value: "referral_link.link",
-        align: "left",
-        sortable: true
-      },
       { text: "Roles", value: "roles", align: "left", sortable: false },
       { text: "Status", value: "active", align: "left", sortable: true },
       { text: "Actions", value: "", align: "left", sortable: false }
@@ -504,7 +550,7 @@ export default {
     current_user: {},
     usersForm: new Form({}),
     toggleForm: new Form({
-      toggle: false
+      user_id: null
     }),
     search: "",
     roles: [],
@@ -540,26 +586,21 @@ export default {
     },
     toggleStatus(user) {
       let self = this;
-      self.toggleForm.toggle = user.active;
       self.toggleForm.user_id = user.id;
-      if (user.id < 1000) {
-        let toggleModal = swal.mixin({
-          confirmButtonClass: "v-btn blue-grey  subheading white--text",
-          buttonsStyling: false
-        });
-        toggleModal({
-          title: "Oops! Forbidden Action!",
-          html: `<p class="title">Cannot Modify Super Admin Account Type!</p>`,
-          type: "warning",
-          confirmButtonText: "Back"
-        });
-        user.active = true;
-        return;
-      }
+      let index = _.findIndex(self.items, { id: user.id });
       axios
         .post(route("api.user.toggleStatus"), self.toggleForm)
         .then(response => {
-          console.log(response.data);
+          let toggleModal = swal.mixin({
+            confirmButtonClass: "v-btn blue-grey  subheading white--text",
+            buttonsStyling: false
+          });
+          toggleModal({
+            title: "Success!",
+            html: '<p class="title">User Status Updated!</p>',
+            type: "success",
+            confirmButtonText: "Back"
+          });
         })
         .catch(errors => {
           let toggleModal = swal.mixin({
@@ -572,6 +613,8 @@ export default {
             type: "warning",
             confirmButtonText: "Back"
           });
+          user.active = true;
+          self.items.splice(index, 1, user);
         });
     },
     getStatus(status) {
@@ -749,7 +792,7 @@ export default {
       try {
         const payload = await self.usersForm.post(route("api.user.index"));
         self.items = payload.data.data;
-        self.usersForm = new Form({});
+        self.usersForm.busy = false;
       } catch (errors) {
         self.usersForm.busy = false;
       }
@@ -864,3 +907,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.compress--icon {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+</style>

@@ -80,17 +80,17 @@
           </h2>
         </v-flex>
         <v-flex
-          v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
           v-for="card in values"
+          v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
           :key="card.title"
           class="pa-2"
         >
           <v-card-text>
             <p class="text-xs-center">
               <v-btn 
-                icon 
                 v-if="card.icon" 
-                :color="card.color">
+                :color="card.color" 
+                icon>
                 <v-icon dark>{{ card.icon }}</v-icon>
               </v-btn>
             </p>
@@ -106,10 +106,10 @@
                 v-text="card.title"/>
               <v-spacer/>
               <v-btn 
+                v-if="card.title" 
                 icon 
-                @click.native="card.show = !card.show" 
                 class="accent--text" 
-                v-if="card.title"
+                @click.native="card.show = !card.show"
               >
                 <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
               </v-btn>
@@ -117,8 +117,8 @@
             <v-slide-y-transition>
               <v-card-text 
                 v-show="card.show" 
-                v-text="card.tagline" 
-                class="blue-grey--text title"
+                class="blue-grey--text title" 
+                v-text="card.tagline"
               />
             </v-slide-y-transition>
           </v-card>

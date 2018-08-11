@@ -4,8 +4,12 @@ namespace Api\User;
 
 use Api\Controller;
 use App\Models\User;
+use App\Models\Profile;
+use App\Rules\ValidateZip;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Exceptions\EmailNotFound;
+use Illuminate\Support\Facades\DB;
 use App\Exceptions\UsernameNotFound;
 use App\Exceptions\UserTokenNotFound;
 use App\Http\Resources\User\UserResource;
@@ -22,9 +26,9 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
-        request()->validate([
-            'username'              => 'required|unique:users',
-            'email'                 => 'nullable|email|unique:profiles',
+        $data = request()->validate([
+            'name'                  => 'required',
+            'email'                 => 'nullable|email|unique:users',
             'password'              => 'required|min:6|confirmed',
             'password_confirmation' => 'required',
             'roles'                 => [
@@ -32,11 +36,8 @@ class UsersController extends Controller
                 'required',
                 'exists:roles,name'
             ],
-            'company_name'          => 'nullable',
             'active'                => 'boolean',
-            'first_name'            => 'required',
-            'last_name'             => 'required',
-            'phone'                 => 'nullable',
+            'contact_no'            => 'nullable',
             'address_1'             => 'nullable',
             'address_2'             => 'nullable',
             'city'                  => 'nullable',
@@ -44,31 +45,14 @@ class UsersController extends Controller
             'zip'                   => [
                 'nullable',
                 new ValidateZip
-            ]
+            ],
+            'country' => 'nullable',
         ]);
         DB::beginTransaction();
-        $user = User::forceCreate([
-            'username' => request('username'),
-            'password' => request('password'),
-            'active'   => request('active')
-        ]);
-
+        $user = User::create($data);
         /* create an empty profile */
-        $profile               = new Profile();
-        $profile->email        = request('email');
-        $profile->first_name   = request('first_name');
-        $profile->last_name    = request('last_name');
-        $profile->phone        = request('phone');
-        $profile->address_1    = request('address_1');
-        $profile->address_2    = request('address_2');
-        $profile->city         = request('city');
-        $profile->state        = request('state');
-        $profile->zip          = request('zip');
-        $profile->company_name = request('company_name');
-        $profile->notes        = request('notes');
-
+        $profile = Profile::create($data);
         $user->profile()->save($profile);
-        $roles = Role::all()->pluck('name');
         $role  = request('roles');
         $user->assignRole($role);
 
@@ -113,7 +97,7 @@ class UsersController extends Controller
             return response()->json(['message' => 'Cant Find User With ID of '.$request->id]);
         }
 
-        return new AccountResource($user->load('profile'));
+        return new UserResource($user->load('profile'));
     }
 
     /**
@@ -207,7 +191,7 @@ class UsersController extends Controller
             return response()->json(['message' => 'You Cannot Modify Super Admin!'], 400);
         }
 
-        $user->active = $request->toggle;
+        $user->active = !$user->active;
         $saved        = $user->save();
 
         if (!$saved) {
@@ -218,7 +202,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @param User $user
+     * @param User    $user
      * @param Request $request
      */
     public function update(User $user, Request $request)
@@ -235,14 +219,13 @@ class UsersController extends Controller
             'active'                => 'required|boolean',
             'password'              => 'nullable|min:6|confirmed',
             'password_confirmation' => 'required_with:password',
-            'company_name'          => 'nullable',
             'email'                 => [
                 'nullable',
-                Rule::unique('profiles')->ignore($user->id, 'user_id')
+                Rule::unique('users')->ignore($user->id)
             ],
             'first_name'            => 'required',
             'last_name'             => 'required',
-            'phone'                 => 'required',
+            'contact_no'            => 'required',
             'address_1'             => 'nullable',
             'address_2'             => 'nullable',
             'city'                  => 'nullable',
@@ -250,7 +233,6 @@ class UsersController extends Controller
             'zip'                   => [
                 new ValidateZip
             ],
-            'notes'                 => 'nullable|max:255',
             'roles'                 => [
                 'required',
                 'exists:roles,name'
@@ -299,7 +281,7 @@ class UsersController extends Controller
         $ids = request()->input('selected');
 
         $except = array_filter($ids, function ($id) {
-            return $id < 1000;
+            return $id <= 1000;
         });
 
         if (count($except) > 0) {

@@ -1,106 +1,170 @@
 // Place your settings in this file to overwrite the default settings
 {
-    // change this every project
-    "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
-    "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
-    "blade.format.enable": true, // if you would like to enable blade format
-    // Edit Both Start and Ending of Tags For Specific language
-    // remove dynamic import error after adding eslint package to it
-    "javascript.validate.enable": false,
-    // eslint configs
-    "eslint.enable": true,
-    "eslint.options": {
-        "extensions": [
-            ".html",
-            ".js",
-            ".vue",
-            ".jsx"
-        ]
+  // change this every project
+  "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
+  "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+  // <!-- html -->
+  "auto-close-tag.enableAutoCloseTag": true,
+  "auto-close-tag.excludedTags": [
+    "area",
+    "base",
+    "br",
+    "col",
+    "command",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr"
+  ],
+  "auto-close-tag.enableAutoCloseSelfClosingTag": true,
+  // css
+  "css.fileExtensions": ["css", "scss", "styl"],
+  "css.remoteStyleSheets": [
+    // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+  ],
+  // php
+  "php.suggest.basic": false,
+  // php namespace resolver plugin
+  "namespaceResolver.exclude": "**/node_modules/**", // Exclude glob pattern while finding files
+  "namespaceResolver.showMessageOnStatusBar": false, // Show message on status bar instead of notification box
+  "namespaceResolver.autoSort": true, // Auto sort after imports
+  "namespaceResolver.sortOnSave": false, // Auto sort when a file is saved
+  "namespaceResolver.sortAlphabetically": false, // Sort imports in alphabetical order instead of line length
+  "namespaceResolver.sortNatural": false, // Sort imports using a 'natural order' algorithm
+  "namespaceResolver.leadingSeparator": true, // Expand class with leading namespace separator
+  // <!-- phpcs plugin -->
+  "phpcs.standard": "PSR2",
+  "phpcs.executablePath": "/home/uriah/.config/composer/vendor/bin/phpcs",
+  // <!-- phpfpmt plugin -->
+  "phpfmt.passes": [
+    "PSR2KeywordsLowerCase",
+    "PSR2LnAfterNamespace",
+    "PSR2CurlyOpenNextLine",
+    "PSR2ModifierVisibilityStaticOrder",
+    "PSR2SingleEmptyLineAndStripClosingTag",
+    "ReindentSwitchBlocks",
+    "AlignDoubleArrow",
+    "AlignDoubleSlashComments",
+    "AlignGroupDoubleArrow",
+    "AlignConstVisibilityEquals",
+    "AlignEquals",
+    "AlignPHPCode",
+    "AlignTypehint",
+    "ConvertOpenTagWithEcho",
+    "GeneratePHPDoc",
+    "AlignTypehint",
+    "PrettyPrintDocBlocks",
+    "DoubleToSingleQuote",
+    "OrderAndRemoveUseClauses",
+    "GeneratePHPDoc",
+    "IndentTernaryConditions",
+    "ReindentAndAlignObjOps",
+    "ReindentSwitchBlocks",
+    "ClassToSelf",
+    "OrderMethodAndVisibility",
+    "PHPDocTypesToFunctionTypehint",
+    "SpaceAroundControlStructures",
+    "StripExtraCommaInArray",
+    "ReplaceIsNull",
+    "StripExtraCommaInArray",
+    "StripNewlineAfterClassOpen",
+    "StripNewlineAfterCurlyOpen",
+    "StripSpaceWithinControlStructures",
+    "TightConcat",
+    "TrimSpaceBeforeSemicolon",
+    "ReturnNull",
+    "SortUseNameSpace",
+    "ClassToStatic",
+    "WrongConstructorName",
+    "YodaComparisons",
+    "ShortArray"
+  ],
+  "phpfmt.exclude": ["ReindentComments", "StripNewlineWithinClassBody"],
+  "phpfmt.psr2": false,
+  "phpfmt.smart_linebreak_after_curly": true,
+  "phpfmt.indent_with_space": 4,
+  // <!-- npm plugin -->
+  "npm.runInTerminal": false,
+  // <!-- mysql plugin -->
+  "vscode-mysql.enableTelemetry": false,
+  // <!-- js -->
+  "javascript.validate.enable": false,
+  // <!-- eslint configs -->
+  "eslint.enable": true,
+  "eslint.options": {
+    "extensions": [".html", ".js", ".vue", ".jsx"]
+  },
+  "eslint.validate": [
+    {
+      "language": "html",
+      "autoFix": true
     },
-    "eslint.validate": [
-        {
-            "language": "html",
-            "autoFix": true
-        },
-        {
-            "language": "vue",
-            "autoFix": true
-        },
-        {
-            "language": "javascript",
-            "autoFix": true
-        },
-        {
-            "language": "javascriptreact",
-            "autoFix": true
-        }
-    ],
-    "eslint.run": "onSave",
-    "eslint.autoFixOnSave": true,
-    // add here all your external css you want to be type hinted in your vue or html
-    "css.remoteStyleSheets": [
-        // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-    ],
-    // php namespace resolver plugin
-    "namespaceResolver.exclude": "**/node_modules/**", // Exclude glob pattern while finding files
-    "namespaceResolver.showMessageOnStatusBar": false, // Show message on status bar instead of notification box
-    "namespaceResolver.autoSort": true, // Auto sort after imports
-    "namespaceResolver.sortOnSave": false, // Auto sort when a file is saved
-    "namespaceResolver.sortAlphabetically": false, // Sort imports in alphabetical order instead of line length
-    "namespaceResolver.sortNatural": false, // Sort imports using a 'natural order' algorithm
-    "namespaceResolver.leadingSeparator": true, // Expand class with leading namespace separator
-    "phpcs.standard": "PSR2",
-    "phpfmt.passes": [
-        "PSR2KeywordsLowerCase",
-        "PSR2LnAfterNamespace",
-        "PSR2CurlyOpenNextLine",
-        "PSR2ModifierVisibilityStaticOrder",
-        "PSR2SingleEmptyLineAndStripClosingTag",
-        "ReindentSwitchBlocks",
-        "AlignDoubleArrow",
-        "AlignDoubleSlashComments",
-        "AlignGroupDoubleArrow",
-        "AlignConstVisibilityEquals",
-        "AlignEquals",
-        "AlignPHPCode",
-        "AlignTypehint",
-        "ConvertOpenTagWithEcho",
-        "GeneratePHPDoc",
-        "AlignTypehint",
-        "PrettyPrintDocBlocks",
-        "DoubleToSingleQuote",
-        "OrderAndRemoveUseClauses",
-        "GeneratePHPDoc",
-        "IndentTernaryConditions",
-        "ReindentAndAlignObjOps",
-        "ReindentSwitchBlocks",
-        "ClassToSelf",
-        "OrderMethodAndVisibility",
-        "PHPDocTypesToFunctionTypehint",
-        "SpaceAroundControlStructures",
-        "StripExtraCommaInArray",
-        "ReplaceIsNull",
-        "StripExtraCommaInArray",
-        "StripNewlineAfterClassOpen",
-        "StripNewlineAfterCurlyOpen",
-        "StripSpaceWithinControlStructures",
-        "TightConcat",
-        "TrimSpaceBeforeSemicolon",
-        "ReturnNull",
-        "SortUseNameSpace",
-        "ClassToStatic",
-        "WrongConstructorName",
-        "YodaComparisons",
-        "ShortArray"
-    ],
-    "phpfmt.exclude": [
-        "ReindentComments",
-        "StripNewlineWithinClassBody"
-    ],
-    "phpfmt.psr2": false,
-    "phpfmt.smart_linebreak_after_curly": true,
-    "phpfmt.indent_with_space": 4,
-    "npm.runInTerminal": false,
-    "vscode-mysql.enableTelemetry": false,
-    "phpcs.executablePath": "/home/uriah/.config/composer/vendor/bin/phpcs"
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    }
+  ],
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  // <!--blade-->
+  "blade.format.enable": true, // if you would like to enable blade format
+  // <!--autosave-->
+  "[php]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4
+  },
+  "[blade]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4,
+    "editor.fontFamily": "dejavu sans mono"
+  },
+  "[vue]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4,
+    // <-- vuetify plugins -->
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  // <!-- emmet -->
+  "emmet.includeLanguages": {
+    "blade": "html",
+    "vue-html": "html"
+  },
+  // <!-- autorename -->
+  "auto-rename-tag.activationOnLanguage": [
+    "html",
+    "blade",
+    "xml",
+    "php",
+    "javascript",
+    "blade",
+    "vue"
+  ]
 }

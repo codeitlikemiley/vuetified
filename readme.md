@@ -5,18 +5,19 @@
 ![vuetified](https://user-images.githubusercontent.com/28816690/34463373-b7649ca8-ee94-11e7-9dbc-a97de8574279.png)
 
 # Table of Contents
+
 1. [Requirements](#requirements)
 2. [Installation](#installation)
 3. [Stacks Used](#stacks-used)
-4. [Plugins](#plugins) 
+4. [Plugins](#plugins)
 5. [Theme](#theme)
 6. [Initial State](#initial-state)
 7. [Linting](#linting)
 8. [Issues](#issues)
-9. [Pull Request](#pull-request) 
-
+9. [Pull Request](#pull-request)
 
 ## Requirements
+
 - PHP 7.1+
 - Composer
 - Node JS
@@ -26,6 +27,7 @@
 - Laravel Valet (NGINX) or use Laradock or Homestead
 
 ## Installation
+
 1. `git clone https://github.com/codeitlikemiley/vuetified YOURPROJECTNAME`
 2. `cd YOURPROJECTNAME`
 3. `composer install`
@@ -34,22 +36,27 @@
 6. `php artisan passport:install`
 7. `echo:generate`
 8. set your `.env`
+
 - If you want to use Laravel echo then change this to true
+
 ```
 ECHO_ON=false
 ```
+
 9. `php artisan migrate:fresh --seed`
 10. node websocket
 11. Serve Your Site
+
     - laravel valet - valet link YOURSITE
     - laradock - docker-compose up -d nginx redis mysql
     - homestead - homestead up
-    [yourprojectname.test/](yourprojectname.test)
-    
+      [yourprojectname.test/](yourprojectname.test)
+
 ## Stacks Used
-- Laravel 
+
+- Laravel
 - Vue
-- Laravel Passport for Oauth and authentication 
+- Laravel Passport for Oauth and authentication
 - Vuetified for UI
 - Laravel Echo for real-time broadcasting
 - Laravel Horizon for queueing jobs
@@ -74,7 +81,7 @@ import './services/vuex' //! State management
 
 import './services/echo' //! Websocket
 
-import './services/initial-state' //! Seed initial data to your app 
+import './services/initial-state' //! Seed initial data to your app
 //! @ Vuetified/Configuration/ProvidesScriptVariables.php
 
 import('./services/forms') //! Declare your global form objects here
@@ -123,15 +130,21 @@ public static function scriptVariables()
     }
 ```
 
-## Linting
-If your using VS Code which I highly recommend since they offer great plugins for Vue and ES lint.
+## VS Code Settings (Laravel/Vue - Auto Lint and Fix)
 
-You can PM me directly at [Facebook](https://www.facebook.com/uriah.san) So I can share my settings.
+- install Vs code plugin "Settings Sync" or `ctrl + shift + x`
+- press: `ctrl + shift + P`
+- search/type: `Sync: Advance Option`
+- Choose: `Download Settings From Public Gist`
+- Enter Gist ID: `bb232eb1abd0734a815b658a91b9cba5`
 
 Install VS Code, then install this plugin [Settings Sync](https://github.com/shanalikhan/code-settings-sync.git).
 
 ## Issues
-If you have seen any bugs please report it by making an [issue](https://github.com/codeitlikemiley/vuetified/issues).
+
+- If you have seen any bugs please report it by making an [issue](https://github.com/codeitlikemiley/vuetified/issues).
+- You can PM me directly at [Facebook](https://www.facebook.com/uriah.san)
 
 ## Pull Request
+
 If you want to add components to be part of vuetified please make a [pull request](https://github.com/codeitlikemiley/vuetified/pulls).

@@ -177,7 +177,7 @@
           offset-md2
         >
           <v-text-field
-            v-model="form.phone"
+            v-model="form.contact_no"
             label="Phone"
             prepend-icon="phone"
           />
@@ -299,18 +299,16 @@ export default {
       roles: [],
       password: null,
       password_confirmation: null,
-      company_name: null,
       first_name: null,
       last_name: null,
       email: null,
-      phone: null,
+      contact_no: null,
       address_1: null,
       address_2: null,
       city: null,
       state: null,
       zip: null,
       country: null,
-      notes: null
     }),
     roles: [],
     password_visible: false
@@ -400,17 +398,17 @@ export default {
         self.form.active = payload.data.data.active;
         self.form.roles = payload.data.data.roles[0];
         self.form.company_name = payload.data.data.company_name;
-        self.form.first_name = payload.data.data.first_name;
-        self.form.last_name = payload.data.data.last_name;
+        self.form.first_name = payload.data.data.profile.first_name;
+        self.form.last_name = payload.data.data.profile.last_name;
         self.form.email = payload.data.data.email;
-        self.form.phone = payload.data.data.phone;
-        self.form.address_1 = payload.data.data.address_1;
-        self.form.address_2 = payload.data.data.address_2;
-        self.form.city = payload.data.data.city;
-        self.form.state = payload.data.data.state;
-        self.form.zip = payload.data.data.zip;
-        self.form.country = payload.data.data.country;
-        self.form.notes = payload.data.data.notes;
+        self.form.contact_no = payload.data.data.profile.contact_no;
+        self.form.address_1 = payload.data.data.profile.address_1;
+        self.form.address_2 = payload.data.data.profile.address_2;
+        self.form.city = payload.data.data.profile.city;
+        self.form.state = payload.data.data.profile.state;
+        self.form.zip = payload.data.data.profile.zip;
+        self.form.country = payload.data.data.profile.country;
+        self.form.notes = payload.data.data.profile.notes;
         (self.form.password = ""), (self.form.password_confirmation = "");
       } catch ({ errors, message }) {
         if (errors) {

@@ -29,7 +29,9 @@ import {
   VTextarea,
   VCombobox,
   VSwitch,
-  VAutocomplete
+  VAutocomplete,
+  VDialog,
+  VDivider
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -60,7 +62,9 @@ Vue.use(Vuetify, {
     VTextarea,
     VCombobox,
     VSwitch,
-    VAutocomplete
+    VAutocomplete,
+    VDialog,
+    VDivider
   },
   //! Define Your Theme Here
   theme: {

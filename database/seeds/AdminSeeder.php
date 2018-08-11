@@ -32,10 +32,7 @@ class AdminSeeder extends Seeder
         $link->save();
         $link->sp_user_id = null;
         $link->save();
-        $profile = Profile::create([
-            'first_name' => 'Super',
-            'last_name'  => 'Admin'
-        ]);
+        $profile = factory(Profile::class, 1)->create()->first();
         $user->profile()->save($profile);
         $user->save();
     }

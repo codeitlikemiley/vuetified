@@ -15,15 +15,13 @@ class ProfileResource extends Resource
     public function toArray($request)
     {
         return [
-            'first_name'     => $this->first_name,
-            'last_name'      => $this->last_name,
-            'contact_no'     => $this->contact_no,
-            'address_1'      => $this->address_1,
-            'address_2'      => $this->address_2,
-            'city'           => $this->city,
-            'country'        => $this->country,
-            'zip_code'       => $this->zip_code,
-            'state_province' => $this->state_province
+            'contact_no' => $this->contact_no,
+            'address_1'  => $this->address_1,
+            'address_2'  => $this->address_2,
+            'city'       => $this->city,
+            'country'    => $this->country,
+            'zip'        => $this->zip,
+            'state'      => $this->state
         ];
     }
 }

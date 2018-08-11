@@ -15,7 +15,7 @@ trait Relationships
      */
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class)->withDefault();
     }
 
     /**
@@ -24,7 +24,7 @@ trait Relationships
      */
     public function referralLink()
     {
-        return $this->hasOne(Link::class);
+        return $this->hasOne(Link::class)->withDefault();
     }
 
     /**
