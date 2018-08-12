@@ -2,104 +2,26 @@
   <main-layout>
     <v-container fluid>
       <!-- User Main Detail -->
-      <v-layout 
-        row 
-        wrap>
-        <v-flex 
-          d-flex 
-          xs12 
-          sm7>
-          <v-layout 
-            row 
-            wrap>
-            <v-flex d-flex>
-              <v-card 
-                light 
-                flat
-              >
-                <v-card-title>
-                  <v-text-field
-                    v-model="search"
-                    append-icon="search"
-                    label="Search Users"
-                    single-line
-                    hide-details
-                    light
-                  />
-                </v-card-title>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-        <v-flex 
-          d-flex 
-          xs12 
-          sm5 
-          child-flex>
-          <v-layout 
-            row 
-            wrap>
-            <v-flex 
-              xs12 
-              class="white"
-              d-flex>
-              <v-btn 
-                block 
-                color="accent" 
-                dark
-                flat
-                @click="createUser">
-                Create New Account
-                <v-icon
-                  right
-                  color="accent" 
-                >
-                  fa-user-plus
-                </v-icon>
-              </v-btn>
-            </v-flex>
-            <v-flex 
-              xs12 
-              d-flex>
-              <v-flex class="xs6 white">
-                <v-btn 
-                  v-if="selected.length > 0"
-                  block 
-                  color="blue darken-4" 
-                  dark
-                  flat
-                  @click="massActivate">
-                  <v-icon
-                    large
-                    color="blue darken-4" 
-                  >
-                    link
-                  </v-icon>
-                  Activate Selected
-                </v-btn>
-              </v-flex>
-              <v-flex class="xs6 white">
-                <v-btn 
-                  v-if="selected.length > 0"
-                  block 
-                  flat
-                  color="error" 
-                  dark
-                  @click="massDeactivate">
-                  <v-icon
-                    large
-                    color="error" 
-                  >
-                    link_off
-                  </v-icon>
-                  Deactivate Selected
-                </v-btn>
-              </v-flex>
-            </v-flex>
-          </v-layout>
-          
-        </v-flex>
-      </v-layout>
+      <v-card-title>
+        <v-text-field
+          v-model="search"
+          append-icon="search"
+          label="Filter/Search Users List"
+          single-line
+          hide-details
+        />
+        <v-spacer/>
+        <v-btn
+        color="teal"
+        dark
+        @click="createUser"
+        >
+            Create New User
+            <v-icon right>
+                person_add
+            </v-icon>
+        </v-btn>
+      </v-card-title>
       <v-data-table
         v-model="selected"
         :headers="headers"
@@ -131,6 +53,74 @@
                 @click.native="toggleAll"
               />
             </th>
+            <th colspan="4">
+              <v-toolbar 
+                flat
+                dense 
+                color="white">
+                <v-overflow-btn
+                v-model="filterBy"
+      :items="filters"
+      return-object
+      editable
+      flat
+      label="Filter By"
+      hide-details
+      overflow
+    ></v-overflow-btn>
+
+    <v-divider
+      class="mx-2"
+      vertical
+    ></v-divider>
+                <v-text-field
+                  v-model="search"
+                  append-icon="search"
+                  :label="`Search ${filterBy.value.toUpperCase()}`"
+                  single-line
+                  hide-details
+                  px-2
+                />
+
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
+
+<v-btn 
+                    @click="toggleOrderBy"
+                    icon
+                    flat>
+                    <v-icon :color="orderColor">{{ sortIcon }}</v-icon>
+                  </v-btn>
+
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
+                <v-btn icon
+                    flat>
+                    <v-icon color="amber">block</v-icon>
+                  </v-btn>
+<v-btn icon
+                    flat>
+                    <v-icon color="green">how_to_reg</v-icon>
+                  </v-btn>
+
+                  <v-btn icon
+                    flat>
+                    <v-icon color="yellow darken-1">mail</v-icon>
+                  </v-btn>
+
+                  <v-btn icon
+                    flat>
+                    <v-icon color="error">delete_outline</v-icon>
+                  </v-btn>
+              </v-toolbar>
+            </th>
+          </tr>
+          <tr>
+            <th/>
             <th 
               v-for="header in props.headers" 
               :key="header.text"
@@ -547,6 +537,17 @@ export default {
       { text: "Status", value: "active", align: "left", sortable: true },
       { text: "Actions", value: "", align: "left", sortable: false }
     ],
+    filters:[
+        { text: "Filter By Name", value: "name"},
+      { text: "Filter By Role", value: "role"},
+      { text: "Filter By Status", value: "status"},
+    ],
+    filterBy: {
+        text: 'Filter By Name',
+        value: 'name'
+    },
+    orderBy:'ASC',
+    orderColor: 'teal',
     items: [],
     selected: [],
     pagination: {
@@ -569,7 +570,18 @@ export default {
     deleteUserForm: new Form({
       user_id: null
     }),
-    domain: window.location.hostname
+    domain: window.location.hostname,
+    dropdown_font: [
+      { text: "Arial" },
+      { text: "Calibri" },
+      { text: "Courier" },
+      { text: "Verdana" }
+    ],
+    dropdown_edit: [
+      { text: "Name" },
+      { text: "Roles" },
+      { text: "Status" },
+    ],
   }),
   watch: {
     items: {
@@ -585,7 +597,24 @@ export default {
     self.fetchPermissions();
     self.fetchUsers();
   },
+  computed: {
+    sortIcon() {
+        if(this.orderBy === 'ASC'){
+            return 'fa-sort-amount-asc'
+        }
+        return 'fa-sort-amount-desc'
+    },
+  },
   methods: {
+      toggleOrderBy(){
+          if(this.orderBy === 'ASC'){
+              this.orderBy = 'DESC'
+              this.orderColor = 'orange'
+          }else{
+              this.orderBy = 'ASC'
+              this.orderColor = 'teal'
+          }
+      },
     editUser(user) {
       vm.$router.push({ name: "edit-user", params: { id: `${user.id}` } });
     },

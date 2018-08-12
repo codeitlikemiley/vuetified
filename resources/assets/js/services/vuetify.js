@@ -33,7 +33,9 @@ import {
   VDialog,
   VDivider,
   VProgressLinear,
-  VImg
+  VImg,
+  VOverflowBtn,
+  VBtnToggle
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -68,7 +70,9 @@ Vue.use(Vuetify, {
     VDialog,
     VDivider,
     VProgressLinear,
-    VImg
+    VImg,
+    VOverflowBtn,
+    VBtnToggle
   },
   //! Define Your Theme Here
   theme: {
