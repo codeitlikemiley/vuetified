@@ -40,7 +40,7 @@
               />
               <!-- Image Placeholder -->
               <!-- Image -->
-              <v-card-media
+              <v-img
                 v-else
                 :src="current_image"
                 height="700px"
@@ -49,9 +49,9 @@
               <!-- Image -->
               <!-- Gallery -->
               <v-container 
+                v-if="photos !== null && photos !== undefined && photos.length > 0" 
                 fill-height 
-                fluid 
-                v-if="photos !== null && photos !== undefined && photos.length > 0"
+                fluid
               >
                 <v-layout fill-height>
                   <v-flex
@@ -60,11 +60,11 @@
                     flexbox
                   >
                     <div
-                      class="image"
                       v-for="(image,key) in photos"
                       :key="key"
-                      @click="setCurrentImage(key)"
                       :style="{ backgroundImage: 'url(' + image + ')', width: imageHeight, height: imageWidth }"
+                      class="image"
+                      @click="setCurrentImage(key)"
                     />
                   </v-flex>
                 </v-layout>
@@ -90,11 +90,11 @@
         >
           <!-- Feature Lists -->
           <v-flex
-            d-flex 
-            xs12
+            v-for="card in features" 
             v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
-            v-for="card in features"
             :key="card.title"
+            d-flex
+            xs12
             class="pa-2"
           >
 
@@ -111,7 +111,7 @@
                     d-flex
                     xs4
                   >
-                    <v-card-media
+                    <v-img
                       :src="card.src"
                       height="125px"
                       contain
@@ -140,8 +140,8 @@
                             <v-spacer/>
                             <v-btn 
                               icon 
-                              @click.native="card.show = !card.show" 
-                              class="accent--text"
+                              class="accent--text" 
+                              @click.native="card.show = !card.show"
                             >
                               <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
                             </v-btn>
@@ -155,9 +155,9 @@
                           <v-slide-y-transition>
                             <v-card-text 
                               v-show="card.show" 
-                              v-text="card.tagline"
-                              class="accent--text" 
                               :class="[taglineSize]"
+                              class="accent--text" 
+                              v-text="card.tagline"
                             />
                           </v-slide-y-transition>
                         </v-flex>

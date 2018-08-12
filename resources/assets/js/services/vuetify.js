@@ -31,7 +31,9 @@ import {
   VSwitch,
   VAutocomplete,
   VDialog,
-  VDivider
+  VDivider,
+  VProgressLinear,
+  VImg
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -64,7 +66,9 @@ Vue.use(Vuetify, {
     VSwitch,
     VAutocomplete,
     VDialog,
-    VDivider
+    VDivider,
+    VProgressLinear,
+    VImg
   },
   //! Define Your Theme Here
   theme: {

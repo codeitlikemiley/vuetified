@@ -8,8 +8,8 @@
       wrap
     >
       <v-flex
-        v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
         v-for="card in showcase"
+        v-bind="{ [`xs${card.xs}`]: true, [`sm${card.sm}`]: true, [`md${card.md}`]: true,[`lg${card.lg}`]: true,[`xl${card.xl}`]: true }"
         :key="card.title"
         class="pa-2"
       >
@@ -17,7 +17,7 @@
           flat 
           color="secondary"
         >
-          <v-card-media
+          <v-img
             :src="card.src"
             height="150px"
             contain

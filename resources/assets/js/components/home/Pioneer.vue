@@ -76,7 +76,7 @@
                   v-if="!current_image" 
                   style="background-color:#d3d3d3;height:322px;width:483px;margin: auto;width: 50%;"
                 />
-                <v-card-media
+                <v-img
                   v-else
                   :src="current_image"
                   height="400px"
@@ -87,9 +87,9 @@
               <!-- Image -->
               <!-- Gallery -->
               <v-container 
+                v-if="photos !== null && photos !== undefined && photos.length > 0" 
                 fill-height 
-                fluid 
-                v-if="photos !== null && photos !== undefined && photos.length > 0"
+                fluid
               >
                 <v-layout fill-height>
                   <v-flex 
@@ -98,11 +98,11 @@
                     flexbox
                   >
                     <div
-                      class="image"
                       v-for="(image,key) in photos"
                       :key="key"
-                      @click="setCurrentImage(key)"
+                      class="image"
                       :style="{ backgroundImage: 'url(' + image + ')', width: imageHeight, height: imageWidth }"
+                      @click="setCurrentImage(key)"
                     />
                   </v-flex>
                 </v-layout>

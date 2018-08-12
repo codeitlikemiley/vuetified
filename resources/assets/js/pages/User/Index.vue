@@ -106,11 +106,16 @@
         :items="items"
         :search="search"
         :pagination.sync="pagination"
+        :loading="usersForm.busy"
         select-all
         light
         item-key="id"
         expand
       >
+        <v-progress-linear 
+          slot="progress" 
+          color="blue" 
+          indeterminate/>
         <template
           slot="headers" 
           slot-scope="props"
@@ -241,7 +246,7 @@
               flat 
               text-xs-center
             >
-              <v-card-media
+              <v-img
                 class="white--text blue-grey"
                 height="75px"
               >
@@ -275,7 +280,7 @@
                     </v-flex>
                   </v-layout>
                 </v-container>
-              </v-card-media>
+              </v-img>
               <v-card-title>
                 <v-container fluid>
                   <p 
@@ -531,7 +536,7 @@ export default {
     MainLayout,
     Confirm
   },
-  mixins: [Acl, validationError,confirmation],
+  mixins: [Acl, validationError, confirmation],
   data: () => ({
     contentClass: { grey: true, "lighten-4": true, "accent--text": true },
     dialog: false,
@@ -903,6 +908,14 @@ export default {
     toggleAll() {
       if (this.selected.length) this.selected = [];
       else this.selected = this.items.slice();
+    },
+    changeSort(column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending;
+      } else {
+        this.pagination.sortBy = column;
+        this.pagination.descending = false;
+      }
     }
   }
 };
