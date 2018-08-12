@@ -20,6 +20,7 @@
         "spatie/laravel-artisan-dd": "^2.0",
         "spatie/laravel-medialibrary": "^7.3",
         "spatie/laravel-permission": "^2.7",
+        "spatie/laravel-query-builder": "^1.10",
         "tightenco/ziggy": "^0.6.2"
     },
     "require-dev": {

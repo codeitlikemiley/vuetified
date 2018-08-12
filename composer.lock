@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fc86f4c9644ec649c45e157eacc6cccd",
-    "content-hash": "6ecc4f088c18ec548f521bab010085bb",
+    "hash": "5e3b3925c422ae2c8b5107df7194fa11",
+    "content-hash": "44ed679153a6c5347a510225c55d2ae4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1141,7 +1141,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gladchinda/keygen-php/zipball/af094fc229165d3c1d6ea714a8a93a3fa4323b3f",
+                "url": "https://api.github.com/repos/gladchinda/keygen-php/zipball/85e026e2ce9c0f72f4e891e0b1d350bbe8eb2334",
                 "reference": "af094fc229165d3c1d6ea714a8a93a3fa4323b3f",
                 "shasum": ""
             },
@@ -3248,6 +3248,60 @@
                 "spatie"
             ],
             "time": "2018-06-14 02:52:40"
+        },
+        {
+            "name": "spatie/laravel-query-builder",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-query-builder.git",
+                "reference": "b1333e263a1fac24773cb67c8e7ca46d0ae74ecc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/b1333e263a1fac24773cb67c8e7ca46d0ae74ecc",
+                "reference": "b1333e263a1fac24773cb67c8e7ca46d0ae74ecc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5.0|~3.6.0",
+                "phpunit/phpunit": "^6.1|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\QueryBuilder\\QueryBuilderServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\QueryBuilder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily build Eloquent queries from API requests",
+            "homepage": "https://github.com/spatie/laravel-query-builder",
+            "keywords": [
+                "laravel-query-builder",
+                "spatie"
+            ],
+            "time": "2018-06-12 12:56:44"
         },
         {
             "name": "spatie/pdf-to-image",
