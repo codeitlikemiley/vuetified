@@ -98,6 +98,8 @@
                   class="mx-2"
                   vertical
                 />
+                <div v-if="selected.length>0">
+
                 <v-btn icon
                     flat>
                     <v-icon color="amber">block</v-icon>
@@ -116,6 +118,7 @@
                     flat>
                     <v-icon color="error">delete_outline</v-icon>
                   </v-btn>
+                  </div>
               </v-toolbar>
             </th>
           </tr>
