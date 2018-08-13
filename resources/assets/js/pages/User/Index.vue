@@ -533,11 +533,11 @@ export default {
   data: () => ({
     contentClass: { grey: true, "lighten-4": true, "accent--text": true },
     dialog: false,
-    /* table */
+    /* { text: string; value: string; align: 'left' | 'center' | 'right'; sortable: boolean; class: string[] | string; width: string; } */
     headers: [
-      { text: "Name", value: "name", align: "left", sortable: true },
-      { text: "Roles", value: "roles", align: "left", sortable: false },
-      { text: "Status", value: "active", align: "left", sortable: true },
+      { text: "Name", value: "name", align: "left" },
+      { text: "Roles", value: "roles", align: "left" },
+      { text: "Status", value: "active", align: "left" },
       { text: "Actions", value: "", align: "left", sortable: false }
     ],
     filters:[

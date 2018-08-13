@@ -213,7 +213,7 @@ class UsersController extends Controller
 
         $data = $request->validate([
             'username'              => [
-                'required',
+                'nullable',
                 Rule::unique('users')->ignore($user->id)
             ],
             'active'                => 'required|boolean',
@@ -223,8 +223,6 @@ class UsersController extends Controller
                 'nullable',
                 Rule::unique('users')->ignore($user->id)
             ],
-            'first_name'            => 'required',
-            'last_name'             => 'required',
             'contact_no'            => 'required',
             'address_1'             => 'nullable',
             'address_2'             => 'nullable',

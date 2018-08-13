@@ -27,27 +27,12 @@
       >
         <v-text-field
           v-validate="{ required: false,regex: /^[a-zA-Z0-9 ]+$/ }"
-          v-model="form.first_name"
-          :error-messages="errorMessages('first_name')"
-          :class="{ 'error--text': hasErrors('first_name') }"
-          label="First Name"
+          v-model="form.name"
+          :error-messages="errorMessages('name')"
+          :class="{ 'error--text': hasErrors('name') }"
+          label="Full Name"
           prepend-icon="person"
-          data-vv-name="first_name"
-        />
-      </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2
-      >
-        <v-text-field
-          v-validate="{ required: false,regex: /^[a-zA-Z0-9 ]+$/ }"
-          v-model="form.last_name"
-          :error-messages="errorMessages('last_name')"
-          :class="{ 'error--text': hasErrors('last_name') }"
-          label="First Name"
-          prepend-icon="group"
-          data-vv-name="last_name"
+          data-vv-name="name"
         />
       </v-flex>
       <v-flex 
@@ -117,12 +102,12 @@
       >
         <v-text-field
           v-validate="{ required: false }"
-          v-model="form.state_province"
-          :error-messages="errorMessages('state_province')"
-          :class="{ 'error--text': hasErrors('state_province') }"
+          v-model="form.state"
+          :error-messages="errorMessages('state')"
+          :class="{ 'error--text': hasErrors('state') }"
           label="State/Province"
           prepend-icon="terrain"
-          data-vv-name="state_province"
+          data-vv-name="state"
         />
       </v-flex>
       <v-flex 
@@ -132,12 +117,12 @@
       >
         <v-text-field
           v-validate="{ required: false }"
-          v-model="form.zip_code"
-          :error-messages="errorMessages('zip_code')"
-          :class="{ 'error--text': hasErrors('zip_code') }"
+          v-model="form.zip"
+          :error-messages="errorMessages('zip')"
+          :class="{ 'error--text': hasErrors('zip') }"
           label="Zip Code"
           prepend-icon="markunread_mailbox"
-          data-vv-name="zip_code"
+          data-vv-name="zip"
         />
       </v-flex>
       <v-flex 
@@ -205,15 +190,14 @@ export default {
   },
   mounted() {
     let self = this;
-    self.form.first_name = self.getMe.profile.first_name;
-    self.form.last_name = self.getMe.profile.last_name;
+    self.form.name = self.getMe.name;
     self.form.contact_no = self.getMe.profile.contact_no;
     self.form.address_1 = self.getMe.profile.address_1;
     self.form.address_2 = self.getMe.profile.address_2;
     self.form.city = self.getMe.profile.city;
     self.form.country = self.getMe.profile.country;
-    self.form.zip_code = self.getMe.profile.zip_code;
-    self.form.state_province = self.getMe.profile.state_province;
+    self.form.zip = self.getMe.profile.zip;
+    self.form.state = self.getMe.profile.state;
   },
   methods: {
     ...mapMutations({

@@ -31,26 +31,62 @@
         row 
         wrap
       >
-        <v-flex 
-          xs12 
-          md8 
+      <v-flex 
+          xs8
+          md6
           offset-md2
+          px-2
         >
           <v-text-field
-            v-validate="'required|max:255|min:6|alpha_dash'"
-            v-model="form.username"
-            :error-messages="errorMessages('username')"
-            :class="{ 'error--text': hasErrors('username') }"
+            v-validate="'required'"
+            v-model="form.name"
+            :error-messages="errorMessages('name')"
+            :class="{ 'error--text': hasErrors('name') }"
             class="primary--text"
-            name="username"
-            label="Username"
-            data-vv-name="username"
+            name="name"
+            label="Full Name"
+            data-vv-name="name"
             counter="255"
             prepend-icon="fa-user"
           />
         </v-flex>
-
-        <v-flex class="xs6 md4 offset-md2">
+        <v-flex 
+          class="xs4 md2" 
+          px-2
+        >
+          <v-switch
+            v-model="form.active"
+            :label="getStatus(form.active)"
+          />
+        </v-flex>
+        <v-flex 
+          xs12 
+          md4
+          offset-md2
+          px-2
+        >
+          <v-text-field
+            v-validate="{ email: true }"
+            v-model="form.email"
+            :error-messages="errorMessages('email')"
+            :class="{ 'error--text': hasErrors('email') }"
+            label="Email"
+            prepend-icon="mail"
+            data-vv-name="email"
+          />
+        </v-flex>
+        <v-flex 
+          xs12 
+          md4
+          px-2
+        >
+          <v-text-field
+            v-model="form.phone"
+            label="Phone"
+            prepend-icon="phone"
+          />
+        </v-flex>
+        <v-flex class="xs12 offset-md2 md8">
           <v-autocomplete
             v-validate="'required'"
             :items="roles"
@@ -68,19 +104,15 @@
             data-vv-name="roles"
           />
         </v-flex>
-        <v-flex class="xs6 md4">
-          <v-switch
-            v-model="form.active"
-            :label="getStatus(form.active)"
-          />
-        </v-flex>
+        
         <v-flex 
-          xs12 
-          md8 
+          xs12
+          md4 
           offset-md2
+          px-2
         >
           <v-text-field
-            v-validate="'min:6|confirmed:confirmation'"
+            v-validate="'min:6|confirmed:password_confirmation'"
             v-model="form.password"
             :append-icon="icon"
             :type="!password_visible ? 'password' : 'text'"
@@ -96,17 +128,15 @@
           />
         </v-flex>
         <v-flex 
-          xs12 
-          md8 
-          offset-md2
+          xs12
+          md4
+          px-2
         >
           <v-text-field
-            ref="confirmation"
+            ref="password_confirmation"
             v-model="form.password_confirmation"
             :append-icon="icon"
             :type="!password_visible ? 'password' : 'text'"
-            :error-messages="errorMessages('password_confirmation')"
-            :class="{ 'error--text': hasErrors('password_confirmation') }"
             class="primary--text"
             name="password_confirmation"
             label="Confirm Password"
@@ -116,76 +146,10 @@
           />
         </v-flex>
         <v-flex 
-          xs12
-          md8 
-          offset-md2
-        >
-          <v-text-field
-            v-model="form.company_name"
-            label="Company Name"
-            prepend-icon="domain"
-          />
-        </v-flex>
-        <v-flex 
           xs12 
-          md8 
+          md4
           offset-md2
-        >
-          <v-text-field
-            v-validate="{ email: true }"
-            v-model="form.email"
-            :error-messages="errorMessages('email')"
-            :class="{ 'error--text': hasErrors('email') }"
-            label="Email"
-            prepend-icon="mail"
-            data-vv-name="email"
-          />
-        </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2
-        >
-          <v-text-field
-            v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
-            v-model="form.first_name"
-            :error-messages="errorMessages('first_name')"
-            :class="{ 'error--text': hasErrors('first_name') }"
-            label="First Name"
-            prepend-icon="person"
-            data-vv-name="first_name"
-          />
-        </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2
-        >
-          <v-text-field
-            v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
-            v-model="form.last_name"
-            :error-messages="errorMessages('last_name')"
-            :class="{ 'error--text': hasErrors('last_name') }"
-            label="Last Name"
-            prepend-icon="people"
-            data-vv-name="last_name"
-          />
-        </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2
-        >
-          <v-text-field
-            v-model="form.contact_no"
-            label="Phone"
-            prepend-icon="phone"
-          />
-        </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2
+          px-2
         >
           <v-text-field
             v-model="form.address_1"
@@ -195,8 +159,8 @@
         </v-flex>
         <v-flex 
           xs12 
-          md8 
-          offset-md2
+          md4
+          px-2
         >
           <v-text-field
             v-model="form.address_2"
@@ -206,8 +170,9 @@
         </v-flex>
         <v-flex 
           xs12 
-          md8 
+          md4
           offset-md2
+          px-2
         >
           <v-text-field
             v-model="form.city"
@@ -217,19 +182,20 @@
         </v-flex>
         <v-flex 
           xs12 
-          md8 
-          offset-md2
+          md4
+          px-2
         >
           <v-text-field
-            v-model="form.state"
+            v-model="form.state_province"
             label="State"
             prepend-icon="map"
           />
         </v-flex>
         <v-flex 
           xs12 
-          md8 
+          md4
           offset-md2
+          px-2
         >
           <v-text-field
             v-validate="{ regex: /^\d{5}(?:[-\s]\d{4})?$/ }"
@@ -243,17 +209,14 @@
         </v-flex>
         <v-flex 
           xs12 
-          md8 
-          offset-md2
+          md4
+          px-2
         >
-          <v-textarea
-            v-model="form.notes"
-            color="teal"
-          >
-            <div slot="label">
-              Notes <small>(optional)</small>
-            </div>
-          </v-textarea>
+          <v-text-field
+            v-model="form.country"
+            label="Country"
+            prepend-icon="fa-fa"
+          />
         </v-flex>
         <v-flex 
           xs12 
@@ -294,13 +257,11 @@ export default {
   data: () => ({
     /* Always Declare Your Form Object */
     form: new Form({
-      username: null,
+      name: null,
       active: false,
       roles: [],
       password: null,
       password_confirmation: null,
-      first_name: null,
-      last_name: null,
       email: null,
       contact_no: null,
       address_1: null,
@@ -397,9 +358,7 @@ export default {
         self.form.username = payload.data.data.username;
         self.form.active = payload.data.data.active;
         self.form.roles = payload.data.data.roles[0];
-        self.form.company_name = payload.data.data.company_name;
-        self.form.first_name = payload.data.data.profile.first_name;
-        self.form.last_name = payload.data.data.profile.last_name;
+        self.form.name = payload.data.data.name;
         self.form.email = payload.data.data.email;
         self.form.contact_no = payload.data.data.profile.contact_no;
         self.form.address_1 = payload.data.data.profile.address_1;
@@ -408,7 +367,6 @@ export default {
         self.form.state = payload.data.data.profile.state;
         self.form.zip = payload.data.data.profile.zip;
         self.form.country = payload.data.data.profile.country;
-        self.form.notes = payload.data.data.profile.notes;
         (self.form.password = ""), (self.form.password_confirmation = "");
       } catch ({ errors, message }) {
         if (errors) {
