@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/users/{user}/edit', 'User\UsersController@edit')->name('api.user.edit');
     Route::post('/users/{user}/update', 'User\UsersController@update')->name('api.user.update');
     Route::post('/users/delete', 'User\UsersController@delete')->name('api.user.delete');
+    Route::post('/users/massDelete', 'User\UsersController@massDelete')->name('api.user.massDelete');
     Route::post('/users/massActivate', 'User\UsersController@massActivate')->name('api.user.massActivate');
     Route::post('/users/massDeactivate', 'User\UsersController@massDeactivate')->name('api.user.massDeactivate');
     Route::post('/users/toggleStatus', 'User\UsersController@toggleStatus')->name('api.user.toggleStatus');

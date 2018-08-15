@@ -99,27 +99,32 @@
                   vertical
                 />
                 <div v-if="selected.length>0">
-
                   <v-btn 
                     icon
-                    flat>
+                    flat
+                    @click="massDeactivate"
+                  >
                     <v-icon color="amber">block</v-icon>
                   </v-btn>
                   <v-btn 
                     icon
-                    flat>
+                    flat
+                    @click="massActivate"
+                  >
                     <v-icon color="green">how_to_reg</v-icon>
                   </v-btn>
-
                   <v-btn 
                     icon
-                    flat>
+                    flat
+                    @click="massMail"
+                  >
                     <v-icon color="yellow darken-1">mail</v-icon>
                   </v-btn>
-
                   <v-btn 
                     icon
-                    flat>
+                    flat
+                    @click="massDelete"
+                  >
                     <v-icon color="error">delete_outline</v-icon>
                   </v-btn>
                 </div>
@@ -609,6 +614,54 @@ export default {
     self.fetchUsers();
   },
   methods: {
+    massDelete() {
+      let self = this;
+
+      let selected = _.map(self.selected, "id");
+      let massDeleteForm = new Form({
+        selected
+      });
+      axios
+        .post(route("api.user.massDelete"), massDeleteForm)
+        .then(response => {
+          let toggleModal = swal.mixin({
+            confirmButtonClass: "v-btn blue-grey  subheading white--text",
+            buttonsStyling: false
+          });
+          toggleModal({
+            title: "Success!",
+            html: '<p class="title">' + response.data.message + "</p>",
+            type: "success",
+            confirmButtonText: "Back"
+          });
+          selected.forEach(id => {
+            console.log(id);
+            if (id > 1000) {
+              let index = _.findIndex(self.items, { id });
+              self.$delete(self.items, index);
+            }
+          });
+          self.selected = [];
+        })
+        .catch(errors => {
+          console.log(errors);
+          if (errors.response.data.message) {
+            let toggleModal = swal.mixin({
+              confirmButtonClass: "v-btn blue-grey  subheading white--text",
+              buttonsStyling: false
+            });
+            toggleModal({
+              title: "Oops! Something Went Wrong...",
+              html: '<p class="title">' + errors.response.data.message + "</p>",
+              type: "warning",
+              confirmButtonText: "Back"
+            });
+          }
+        });
+    },
+    massMail() {
+      console.log("sending mail");
+    },
     toggleOrderBy() {
       if (this.orderBy === "ASC") {
         this.orderBy = "DESC";
@@ -677,7 +730,6 @@ export default {
           toggleStatusForm
         );
         let updated = payload.data.updated;
-        console.log(updated);
         _.map(updated, id => {
           let index = _.findIndex(self.items, { id });
           self.items[index].active = false;

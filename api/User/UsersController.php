@@ -47,14 +47,14 @@ class UsersController extends Controller
                 'nullable',
                 new ValidateZip
             ],
-            'country' => 'nullable',
+            'country'               => 'nullable'
         ]);
         DB::beginTransaction();
         $user = User::create($data);
         /* create an empty profile */
         $profile = Profile::create($data);
         $user->profile()->save($profile);
-        $role  = request('roles');
+        $role = request('roles');
         $user->assignRole($role);
 
         /* Check If We Dont Have Any Errors , Rollback Account Creation if Any! */
@@ -165,6 +165,22 @@ class UsersController extends Controller
         }
 
         return response()->json(['message' => 'Selected Users Deactivated!', 'updated' => $ids]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function massDelete(Request $request)
+    {
+        $ids = $this->selectExceptSuperAdmin();
+        DB::beginTransaction();
+        try {
+            User::whereIn('id', $ids)->delete();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed To Delete Selected Users!']);
+        }
+        DB::commit();
+        return response()->json(['message' => 'Successfully Deleted Selected Users.']);
     }
 
     /**
