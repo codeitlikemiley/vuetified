@@ -523,23 +523,26 @@
       <confirm 
         :callback="confirmed(deleteUser)" 
       />
+      <mass-mail/>
     </v-container>
   </main-layout>
 </template>
 
 <script>
 import MainLayout from "Layouts/Main.vue";
+import Confirm from "Components/modal/Confirm.vue";
+import MassMail from "Components/modal/MassMail.vue";
 import Acl from "Mixins/acl";
 import validationError from "Mixins/validation-error";
 import { Form } from "vform";
 import swal from "sweetalert2";
-import Confirm from "Components/modal/Confirm.vue";
 import confirmation from "Mixins/confirmation";
 
 export default {
   components: {
     MainLayout,
-    Confirm
+    Confirm,
+    MassMail
   },
   mixins: [Acl, validationError, confirmation],
   data: () => ({
@@ -593,19 +596,7 @@ export default {
       { text: "Courier" },
       { text: "Verdana" }
     ],
-    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }],
-    massMailForm: new Form({
-      user_ids: [],
-      subject: "",
-      message: "",
-      with_panel: false,
-      panel_message: "",
-      with_button: false,
-      button_url: "/",
-      button_color: "blue",
-      button_message: "click here",
-      signature: "Thanks!"
-    })
+    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }]
   }),
   computed: {
     sortIcon() {
@@ -628,12 +619,13 @@ export default {
     self.fetchRoles();
     self.fetchPermissions();
     self.fetchUsers();
+    Bus.$on("send-mass-mail", form => {
+      self.massMail(form);
+    });
   },
   methods: {
     viewMassMailModal() {
-      console.log("viewing mass mail modal");
-      // open a fullscreen modal
-      // with inputs
+      Bus.$emit("open-modal-mass-mail", this.selected);
     },
     massDelete() {
       let self = this;
@@ -682,10 +674,8 @@ export default {
     },
     massMail(form) {
       let self = this;
-      let user_ids = _.map(self.selected, "id");
-      self.massMailForm.user_ids = user_ids;
       axios
-        .post(route("api.user.massMail"), self.massMailForm)
+        .post(route("api.user.massMail"), form)
         .then(response => {
           let toggleModal = swal.mixin({
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
@@ -697,6 +687,7 @@ export default {
             type: "success",
             confirmButtonText: "Back"
           });
+          self.selected = [];
         })
         .catch(errors => {
           console.log(errors);
@@ -712,6 +703,7 @@ export default {
               confirmButtonText: "Back"
             });
           }
+          self.selected = [];
         });
     },
     toggleOrderBy() {

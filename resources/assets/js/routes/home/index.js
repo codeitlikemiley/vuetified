@@ -1,6 +1,6 @@
-const Home = () => import("Pages/Home.vue");
-const About = () => import("Pages/About.vue");
-const Support = () => import("Pages/Support.vue");
+const Home = () => import("Pages/Home/Home.vue");
+const About = () => import("Pages/Home/About.vue");
+const Support = () => import("Pages/Home/Support.vue");
 
 export default [
   /* Front End Routes */

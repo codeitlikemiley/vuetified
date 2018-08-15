@@ -1,8 +1,8 @@
-const Login = () => import("Pages/Login.vue");
-const Logout = () => import("Pages/Logout.vue");
-const Register = () => import("Pages/Register.vue");
-const ResetPassword = () => import("Pages/ResetPassword.vue");
-const ForgotPassword = () => import("Pages/ForgotPassword.vue");
+const Login = () => import("Pages/Auth/Login.vue");
+const Logout = () => import("Pages/Auth/Logout.vue");
+const Register = () => import("Pages/Auth/Register.vue");
+const ResetPassword = () => import("Pages/Auth/ResetPassword.vue");
+const ForgotPassword = () => import("Pages/Auth/ForgotPassword.vue");
 
 export default [
   /* Start Authentication Routes */
