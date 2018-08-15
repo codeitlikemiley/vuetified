@@ -19,61 +19,173 @@
         <v-spacer/>
         <v-toolbar-items>
           <v-btn 
+            :disabled="errors.any()" 
             dark 
-            flat 
-            @click="submit">Save</v-btn>
+            flat
+            @click="submit">Send Mail 
+            <v-icon right>
+              fa-send</v-icon></v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <v-list 
-        three-line 
-        subheader>
-        <v-subheader>User Controls</v-subheader>
-        <v-list-tile avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>Content filtering</v-list-tile-title>
-            <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>Password</v-list-tile-title>
-            <v-list-tile-sub-title>Require password for purchase or use password to restrict purchase</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <v-divider/>
-      <v-list 
-        three-line 
-        subheader>
-        <v-subheader>General</v-subheader>
-        <v-list-tile avatar>
-          <v-list-tile-action>
-            <v-checkbox v-model="notifications"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Notifications</v-list-tile-title>
-            <v-list-tile-sub-title>Notify me about updates to apps or games that I downloaded</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile avatar>
-          <v-list-tile-action>
-            <v-checkbox v-model="sound"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Sound</v-list-tile-title>
-            <v-list-tile-sub-title>Auto-update apps at any time. Data charges may apply</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile avatar>
-          <v-list-tile-action>
-            <v-checkbox v-model="widgets"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Auto-add widgets</v-list-tile-title>
-            <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+      <v-layout 
+        row 
+        wrap
+      >
+
+        <v-flex 
+          xs12
+          md8 
+          offset-md2
+        >
+          <v-text-field
+            v-validate="{ required: true}"
+            v-model="form.subject"
+            :error-messages="errorMessages('subject')"
+            :class="{ 'error--text': hasErrors('subject') }"
+            label="Subject"
+            prepend-icon="subject"
+            data-vv-name="subject"
+          />
+        </v-flex>
+        <v-flex 
+          xs12
+          md8 
+          offset-md2
+        >
+          <v-switch
+            v-model="form.with_panel"
+            label="With Panel"
+          />
+        </v-flex>
+        <v-flex 
+          v-if="form.with_panel"
+          xs12 
+          md8 
+          offset-md2
+        >
+          <v-textarea
+            v-validate="{ required: form.with_panel}"
+            v-model="form.panel_message"
+            :error-messages="errorMessages('panel_message')"
+            :class="{ 'error--text': hasErrors('panel_message') }"
+            outline
+            name="panel_message"
+            label="Highlighted Message"
+            prepend-icon="error"
+            data-vv-name="panel_message"
+            hint="This is For Important Message You Want To Emphasize or Be Notice Immediately!"
+            persistent-hint
+          />
+        </v-flex>
+        <v-flex 
+          xs12 
+          md8 
+          offset-md2
+        >
+          <v-textarea
+            v-validate="{ required: true}"
+            v-model="form.message"
+            :error-messages="errorMessages('message')"
+            :class="{ 'error--text': hasErrors('message') }"
+            outline
+            name="message"
+            label="Message"
+            prepend-icon="message"
+            data-vv-name="message"
+          />
+        </v-flex>
+        <v-flex 
+          xs12
+          md8 
+          offset-md2
+        >
+          <v-switch
+            v-model="form.with_button"
+            label="With Call To Action"
+          />
+        </v-flex>
+        <v-flex 
+          v-if="form.with_button"
+          xs12 
+          md8 
+          offset-md2
+        >
+          <v-text-field
+            v-validate="{ required: form.with_button}"
+            v-model="form.button_url"
+            :error-messages="errorMessages('button_url')"
+            :class="{ 'error--text': hasErrors('button_url') }"
+            label="Button URL"
+            prepend-icon="link"
+            data-vv-name="button_url"
+          />
+        </v-flex>
+        <v-flex 
+          v-if="form.with_button"
+          xs12 
+          md8 
+          offset-md2
+        >
+          <v-select
+            v-validate="{ required: form.with_button}"
+            v-model="form.button_color"
+            :items="colors"
+            :error-messages="errorMessages('button_color')"
+            :class="{ 'error--text': hasErrors('button_color') }"
+            label="Button Color"
+            prepend-icon="color_lens"
+            data-vv-name="button_color"
+          />
+        </v-flex>
+        <v-flex 
+          v-if="form.with_button"
+          xs12
+          md8 
+          offset-md2
+        >
+          <v-text-field
+            v-validate="{ required: form.with_button}"
+            v-model="form.button_message"
+            :error-messages="errorMessages('button_message')"
+            :class="{ 'error--text': hasErrors('button_message') }"
+            label="Button Text"
+            prepend-icon="call_to_action"
+            data-vv-name="button_message"
+          />
+        </v-flex>
+        <v-flex 
+          xs12
+          md8 
+          offset-md2
+        >
+          <v-text-field
+            v-validate="{ required: true}"
+            v-model="form.signature"
+            :error-messages="errorMessages('signature')"
+            :class="{ 'error--text': hasErrors('signature') }"
+            label="Signature"
+            prepend-icon="alternate_email"
+            data-vv-name="signature"
+          />
+        </v-flex>
+        <v-flex 
+          xs12 
+          md8 
+          offset-md2
+        >
+          <v-btn 
+            :loading="form.busy"
+            :disabled="errors.any()"
+            :class="{primary: !form.busy, error: form.busy}" 
+            block 
+            color="accent" 
+            dark
+            @click="submit()"
+          >
+            Send Mail <v-icon right>fa-send</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
     </v-card>
   </v-dialog>
 </template>
@@ -92,7 +204,7 @@ export default {
       notifications: false,
       sound: true,
       widgets: false,
-      massMailForm: new Form({
+      form: new Form({
         user_ids: [],
         subject: "",
         message: "",
@@ -101,21 +213,39 @@ export default {
         with_button: false,
         button_url: "/",
         button_color: "blue",
-        button_message: "click here",
-        signature: "Thanks!"
-      })
+        button_message: "CLICK HERE",
+        signature: ""
+      }),
+      colors: ["red", "blue", "green"]
     };
   },
   mounted() {
     Bus.$on("open-modal-mass-mail", selected => {
       this.dialog = true;
-      this.massMailForm.user_ids = _.map(selected, "id");
+      this.form.user_ids = _.map(selected, "id");
+    });
+    Bus.$on("close-modal-mass-mail", () => {
+      this.dialog = false;
     });
   },
   methods: {
     submit() {
-      Bus.$emit("send-mass-mail", this.massMailForm);
-      this.dialog = false;
+      this.$validator.validate().then(result => {
+        if (result) {
+          Bus.$emit("send-mass-mail", this.form);
+        }else{
+            let modal = swal.mixin({
+              confirmButtonClass: "v-btn blue-grey  subheading white--text",
+              buttonsStyling: false
+            });
+            modal({
+              title: "Validation Error!",
+              html: '<p class="title">Please Complete Form To Send Mail!</p>',
+              type: "error",
+              confirmButtonText: "Back"
+            });
+        }
+      });
     }
   }
 };

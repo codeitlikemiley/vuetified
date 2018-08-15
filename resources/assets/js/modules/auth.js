@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { VueAuthenticate } from 'vue-authenticate'
 import providers from 'Services/providers'
 const vueAuth = new VueAuthenticate(Vue.prototype.$http, providers)
+import swal from "sweetalert2";
 
 const state = {
     me: null,
@@ -118,8 +119,20 @@ const actions = {
             })
             await dispatch('fetchMe')
             vm.$router.push({ name: "dashboard" });
-        } catch (errors) {
+        } catch (error) {
             form.busy = false
+            if (error.response.status) {
+                let modal = swal.mixin({
+                    confirmButtonClass: "v-btn blue-grey  subheading white--text",
+                    buttonsStyling: false
+                });
+                modal({
+                    title: `${error.response.status} Error!`,
+                    html: `<p class="title">${error.response.data.message}</p>`,
+                    type: "error",
+                    confirmButtonText: "Back"
+                });
+            }
         }
     }
     //! Not working as expected only showing empty popup 

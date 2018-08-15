@@ -190,7 +190,7 @@ class UsersController extends Controller
     {
         $data['subject']        = $request->subject;
         $data['message']        = $request->message;
-        $data['with_panel']     = $request->withPanel;
+        $data['with_panel']     = $request->with_panel;
         $data['panel_message']  = $request->panel_message;
         $data['with_button']    = $request->with_button;
         $data['button_url']     = $request->button_url;
@@ -202,7 +202,7 @@ class UsersController extends Controller
         $users = User::whereIn('id', $user_ids)->get();
 
         foreach ($users as $key => $user) {
-            Mail::to($user)->queue(new Massmail($data));
+            Mail::to($user)->queue(new Massmail($data, $user));
         }
         return response()->json(['message' => 'Sending Mail!'], 200);
     }

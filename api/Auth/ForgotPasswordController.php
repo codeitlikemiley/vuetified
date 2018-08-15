@@ -29,7 +29,7 @@ class ForgotPasswordController extends Controller
 
         // Throw Exception Email Not Found
         if (!$user) {
-            throw new EmailNotFound;
+            return response()->json(['message' => 'Password Reset Link Sent!'], 200);
         }
 
         // Check if We Exceeded Password Reset!

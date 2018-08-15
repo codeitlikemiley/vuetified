@@ -86,6 +86,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState } = createNamespacedHelpers("auth");
 import validationError from "Mixins/validation-error";
 import { Form } from "vform";
+import swal from "sweetalert2";
 
 export default {
   components: {
@@ -126,12 +127,33 @@ export default {
         self.form.busy = true;
         self.form
           .post(route("api.auth.forgotpassword"))
-          .then(() => {
+          .then((response) => {
             self.form.busy = false;
-            self.$router.push({ name: "home" });
+            let modal = swal.mixin({
+              confirmButtonClass: "v-btn blue-grey  subheading white--text",
+              buttonsStyling: false
+            });
+            modal({
+              title: "Success!",
+              html: `<p class="title">${response.data.message}</p>`,
+              type: "success",
+              confirmButtonText: "Back"
+            });
           })
-          .catch(() => {
+          .catch(error => {
             self.form.busy = false;
+            if (error.response.status === 429) {
+              let modal = swal.mixin({
+                confirmButtonClass: "v-btn blue-grey  subheading white--text",
+                buttonsStyling: false
+              });
+              modal({
+                title: "Validation Error!",
+                html: `<p class="title">${error.response.data.message}</p>`,
+                type: "error",
+                confirmButtonText: "Back"
+              });
+            }
           });
       }
     }

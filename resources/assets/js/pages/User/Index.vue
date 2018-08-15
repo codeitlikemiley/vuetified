@@ -688,6 +688,7 @@ export default {
             confirmButtonText: "Back"
           });
           self.selected = [];
+          Bus.$emit("close-modal-mass-mail");
         })
         .catch(errors => {
           console.log(errors);
@@ -704,6 +705,7 @@ export default {
             });
           }
           self.selected = [];
+          Bus.$emit("close-modal-mass-mail");
         });
     },
     toggleOrderBy() {

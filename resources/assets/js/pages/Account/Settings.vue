@@ -66,9 +66,9 @@
 
 <script>
 import MainLayout from "Layouts/Main.vue";
-import Account from "Components/settings/Account.vue";
-import Profile from "Components/settings/Profile.vue";
-import ReferralLink from "Components/settings/ReferralLink.vue";
+import Account from "Components/account/Account.vue";
+import Profile from "Components/account/Profile.vue";
+import ReferralLink from "Components/account/ReferralLink.vue";
 
 export default {
   components: {
