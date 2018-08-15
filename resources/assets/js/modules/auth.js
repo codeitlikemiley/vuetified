@@ -50,9 +50,21 @@ const actions = {
 
             form.busy = false
             vm.$router.push({ name: 'dashboard' })
-        } catch ({errors, message}) {
-            form.errors.set(errors)
+        } catch (error) {
+            form.errors.set(error.response.data.errors)
             form.busy = false
+            if (error.response.status === 401) {
+                let modal = swal.mixin({
+                    confirmButtonClass: "v-btn blue-grey  subheading white--text",
+                    buttonsStyling: false
+                });
+                modal({
+                    title: `${error.response.data.error}`,
+                    html: `<p class="title">${error.response.data.message}</p>`,
+                    type: "error",
+                    confirmButtonText: "Back"
+                });
+              }
         }
     },
     /* form : name,email ,provider(fb),provider_user_id(fb_id) */
