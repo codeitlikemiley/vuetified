@@ -116,7 +116,7 @@
                   <v-btn 
                     icon
                     flat
-                    @click="massMail"
+                    @click="viewMassMailModal"
                   >
                     <v-icon color="yellow darken-1">mail</v-icon>
                   </v-btn>
@@ -593,7 +593,19 @@ export default {
       { text: "Courier" },
       { text: "Verdana" }
     ],
-    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }]
+    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }],
+    massMailForm: new Form({
+      user_ids: [],
+      subject: "",
+      message: "",
+      with_panel: false,
+      panel_message: "",
+      with_button: false,
+      button_url: "/",
+      button_color: "blue",
+      button_message: "click here",
+      signature: "Thanks!"
+    })
   }),
   computed: {
     sortIcon() {
@@ -618,6 +630,11 @@ export default {
     self.fetchUsers();
   },
   methods: {
+    viewMassMailModal() {
+      console.log("viewing mass mail modal");
+      // open a fullscreen modal
+      // with inputs
+    },
     massDelete() {
       let self = this;
 
@@ -663,8 +680,39 @@ export default {
           }
         });
     },
-    massMail() {
-      console.log("sending mail");
+    massMail(form) {
+      let self = this;
+      let user_ids = _.map(self.selected, "id");
+      self.massMailForm.user_ids = user_ids;
+      axios
+        .post(route("api.user.massMail"), self.massMailForm)
+        .then(response => {
+          let toggleModal = swal.mixin({
+            confirmButtonClass: "v-btn blue-grey  subheading white--text",
+            buttonsStyling: false
+          });
+          toggleModal({
+            title: "Success!",
+            html: '<p class="title">' + response.data.message + "</p>",
+            type: "success",
+            confirmButtonText: "Back"
+          });
+        })
+        .catch(errors => {
+          console.log(errors);
+          if (errors.response.data.message) {
+            let toggleModal = swal.mixin({
+              confirmButtonClass: "v-btn blue-grey  subheading white--text",
+              buttonsStyling: false
+            });
+            toggleModal({
+              title: "Oops! Something Went Wrong...",
+              html: '<p class="title">' + errors.response.data.message + "</p>",
+              type: "error",
+              confirmButtonText: "Back"
+            });
+          }
+        });
     },
     toggleOrderBy() {
       if (this.orderBy === "ASC") {
