@@ -53,7 +53,7 @@
                 @click.native="toggleAll"
               />
             </th>
-            <th colspan="4">
+            <th colspan="5">
               <v-toolbar 
                 flat
                 dense 
