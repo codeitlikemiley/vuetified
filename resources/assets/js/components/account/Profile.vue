@@ -26,21 +26,6 @@
         offset-md2
       >
         <v-text-field
-          v-validate="{ required: false,regex: /^[a-zA-Z0-9 ]+$/ }"
-          v-model="form.name"
-          :error-messages="errorMessages('name')"
-          :class="{ 'error--text': hasErrors('name') }"
-          label="Full Name"
-          prepend-icon="person"
-          data-vv-name="name"
-        />
-      </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2
-      >
-        <v-text-field
           v-validate="{ required: false }"
           v-model="form.contact_no"
           :error-messages="errorMessages('contact_no')"
