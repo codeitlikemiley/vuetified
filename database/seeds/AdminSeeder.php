@@ -18,7 +18,8 @@ class AdminSeeder extends Seeder
             'name'     => config('admin.name'),
             'email'    => config('admin.email'),
             'password' => config('admin.password'),
-            'username' => config('admin.username')
+            'username' => config('admin.username'),
+            'active'   => true
         ]);
 
         $user->assignRole('admin');

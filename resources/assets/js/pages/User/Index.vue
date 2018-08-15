@@ -160,6 +160,9 @@
               {{ props.item.name }}
             </td>
             <td class="title text-xs-left accent--text">
+              <span v-if="props.item.sponsor">{{ props.item.sponsor.name }}</span>
+            </td>
+            <td class="title text-xs-left accent--text">
               <v-chip
                 v-for="(role,key) in props.item.roles"
                 :key="key" 
@@ -545,6 +548,7 @@ export default {
     /* { text: string; value: string; align: 'left' | 'center' | 'right'; sortable: boolean; class: string[] | string; width: string; } */
     headers: [
       { text: "Name", value: "name", align: "left" },
+      { text: "Sponsor", value: "sponsor.name", align: "left" },
       { text: "Roles", value: "roles", align: "left" },
       { text: "Status", value: "active", align: "left" },
       { text: "Actions", value: "", align: "left", sortable: false }
