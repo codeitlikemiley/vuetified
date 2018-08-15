@@ -1,8 +1,8 @@
 <template>
   <modal-layout>
     <v-toolbar 
-      class="accent" 
-      slot="toolbar"
+      slot="toolbar" 
+      class="accent"
     >
       <v-btn 
         flat 
@@ -212,8 +212,8 @@
 
                   </g>
                   <path 
-                    class="cls-3" 
                     id="ou" 
+                    class="cls-3" 
                     d="M956.54,168.2c-194.34,0-351.89,157.55-351.89,351.89S762.19,872,956.54,872s351.89-157.55,351.89-351.89S1150.88,168.2,956.54,168.2Zm0,584.49c-128.46,0-232.6-104.14-232.6-232.6s104.14-232.6,232.6-232.6,232.6,104.14,232.6,232.6S1085,752.69,956.54,752.69Z"
                   />
                 </g>
@@ -533,10 +533,10 @@
           >
             <v-card-actions>
               <v-btn 
-                @click.native="goHome()" 
                 block 
                 flat 
-                color="info"
+                color="info" 
+                @click.native="goHome()"
               >Back To HomePage</v-btn>
             </v-card-actions>
           </v-flex>
@@ -547,26 +547,26 @@
 </template>
 
 <script>
-import ModalLayout from 'Layouts/ModalLayout.vue'
+import ModalLayout from "Layouts/ModalLayout.vue";
 
 export default {
-    components: {
-        ModalLayout
+  components: {
+    ModalLayout
+  },
+  mounted() {
+    // let self = this
+  },
+  methods: {
+    redirectBack() {
+      let self = this;
+      self.$router.go(-2);
     },
-    mounted () {
-        // let self = this
-    },
-    methods: {
-        redirectBack () {
-            let self = this
-            self.$router.go(-2)
-        },
-        goHome () {
-            let self = this
-            self.$router.push({name: 'home'})
-        }
+    goHome() {
+      let self = this;
+      self.$router.push({ name: "home" });
     }
-}
+  }
+};
 </script>
 <style scoped>
 .cls-1 {
@@ -638,7 +638,7 @@ export default {
     animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   }
   100% {
-    transform: rotate(960deg)
+    transform: rotate(960deg);
   }
 }
 
@@ -656,7 +656,7 @@ export default {
 
 @keyframes clock-rotate {
   100% {
-    transform: rotate(360deg)
+    transform: rotate(360deg);
   }
 }
 
@@ -668,7 +668,7 @@ export default {
 
 @keyframes box-top-anim {
   50% {
-    transform: rotate(-5deg)
+    transform: rotate(-5deg);
   }
 }
 
@@ -695,7 +695,7 @@ export default {
 
 @keyframes cup-rotate {
   50% {
-    transform: rotate(-5deg)
+    transform: rotate(-5deg);
   }
 }
 
@@ -707,10 +707,10 @@ export default {
 
 @keyframes pillow-anim {
   25% {
-    transform: rotate(10deg) translateY(5px)
+    transform: rotate(10deg) translateY(5px);
   }
   75% {
-    transform: rotate(-10deg)
+    transform: rotate(-10deg);
   }
 }
 
@@ -722,10 +722,10 @@ export default {
 
 @keyframes stripe-anim {
   25% {
-    transform: translate(10px, 0) rotate(-10deg)
+    transform: translate(10px, 0) rotate(-10deg);
   }
   75% {
-    transform: translateX(10px)
+    transform: translateX(10px);
   }
 }
 
@@ -735,14 +735,14 @@ export default {
 
 @keyframes bike-anim {
   0% {
-    transform: translateX(-1300px)
+    transform: translateX(-1300px);
   }
   50% {
     transform: translateX(0);
     animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
   }
   100% {
-    transform: translateX(1300px)
+    transform: translateX(1300px);
   }
 }
 
@@ -754,7 +754,7 @@ export default {
 
 @keyframes ruck-anim {
   50% {
-    transform: rotate(5deg)
+    transform: rotate(5deg);
   }
 }
 
@@ -766,32 +766,32 @@ export default {
 }
 
 .circle.c1 {
-  animation-duration: 2s
+  animation-duration: 2s;
 }
 
 .circle.c2 {
-  animation-duration: 3s
+  animation-duration: 3s;
 }
 
 .circle.c3 {
-  animation-duration: 1s
+  animation-duration: 1s;
 }
 
 .circle.c4 {
-  animation-duration: 1s
+  animation-duration: 1s;
 }
 
 .circle.c5 {
-  animation-duration: 2s
+  animation-duration: 2s;
 }
 
 .circle.c6 {
-  animation-duration: 3s
+  animation-duration: 3s;
 }
 
 @keyframes circle-anim {
   50% {
-    transform: scale(.2) rotateX(360deg) rotateY(360deg)
+    transform: scale(0.2) rotateX(360deg) rotateY(360deg);
   }
 }
 
@@ -820,7 +820,7 @@ export default {
 
 @keyframes four-anim {
   50% {
-    transform: scale(.98)
+    transform: scale(0.98);
   }
 }
 </style>

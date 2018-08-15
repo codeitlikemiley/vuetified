@@ -266,7 +266,7 @@ export default {
       city: null,
       state_province: null,
       zip: null,
-      country: null,
+      country: null
     }),
     roles: [],
     password_visible: false

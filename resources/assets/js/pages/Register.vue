@@ -181,13 +181,13 @@ export default {
   mixins: [validationError],
   data: () => ({
     form: new Form({
-        username: '',
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        role: '',
-        sponsor_id: ''
+      username: "",
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      role: "",
+      sponsor_id: ""
     }),
     password_visible: false
   }),

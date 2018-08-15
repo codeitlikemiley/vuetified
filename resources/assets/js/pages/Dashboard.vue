@@ -6,13 +6,12 @@
 </template>
 
 <script>
-import MainLayout from 'Layouts/Main.vue'
+import MainLayout from "Layouts/Main.vue";
 
 export default {
-    components: {
-        MainLayout
-    },
-    data: () => ({
-    })
-}
+  components: {
+    MainLayout
+  },
+  data: () => ({})
+};
 </script>

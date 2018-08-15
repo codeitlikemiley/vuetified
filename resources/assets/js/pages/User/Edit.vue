@@ -31,7 +31,7 @@
         row 
         wrap
       >
-      <v-flex 
+        <v-flex 
           xs8
           md6
           offset-md2
@@ -81,7 +81,7 @@
           px-2
         >
           <v-text-field
-            v-model="form.phone"
+            v-model="form.contact_no"
             label="Phone"
             prepend-icon="phone"
           />
@@ -186,7 +186,7 @@
           px-2
         >
           <v-text-field
-            v-model="form.state_province"
+            v-model="form.state"
             label="State"
             prepend-icon="map"
           />
@@ -269,7 +269,7 @@ export default {
       city: null,
       state: null,
       zip: null,
-      country: null,
+      country: null
     }),
     roles: [],
     password_visible: false

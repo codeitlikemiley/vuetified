@@ -12,14 +12,14 @@
         />
         <v-spacer/>
         <v-btn
-        color="teal"
-        dark
-        @click="createUser"
+          color="teal"
+          dark
+          @click="createUser"
         >
-            Create New User
-            <v-icon right>
-                person_add
-            </v-icon>
+          Create New User
+          <v-icon right>
+            person_add
+          </v-icon>
         </v-btn>
       </v-card-title>
       <v-data-table
@@ -59,24 +59,24 @@
                 dense 
                 color="white">
                 <v-overflow-btn
-                v-model="filterBy"
-      :items="filters"
-      return-object
-      editable
-      flat
-      label="Filter By"
-      hide-details
-      overflow
-    ></v-overflow-btn>
+                  v-model="filterBy"
+                  :items="filters"
+                  return-object
+                  editable
+                  flat
+                  label="Filter By"
+                  hide-details
+                  overflow
+                />
 
-    <v-divider
-      class="mx-2"
-      vertical
-    ></v-divider>
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
                 <v-text-field
                   v-model="search"
-                  append-icon="search"
                   :label="`Search ${filterBy.value.toUpperCase()}`"
+                  append-icon="search"
                   single-line
                   hide-details
                   px-2
@@ -87,12 +87,12 @@
                   vertical
                 />
 
-<v-btn 
-                    @click="toggleOrderBy"
-                    icon
-                    flat>
-                    <v-icon :color="orderColor">{{ sortIcon }}</v-icon>
-                  </v-btn>
+                <v-btn 
+                  icon
+                  flat
+                  @click="toggleOrderBy">
+                  <v-icon :color="orderColor">{{ sortIcon }}</v-icon>
+                </v-btn>
 
                 <v-divider
                   class="mx-2"
@@ -100,25 +100,29 @@
                 />
                 <div v-if="selected.length>0">
 
-                <v-btn icon
+                  <v-btn 
+                    icon
                     flat>
                     <v-icon color="amber">block</v-icon>
                   </v-btn>
-<v-btn icon
+                  <v-btn 
+                    icon
                     flat>
                     <v-icon color="green">how_to_reg</v-icon>
                   </v-btn>
 
-                  <v-btn icon
+                  <v-btn 
+                    icon
                     flat>
                     <v-icon color="yellow darken-1">mail</v-icon>
                   </v-btn>
 
-                  <v-btn icon
+                  <v-btn 
+                    icon
                     flat>
                     <v-icon color="error">delete_outline</v-icon>
                   </v-btn>
-                  </div>
+                </div>
               </v-toolbar>
             </th>
           </tr>
@@ -320,7 +324,7 @@
                       xs6
                       px-1>
                       <v-text-field
-                        v-model="props.item.phone"
+                        v-model="props.item.profile.contact_no"
                         label="Phone"
                         light
                         readonly
@@ -343,7 +347,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.address_1"
+                        :value="props.item.profile.address_1"
                         label="Address 1"
                         light
                         readonly
@@ -355,7 +359,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.address_2"
+                        :value="props.item.profile.address_2"
                         label="Address 2"
                         light
                         readonly
@@ -367,7 +371,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.city"
+                        :value="props.item.profile.city"
                         label="City"
                         light
                         readonly
@@ -379,7 +383,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.state"
+                        :value="props.item.profile.state"
                         label="State"
                         light
                         readonly
@@ -391,7 +395,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.zip"
+                        :value="props.item.profile.zip"
                         label="Zip"
                         light
                         readonly
@@ -403,7 +407,7 @@
                       px-1
                     >
                       <v-text-field
-                        :value="props.item.country"
+                        :value="props.item.profile.country"
                         label="Country"
                         light
                         readonly
@@ -540,17 +544,17 @@ export default {
       { text: "Status", value: "active", align: "left" },
       { text: "Actions", value: "", align: "left", sortable: false }
     ],
-    filters:[
-        { text: "Filter By Name", value: "name"},
-      { text: "Filter By Role", value: "role"},
-      { text: "Filter By Status", value: "status"},
+    filters: [
+      { text: "Filter By Name", value: "name" },
+      { text: "Filter By Role", value: "role" },
+      { text: "Filter By Status", value: "status" }
     ],
     filterBy: {
-        text: 'Filter By Name',
-        value: 'name'
+      text: "Filter By Name",
+      value: "name"
     },
-    orderBy:'ASC',
-    orderColor: 'teal',
+    orderBy: "ASC",
+    orderColor: "teal",
     items: [],
     selected: [],
     pagination: {
@@ -580,12 +584,16 @@ export default {
       { text: "Courier" },
       { text: "Verdana" }
     ],
-    dropdown_edit: [
-      { text: "Name" },
-      { text: "Roles" },
-      { text: "Status" },
-    ],
+    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }]
   }),
+  computed: {
+    sortIcon() {
+      if (this.orderBy === "ASC") {
+        return "fa-sort-amount-asc";
+      }
+      return "fa-sort-amount-desc";
+    }
+  },
   watch: {
     items: {
       handler: function(newValue) {},
@@ -600,24 +608,16 @@ export default {
     self.fetchPermissions();
     self.fetchUsers();
   },
-  computed: {
-    sortIcon() {
-        if(this.orderBy === 'ASC'){
-            return 'fa-sort-amount-asc'
-        }
-        return 'fa-sort-amount-desc'
-    },
-  },
   methods: {
-      toggleOrderBy(){
-          if(this.orderBy === 'ASC'){
-              this.orderBy = 'DESC'
-              this.orderColor = 'orange'
-          }else{
-              this.orderBy = 'ASC'
-              this.orderColor = 'teal'
-          }
-      },
+    toggleOrderBy() {
+      if (this.orderBy === "ASC") {
+        this.orderBy = "DESC";
+        this.orderColor = "orange";
+      } else {
+        this.orderBy = "ASC";
+        this.orderColor = "teal";
+      }
+    },
     editUser(user) {
       vm.$router.push({ name: "edit-user", params: { id: `${user.id}` } });
     },

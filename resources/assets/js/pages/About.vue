@@ -130,20 +130,58 @@
 </template>
 
 <script>
-import MainLayout from 'Layouts/Main.vue'
+import MainLayout from "Layouts/Main.vue";
 
 export default {
-    components: {
-        MainLayout
-    },
-    data: () => ({
-        contentClass: { 'grey': true, 'lighten-4': true, 'accent--text': true },
-        values: [
-            { color: 'primary', icon: 'fa-eye', show: true, title: 'VISION', tagline: `${App.site.trademark} aims to be one of the most admired SEO companies around the globe. Armed with a purpose to bring real Solution To Boost SEO Ranking at the Most Efficient and Effective Way `, xs: 12, sm: 12, md: 4, lg: 4, xl: 4 },
-            { color: 'accent', icon: 'fa-fa', show: true, title: 'MISSION', tagline: `${App.site.trademark} objective is to enrich the lives of our customers/users, and the community by providing them with the Best SEO Application That Is Easy To Use and Easy To Manage. `, xs: 12, sm: 12, md: 4, lg: 4, xl: 4 },
-            { color: 'pink', icon: 'fa-handshake-o', show: true, title: 'OUR PLEDGE', tagline: `${App.site.trademark} we’re not just committed to Providing SEO Solutions. But We also recognize our obligation To Our End User To Provide Them Greate Service, Support, Tutorials and Updates.`, xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }
-
-        ]
-    })
-}
+  components: {
+    MainLayout
+  },
+  data: () => ({
+    contentClass: { grey: true, "lighten-4": true, "accent--text": true },
+    values: [
+      {
+        color: "primary",
+        icon: "fa-eye",
+        show: true,
+        title: "VISION",
+        tagline: `${
+          App.site.trademark
+        } aims to be one of the most admired SEO companies around the globe. Armed with a purpose to bring real Solution To Boost SEO Ranking at the Most Efficient and Effective Way `,
+        xs: 12,
+        sm: 12,
+        md: 4,
+        lg: 4,
+        xl: 4
+      },
+      {
+        color: "accent",
+        icon: "fa-fa",
+        show: true,
+        title: "MISSION",
+        tagline: `${
+          App.site.trademark
+        } objective is to enrich the lives of our customers/users, and the community by providing them with the Best SEO Application That Is Easy To Use and Easy To Manage. `,
+        xs: 12,
+        sm: 12,
+        md: 4,
+        lg: 4,
+        xl: 4
+      },
+      {
+        color: "pink",
+        icon: "fa-handshake-o",
+        show: true,
+        title: "OUR PLEDGE",
+        tagline: `${
+          App.site.trademark
+        } we’re not just committed to Providing SEO Solutions. But We also recognize our obligation To Our End User To Provide Them Greate Service, Support, Tutorials and Updates.`,
+        xs: 12,
+        sm: 12,
+        md: 4,
+        lg: 4,
+        xl: 4
+      }
+    ]
+  })
+};
 </script>
