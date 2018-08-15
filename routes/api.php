@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/massActivate', 'User\UsersController@massActivate')->name('api.user.massActivate');
     Route::post('/users/massDeactivate', 'User\UsersController@massDeactivate')->name('api.user.massDeactivate');
     Route::post('/users/toggleStatus', 'User\UsersController@toggleStatus')->name('api.user.toggleStatus');
+    Route::post('/users/massMail', 'User\UsersController@massMail')->name('api.user.massMail');
+
 
     //? Settings Page
     Route::post('/users/settings/updateAccount', 'Account\AccountController@updateAccount')

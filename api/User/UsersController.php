@@ -4,6 +4,7 @@ namespace Api\User;
 
 use Api\Controller;
 use App\Models\User;
+use App\Mail\MassMail;
 use App\Models\Profile;
 use App\Rules\ValidateZip;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Exceptions\EmailNotFound;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\UsernameNotFound;
+use Illuminate\Support\Facades\Mail;
 use App\Exceptions\UserTokenNotFound;
 use App\Http\Resources\User\UserResource;
 
@@ -179,8 +181,30 @@ class UsersController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed To Delete Selected Users!']);
         }
+
         DB::commit();
         return response()->json(['message' => 'Successfully Deleted Selected Users.']);
+    }
+
+    public function massMail(Request $request)
+    {
+        $data['subject']        = $request->subject;
+        $data['message']        = $request->message;
+        $data['with_panel']     = $request->withPanel;
+        $data['panel_message']  = $request->panel_message;
+        $data['with_button']    = $request->with_button;
+        $data['button_url']     = $request->button_url;
+        $data['button_color']   = $request->button_color; // red, green, blue
+        $data['button_message'] = $request->button_message;
+        $data['signature']      = $request->signature;
+
+        $user_ids = $request->user_ids;
+        $users = User::whereIn('id', $user_ids)->get();
+
+        foreach ($users as $key => $user) {
+            Mail::to($user)->queue(new Massmail($data));
+        }
+        return response()->json(['message' => 'Sending Mail!'], 200);
     }
 
     /**
