@@ -136,7 +136,16 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        return UserResource::collection(User::with(['profile', 'referralLink', 'sponsor.referralLink'])->paginate(10));
+        $per_page = $request->per_page ?? 50;
+        $page     = $request->page;     //! no used
+        $sort_by   = $request->sort_by;
+        $order_by = $request->order_by;
+        $users = User::with(['profile', 'referralLink', 'sponsor.referralLink'])
+            ->when($sort_by, function ($query) {
+                return $query->orderBy($sort_by, $order_by);
+            })
+            ->paginate($per_page);
+        return UserResource::collection($users);
     }
 
     /**
@@ -186,6 +195,9 @@ class UsersController extends Controller
         return response()->json(['message' => 'Successfully Deleted Selected Users.']);
     }
 
+    /**
+     * @param Request $request
+     */
     public function massMail(Request $request)
     {
         $data['subject']        = $request->subject;
@@ -199,11 +211,12 @@ class UsersController extends Controller
         $data['signature']      = $request->signature;
 
         $user_ids = $request->user_ids;
-        $users = User::whereIn('id', $user_ids)->get();
+        $users    = User::whereIn('id', $user_ids)->get();
 
         foreach ($users as $key => $user) {
             Mail::to($user)->queue(new Massmail($data, $user));
         }
+
         return response()->json(['message' => 'Sending Mail!'], 200);
     }
 

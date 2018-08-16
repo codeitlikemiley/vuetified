@@ -35,7 +35,8 @@ import {
   VProgressLinear,
   VImg,
   VOverflowBtn,
-  VBtnToggle
+  VBtnToggle,
+  VPagination
 } from "vuetify";
 
 Vue.use(Vuetify, {
@@ -72,7 +73,8 @@ Vue.use(Vuetify, {
     VProgressLinear,
     VImg,
     VOverflowBtn,
-    VBtnToggle
+    VBtnToggle,
+    VPagination
   },
   //! Define Your Theme Here
   theme: {

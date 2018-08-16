@@ -22,13 +22,19 @@
           </v-icon>
         </v-btn>
       </v-card-title>
+      <v-pagination
+        v-if="!loading"
+        v-model="page"
+        :length="meta.last_page"
+      />
       <v-data-table
         v-model="selected"
         :headers="headers"
         :items="items"
         :search="search"
         :pagination.sync="pagination"
-        :loading="usersForm.busy"
+        :loading="loading"
+        :rows-per-page-items="rows_per_page_items"
         select-all
         light
         item-key="id"
@@ -568,10 +574,20 @@ export default {
     orderBy: "ASC",
     orderColor: "teal",
     items: [],
+    total_items: 0,
     selected: [],
     pagination: {
-      sortBy: "name"
+      descending: false,
+      sortBy: "name",
+      rowsPerPage: 50,
+      page: 1
     },
+    rows_per_page_items: [
+      5,
+      10,
+      25,
+      50
+    ],
     current_user: {},
     usersForm: new Form({}),
     toggleForm: new Form({
@@ -596,7 +612,14 @@ export default {
       { text: "Courier" },
       { text: "Verdana" }
     ],
-    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }]
+    dropdown_edit: [{ text: "Name" }, { text: "Roles" }, { text: "Status" }],
+    meta: {
+      current_page: 1,
+      last_page: 1,
+      per_page: 50
+    },
+    page: 1,
+    loading: false
   }),
   computed: {
     sortIcon() {
@@ -612,7 +635,12 @@ export default {
       deep: true
     },
     roles(newValue) {},
-    permissions(newValue) {}
+    permissions(newValue) {},
+    "page": {
+      handler() {
+        this.fetchUsers()
+      }
+    }
   },
   mounted() {
     let self = this;
@@ -921,16 +949,26 @@ export default {
         }
       }
     },
-    async fetchUsers() {
+    fetchUsers() {
       let self = this;
-      self.usersForm.busy = true;
-      try {
-        const payload = await self.usersForm.post(route("api.user.index"));
-        self.items = payload.data.data;
-        self.usersForm.busy = false;
-      } catch (errors) {
-        self.usersForm.busy = false;
+      self.loading = true
+      self.items = []
+      let order_by= self.pagination.descending ? "DESC" : "ASC"
+      let sort_by = self.pagination.sortBy;
+      let url = `/api/users?sortBy=${sort_by}&order_by=${order_by}`
+      if(self.page > 1){
+          url = `${url}&page=${self.page}`
       }
+      axios.get(url).then((response)=> {
+        self.items = response.data.data;
+        self.meta = response.data.meta;
+        self.loading = false
+        })
+        .catch((errors) => {
+            console.log(errors)
+            self.loading = false
+        })
+
     },
     deleteUser(user) {
       let self = this;

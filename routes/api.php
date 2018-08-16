@@ -2,7 +2,7 @@
 Route::group(['middleware' => ['auth:api']], function () {
     //? Users Page
     Route::post('/@me', 'User\UsersController@me')->name('api.@me');
-    Route::post('/users', 'User\UsersController@index')->name('api.user.index');
+    Route::get('/users', 'User\UsersController@index')->name('api.user.index');
     Route::post('/users/username/{username}', 'User\UsersController@findByUsername')->name('api.user.findByUsername');
     Route::post('/users/email/{email}', 'User\UsersController@findByEmail')->name('api.user.findByEmail');
     Route::get('/permissions', 'Auth\PermissionRolesController@getAllPermissions')->name('api.permissions.index');
