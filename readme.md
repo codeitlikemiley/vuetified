@@ -52,6 +52,10 @@ ECHO_ON=false
     - homestead - homestead up
       [yourprojectname.test/](yourprojectname.test)
 
+## Adding Git Commit Hooks
+
+- added pre-commit hook file use this type : `cp pre-commit .git/hooks/pre-commit` to use this.
+
 ## Stacks Used
 
 - Laravel
