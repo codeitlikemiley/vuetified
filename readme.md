@@ -142,7 +142,7 @@ public static function scriptVariables()
 - press: `ctrl + shift + P`
 - search/type: `Sync: Advance Option`
 - Choose: `Download Settings From Public Gist`
-- Enter Gist ID: `bb232eb1abd0734a815b658a91b9cba5`
+- Enter Gist ID: `1338c1068ef5eabb715e1fe13373b121`
 
 Install VS Code, then install this plugin [Settings Sync](https://github.com/shanalikhan/code-settings-sync.git).
 
