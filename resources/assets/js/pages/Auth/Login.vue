@@ -5,9 +5,8 @@
         <v-btn 
           flat 
           icon 
-          color="white"
-          @click.native="redirectBack()"
-        >
+          color="white" 
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,8 +17,7 @@
           <v-btn 
             flat 
             color="white" 
-            @click.native="goHome()"
-          >
+            @click.native="goHome()">
             <v-icon>fa-home</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -36,8 +34,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.username"
@@ -61,8 +58,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|min:6'"
                   v-model="form.password"
@@ -90,56 +86,44 @@
               offset-lg4 
               xl4 
               offset-xl4 
-              text-xs-center
-            >
-              <v-btn 
-                :loading="form.busy" 
-                :disabled="errors.any()" 
-                block 
-                type="submit" 
+              text-xs-center>
+              <v-btn
+                :loading="form.busy"
+                :disabled="errors.any()"
+                block
+                type="submit"
                 color="primary"
-              >
-                Sign In 
+              >Sign In
                 <v-icon right>fa-sign-in</v-icon>
               </v-btn>
             </v-flex>
           </form>
           <v-layout 
-            row
-            wrap
-          >
+            row 
+            wrap>
             <v-flex 
               xs6 
               md2 
               offset-md4 
-              pa-0
-            >
+              pa-0>
               <v-btn 
                 dark 
                 block 
                 color="secondary" 
-                @click.native="goToRegister()"
-              >
-                No Account Yet?
-              </v-btn>
+                @click.native="goToRegister()">No Account Yet?</v-btn>
             </v-flex>
             <v-flex 
               xs6 
               md2 
-              pa-0
-            >
+              pa-0>
               <v-btn 
                 dark 
-                block
+                block 
                 color="error" 
-                @click.native="resetPassword()"
-              >
-                Forgot Password?
-              </v-btn>
+                @click.native="resetPassword()">Forgot Password?</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
-
       </v-card-text>
     </v-card>
   </modal-layout>

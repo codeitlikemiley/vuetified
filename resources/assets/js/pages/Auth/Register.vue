@@ -6,8 +6,7 @@
           flat 
           icon 
           color="white" 
-          @click.native="redirectBack()"
-        >
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,8 +17,7 @@
           <v-btn 
             flat 
             color="white" 
-            @click.native="goHome()"
-          >
+            @click.native="goHome()">
             <v-icon>fa-home</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -36,8 +34,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|max:255'"
                   v-model="form.name"
@@ -61,8 +58,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.username"
@@ -86,8 +82,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|min:6|confirmed:confirmation'"
                   v-model="form.password"
@@ -114,8 +109,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   ref="confirmation"
                   v-model="form.password_confirmation"
@@ -138,30 +132,24 @@
               lg4 
               offset-lg4 
               xl4 
-              offset-xl4
-            >
-              <v-btn 
-                :loading="form.busy" 
-                :disabled="errors.any()" 
-                :class="{primary: !form.busy, error: form.busy}" 
-                type="submit" 
+              offset-xl4>
+              <v-btn
+                :loading="form.busy"
+                :disabled="errors.any()"
+                :class="{primary: !form.busy, error: form.busy}"
+                type="submit"
                 block
-              >
-                Register
-              </v-btn>
-              <v-btn 
-                block 
-                flat 
-                class="white--text" 
-                color="teal lighten-2" 
+              >Register</v-btn>
+              <v-btn
+                block
+                flat
+                class="white--text"
+                color="teal lighten-2"
                 @click.native="goToLogin()"
-              >
-                Already Have An Account? Go Login
-              </v-btn>
+              >Already Have An Account? Go Login</v-btn>
             </v-flex>
           </form>
         </v-container>
-
       </v-card-text>
     </v-card>
   </modal-layout>

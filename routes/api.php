@@ -25,21 +25,20 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/users/toggleStatus', 'User\UsersController@toggleStatus')->name('api.user.toggleStatus');
     Route::post('/users/massMail', 'User\UsersController@massMail')->name('api.user.massMail');
 
-
     //? Settings Page
     Route::post('/users/settings/updateAccount', 'Account\AccountController@updateAccount')
-    ->name('api.user.updateAccount');
+        ->name('api.user.updateAccount');
     Route::post('/users/settings/updateProfile', 'Account\AccountController@updateProfile')
-    ->name('api.user.updateProfile');
+        ->name('api.user.updateProfile');
     Route::post('/users/settings/updateReferralLink', 'Account\AccountController@updateReferralLink')
-    ->name('api.user.updateReferralLink');
+        ->name('api.user.updateReferralLink');
     //? Router Check For Auth User
     Route::post('/auth/check', 'Auth\LoginController@check')->name('api.auth.check');
     //? Helpers We Can Use For Permission and Roles
     Route::get('/getPermissionsViaRoles', 'Auth\ACLController@getPermissionsViaRoles')
-    ->name('api.auth.getPermissionsViaRoles');
+        ->name('api.auth.getPermissionsViaRoles');
     Route::get('/getDirectPermissions', 'Auth\ACLController@getDirectPermissions')
-    ->name('api.auth.getDirectPermissions');
+        ->name('api.auth.getDirectPermissions');
     Route::get('/getAllPermissions', 'Auth\ACLController@getAllPermissions')->name('api.auth.getAllPermissions');
     Route::get('/hasPermissionTo', 'Auth\ACLController@hasPermissionTo')->name('api.auth.hasPermissionTo');
     Route::get('/hasAnyPermission', 'Auth\ACLController@hasAnyPermission')->name('api.auth.hasAnyPermission');

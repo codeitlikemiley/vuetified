@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 trait IssueTokenTrait
 {
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param $grantType
      * @param $scope
      */

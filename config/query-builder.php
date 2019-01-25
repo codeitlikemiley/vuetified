@@ -10,13 +10,13 @@ return [
     'parameters' => [
         'include' => 'include',
 
-        'filter' => 'filter',
+        'filter'  => 'filter',
 
-        'sort' => 'sort',
+        'sort'    => 'sort',
 
-        'fields' => 'fields',
+        'fields'  => 'fields',
 
-        'append' => 'append',
-    ],
+        'append'  => 'append'
+    ]
 
 ];

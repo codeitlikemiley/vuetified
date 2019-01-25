@@ -3,48 +3,32 @@
     <v-tabs 
       fixed 
       icons 
-      centered
-    >
+      centered>
       <v-tabs-slider color="primary"/>
       <!-- tabs -->
       <v-tab 
         href="#account" 
-        class="accent--text"
-      >
+        class="accent--text">
         <v-icon 
           color="indigo" 
           large>fa-user</v-icon>
-        <span 
-          :class="$vuetify.breakpoint.width >= 600 && 'title'"
-        >
-          Account
-        </span>
+        <span :class="$vuetify.breakpoint.width >= 600 && 'title'">Account</span>
       </v-tab>
       <v-tab 
         href="#profile" 
-        class="accent--text"
-      >
+        class="accent--text">
         <v-icon 
           color="teal" 
           large>fa-address-card</v-icon>
-        <span 
-          :class="$vuetify.breakpoint.width >= 600 && 'title'"
-        >
-          Profile
-        </span>
+        <span :class="$vuetify.breakpoint.width >= 600 && 'title'">Profile</span>
       </v-tab>
       <v-tab 
         href="#referral-link" 
-        class="accent--text"
-      >
+        class="accent--text">
         <v-icon 
           color="cyan" 
           large>link</v-icon>
-        <span 
-          :class="$vuetify.breakpoint.width >= 600 && 'title'"
-        >
-          Referral Link
-        </span>
+        <span :class="$vuetify.breakpoint.width >= 600 && 'title'">Referral Link</span>
       </v-tab>
       <!-- tabs -->
       <v-tabs-items>

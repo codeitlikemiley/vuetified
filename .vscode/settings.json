@@ -1,8 +1,8 @@
 // Place your settings in this file to overwrite the default settings
 {
   // change this every project
-  "sync.gist": "bb232eb1abd0734a815b658a91b9cba5",
-  "emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+  "sync.gist": "1338c1068ef5eabb715e1fe13373b121",
+  "emmet.triggerExpansionOnTab": false, // enable tab to expanse emmet tags
   // <!-- html -->
   "auto-close-tag.enableAutoCloseTag": true,
   "auto-close-tag.excludedTags": [
@@ -40,8 +40,16 @@
   "namespaceResolver.sortNatural": false, // Sort imports using a 'natural order' algorithm
   "namespaceResolver.leadingSeparator": true, // Expand class with leading namespace separator
   // <!-- phpcs plugin -->
-  "phpcs.standard": "PSR2",
-  "phpcs.executablePath": "/home/uriah/.config/composer/vendor/bin/phpcs",
+  "phpcs.standard": "./phpcs.xml",
+  "phpcs.executablePath": "./vendor/bin/phpcs",
+  "phpcs.ignorePatterns": [
+    "*/storage/",
+    "*/vendor/*",
+    "*/node_modules/*",
+    "*/database/*",
+    "*/resources/*"
+  ],
+  "php.validate.run": "onSave",
   // <!-- phpfpmt plugin -->
   "phpfmt.passes": [
     "PSR2KeywordsLowerCase",
@@ -87,9 +95,10 @@
     "ShortArray"
   ],
   "phpfmt.exclude": ["ReindentComments", "StripNewlineWithinClassBody"],
-  "phpfmt.psr2": false,
+  "phpfmt.psr2": true,
   "phpfmt.smart_linebreak_after_curly": true,
   "phpfmt.indent_with_space": 4,
+  "phpfmt.detect_indent": false,
   // <!-- npm plugin -->
   "npm.runInTerminal": false,
   // <!-- mysql plugin -->
@@ -124,31 +133,48 @@
   // <!--blade-->
   "blade.format.enable": true, // if you would like to enable blade format
   // <!--autosave-->
+  // editor per language spacing
   "[php]": {
     "editor.formatOnSave": false,
     "editor.tabSize": 4
   },
   "[blade]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 4,
-    "editor.fontFamily": "dejavu sans mono"
+    "editor.tabSize": 4
   },
   "[vue]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     // <-- vuetify plugins -->
     "editor.quickSuggestions": {
       "strings": true
     }
   },
   "[html]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
   },
   "[json]": {
     "editor.formatOnSave": false,
     "editor.tabSize": 2
   },
   "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[scss]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[sass]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[stylus]": {
     "editor.formatOnSave": false,
     "editor.tabSize": 2
   },
@@ -167,4 +193,89 @@
     "blade",
     "vue"
   ]
+  // "vim.easymotion": true,
+  // "vim.sneak": true,
+  // "vim.incsearch": true,
+  // "vim.useSystemClipboard": true,
+  // "vim.useCtrlKeys": true,
+  // "vim.hlsearch": true,
+  // "vim.insertModeKeyBindings": [
+  //     {
+  //         "before": ["j", "j"],
+  //         "after": ["<Esc>"]
+  //     }
+  // ],
+  // "vim.normalModeKeyBindingsNonRecursive": [
+  //     {
+  //         "before": ["<leader>", "d"],
+  //         "after": ["d", "d"]
+  //     },
+  //     {
+  //         "before": ["j"],
+  //         "after": ["g", "j"]
+  //     },
+  //     {
+  //         "before": ["<C-n>"],
+  //         "commands": [":nohl"]
+  //     },
+  //     {
+  //         "before": [":"],
+  //         "commands": ["workbench.action.showCommands"]
+  //     },
+  //     {
+  //         "before": ["Z", "Z"],
+  //         "commands": [":wq"]
+  //     },
+  //     {
+  //         "before": ["<leader>", "m"],
+  //         "commands": ["bookmarks.toggle"]
+  //     },
+  //     {
+  //         "before": ["<leader>", "b"],
+  //         "commands": ["bookmarks.list"]
+  //     },
+  //     {
+  //         "before": ["leader", "w"],
+  //         "commands": ["workbench.action.files.save"]
+  //     }
+  // ],
+  // "vim.visualModeKeyBindingsNonRecursive": [
+  //     {
+  //         "before": ["p"],
+  //         "after": ["p", "g", "v", "y"]
+  //     },
+  //     {
+  //         "before": [">"],
+  //         "commands": ["editor.action.indentLines"]
+  //     },
+  //     {
+  //         "before": ["<"],
+  //         "commands": ["editor.action.outdentLines"]
+  //     }
+  // ],
+  // "vim.leader": "space",
+  // "vim.handleKeys": {
+  //     "<C-a>": false,
+  //     "<C-f>": false,
+  //     "<C-w>": false,
+  //     "<C-d>": false,
+  //     "<C-s>": false,
+  //     "<C-b>": false
+  // },
+  // "vim.surround": true,
+  // "vim.statusBarColorControl": true,
+  // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+  // "vim.statusBarColors.insert": "#FF4081",
+  // "vim.statusBarColors.visual": "#B48EAD",
+  // "vim.statusBarColors.visualline": "#B48EAD",
+  // "vim.statusBarColors.visualblock": "#A3BE8C",
+  // "vim.statusBarColors.replace": "#D08770",
+  // "vim.easymotionMarkerFontWeight": "normal",
+  // "vim.easymotionMarkerFontSize": "15",
+  // "vim.easymotionMarkerFontFamily": "operator mono lig",
+  // "vim.easymotionMarkerBackgroundColor": "#BG616A",
+  // "vim.easymotionMarkerHeight": 10,
+  // "vim.easymotionMarkerWidthPerChar": 15,
+  // "vim.easymotionMarkerForegroundColorOneChar": "#e53935",
+  // "vim.easymotionMarkerForegroundColorTwoChar": "#BF360C"
 }

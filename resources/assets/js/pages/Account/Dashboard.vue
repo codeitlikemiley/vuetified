@@ -1,7 +1,6 @@
 <template>
   <main-layout>
     <h1>Dashboard</h1>
-    
   </main-layout>
 </template>
 

@@ -2,82 +2,70 @@
   <main-layout :class="[contentClass]">
     <v-parallax src="/img/bg.jpg">
       <v-layout 
-        column
+        column 
         align-center 
-        justify-center
-      >
+        justify-center>
         <h1 class="white--text">ABOUT {{ `${App.site.trademark}` }}</h1>
-        <h2 
-          class="white--text" 
+        <h2
+          class="white--text"
           text-xs-center
-        >
-          A company committed in Providing Solutions To The Latest SEO Needs Of Everone Who Want To Boost Their Google Rank Search.
-        </h2>
+        >A company committed in Providing Solutions To The Latest SEO Needs Of Everone Who Want To Boost Their Google Rank Search.</h2>
       </v-layout>
     </v-parallax>
     <v-container 
       light 
-      fluid
-    >
+      fluid>
       <v-layout 
         row 
-        wrap
-      >
+        wrap>
         <v-flex 
-          xs12
-          text-xs-center
-        >
+          xs12 
+          text-xs-center>
           <v-avatar size="250px">
             <img 
               src="/img/gabriel.jpg" 
-              alt="Owner/CEO"
-            >
+              alt="Owner/CEO">
           </v-avatar>
         </v-flex>
       </v-layout>
       <v-layout 
         row 
         wrap 
-        pa-5
-      >
+        pa-5>
         <v-flex 
           xs12 
-          text-xs-center
-        >
+          text-xs-center>
           <h1 
             light 
-            class="primary--text"
-          >
-            CEO/Founder
-          </h1>
+            class="primary--text">CEO/Founder</h1>
         </v-flex>
         <v-flex 
           xs12 
-          text-xs-left
-        >
+          text-xs-left>
           <p class="headline blue-grey--text">
-            <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> is a company founded by <strong class="accent--text">Gabriel Machuret</strong> , Runing His Own SEO Agency <strong class="accent--text">(Goanna Social)</strong>.
-            <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> Was Develop With The Goal in Mind that is to <strong class="accent--text">Provide Solutions</strong> To The Ever Changing World Of <strong class="accent--text">Google SEO Algorithm Updates</strong>.
-            While Proving To Be Efficient And Effective, <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> Also Make Sure Even a <strong class="accent--text">Dummy User</strong> Can Use This App To <strong class="accent--text">Boost End User SEO Ranking.</strong>
+            <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> is a company founded by
+            <strong class="accent--text">Gabriel Machuret</strong> , Runing His Own SEO Agency
+            <strong class="accent--text">(Goanna Social)</strong>.
+            <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> Was Develop With The Goal in Mind that is to
+            <strong class="accent--text">Provide Solutions</strong> To The Ever Changing World Of
+            <strong class="accent--text">Google SEO Algorithm Updates</strong>.
+            While Proving To Be Efficient And Effective,
+            <strong class="accent--text">{{ `${App.site.trademark}` }}</strong> Also Make Sure Even a
+            <strong class="accent--text">Dummy User</strong> Can Use This App To
+            <strong class="accent--text">Boost End User SEO Ranking.</strong>
           </p>
         </v-flex>
-
       </v-layout>
       <v-layout 
         row 
         wrap 
-        pa-5
-      >
+        pa-5>
         <v-flex 
           xs12 
-          text-xs-center
-        >
+          text-xs-center>
           <h2 
             light 
-            class="primary--text"
-          >
-            Company Core Values
-          </h2>
+            class="primary--text">Company Core Values</h2>
         </v-flex>
         <v-flex
           v-for="card in values"
@@ -95,20 +83,19 @@
               </v-btn>
             </p>
           </v-card-text>
-          <v-card
+          <v-card 
             flat 
-            style="background-color:transparent;"
-          >
+            style="background-color:transparent;">
             <v-card-actions>
               <v-spacer/>
               <p 
                 class="headline primary--text" 
                 v-text="card.title"/>
               <v-spacer/>
-              <v-btn 
-                v-if="card.title" 
-                icon 
-                class="accent--text" 
+              <v-btn
+                v-if="card.title"
+                icon
+                class="accent--text"
                 @click.native="card.show = !card.show"
               >
                 <v-icon>{{ card.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
@@ -118,14 +105,12 @@
               <v-card-text 
                 v-show="card.show" 
                 class="blue-grey--text title" 
-                v-text="card.tagline"
-              />
+                v-text="card.tagline"/>
             </v-slide-y-transition>
           </v-card>
         </v-flex>
       </v-layout>
     </v-container>
-
   </main-layout>
 </template>
 

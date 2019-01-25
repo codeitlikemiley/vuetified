@@ -26,7 +26,7 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request $request
      * @return mixed
      */
     public function socialAuth(Request $request)

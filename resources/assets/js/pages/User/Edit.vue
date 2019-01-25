@@ -5,9 +5,8 @@
         <v-btn 
           flat 
           icon 
-          color="white"
-          @click.native="redirectBack()"
-        >
+          color="white" 
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -16,27 +15,24 @@
         <v-toolbar-items>
           <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
           <v-btn
-            :loading="form.busy" 
+            :loading="form.busy"
             :disabled="errors.any() || form.busy"
-            flat 
-            color="white" 
+            flat
+            color="white"
             @click.native="submit()"
-          >
-            Save
+          >Save
             <v-icon right>save</v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-layout 
         row 
-        wrap
-      >
+        wrap>
         <v-flex 
-          xs8
-          md6
-          offset-md2
-          px-2
-        >
+          xs8 
+          md6 
+          offset-md2 
+          px-2>
           <v-text-field
             v-validate="'required'"
             v-model="form.name"
@@ -52,19 +48,16 @@
         </v-flex>
         <v-flex 
           class="xs4 md2" 
-          px-2
-        >
-          <v-switch
-            v-model="form.active"
-            :label="getStatus(form.active)"
-          />
+          px-2>
+          <v-switch 
+            v-model="form.active" 
+            :label="getStatus(form.active)"/>
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          offset-md2
-          px-2
-        >
+          md4 
+          offset-md2 
+          px-2>
           <v-text-field
             v-validate="{ email: true }"
             v-model="form.email"
@@ -77,14 +70,12 @@
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          px-2
-        >
-          <v-text-field
-            v-model="form.contact_no"
-            label="Phone"
-            prepend-icon="phone"
-          />
+          md4 
+          px-2>
+          <v-text-field 
+            v-model="form.contact_no" 
+            label="Phone" 
+            prepend-icon="phone"/>
         </v-flex>
         <v-flex class="xs12 offset-md2 md8">
           <v-autocomplete
@@ -104,13 +95,12 @@
             data-vv-name="roles"
           />
         </v-flex>
-        
+
         <v-flex 
-          xs12
+          xs12 
           md4 
-          offset-md2
-          px-2
-        >
+          offset-md2 
+          px-2>
           <v-text-field
             v-validate="'min:6|confirmed:password_confirmation'"
             v-model="form.password"
@@ -128,10 +118,9 @@
           />
         </v-flex>
         <v-flex 
-          xs12
-          md4
-          px-2
-        >
+          xs12 
+          md4 
+          px-2>
           <v-text-field
             ref="password_confirmation"
             v-model="form.password_confirmation"
@@ -147,56 +136,47 @@
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          offset-md2
-          px-2
-        >
-          <v-text-field
-            v-model="form.address_1"
-            label="Address 1"
-            prepend-icon="looks_one"
-          />
+          md4 
+          offset-md2 
+          px-2>
+          <v-text-field 
+            v-model="form.address_1" 
+            label="Address 1" 
+            prepend-icon="looks_one"/>
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          px-2
-        >
-          <v-text-field
-            v-model="form.address_2"
-            label="Address 2"
-            prepend-icon="looks_two"
-          />
+          md4 
+          px-2>
+          <v-text-field 
+            v-model="form.address_2" 
+            label="Address 2" 
+            prepend-icon="looks_two"/>
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          offset-md2
-          px-2
-        >
-          <v-text-field
-            v-model="form.city"
-            label="City"
-            prepend-icon="location_city"
-          />
+          md4 
+          offset-md2 
+          px-2>
+          <v-text-field 
+            v-model="form.city" 
+            label="City" 
+            prepend-icon="location_city"/>
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          px-2
-        >
-          <v-text-field
-            v-model="form.state"
-            label="State"
-            prepend-icon="map"
-          />
+          md4 
+          px-2>
+          <v-text-field 
+            v-model="form.state" 
+            label="State" 
+            prepend-icon="map"/>
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          offset-md2
-          px-2
-        >
+          md4 
+          offset-md2 
+          px-2>
           <v-text-field
             v-validate="{ regex: /^\d{5}(?:[-\s]\d{4})?$/ }"
             v-model="form.zip"
@@ -209,28 +189,25 @@
         </v-flex>
         <v-flex 
           xs12 
-          md4
-          px-2
-        >
-          <v-text-field
-            v-model="form.country"
-            label="Country"
-            prepend-icon="fa-fa"
-          />
+          md4 
+          px-2>
+          <v-text-field 
+            v-model="form.country" 
+            label="Country" 
+            prepend-icon="fa-fa"/>
         </v-flex>
         <v-flex 
           xs12 
           md8 
-          offset-md2
-        >
-          <v-btn 
-            :loading="form.busy" 
+          offset-md2>
+          <v-btn
+            :loading="form.busy"
             :disabled="errors.any() || form.busy"
             block
             color="accent"
             @click="submit()"
-          >
-            Save <v-icon right>save</v-icon>
+          >Save
+            <v-icon right>save</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>

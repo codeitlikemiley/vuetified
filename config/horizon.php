@@ -11,9 +11,9 @@ return [
     | meta information required for it to function. It includes the list
     | of supervisors, failed jobs, job metrics, and other information.
     |
-    */
+     */
 
-    'use' => 'default',
+    'use'          => 'default',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,9 +24,9 @@ return [
     | may modify the prefix when you are running multiple installations
     | of Horizon on the same server so that they don't have problems.
     |
-    */
+     */
 
-    'prefix' => env('HORIZON_PREFIX', 'horizon:'),
+    'prefix'       => env('HORIZON_PREFIX', 'horizon:'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,10 +37,10 @@ return [
     | will be fired. Every connection / queue combination may have its
     | own, unique threshold (in seconds) before this event is fired.
     |
-    */
+     */
 
-    'waits' => [
-        'redis:default' => 60,
+    'waits'        => [
+        'redis:default' => 60
     ],
 
     /*
@@ -52,11 +52,11 @@ return [
     | persist the recent and failed jobs. Typically, recent jobs are kept
     | for one hour while all failed jobs are stored for an entire week.
     |
-    */
+     */
 
-    'trim' => [
+    'trim'         => [
         'recent' => 60,
-        'failed' => 10080,
+        'failed' => 10080
     ],
 
     /*
@@ -68,27 +68,27 @@ return [
     | in all environments. These supervisors and settings handle all your
     | queued jobs and will be provisioned by Horizon during deployment.
     |
-    */
+     */
 
     'environments' => [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 10,
-                'tries' => 3,
-            ],
+                'queue'      => ['default'],
+                'balance'    => 'simple',
+                'processes'  => 10,
+                'tries'      => 3
+            ]
         ],
 
-        'local' => [
+        'local'      => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 3,
-                'tries' => 3,
-            ],
-        ],
-    ],
+                'queue'      => ['default'],
+                'balance'    => 'simple',
+                'processes'  => 3,
+                'tries'      => 3
+            ]
+        ]
+    ]
 ];

@@ -8,8 +8,7 @@
           flat 
           icon 
           color="white" 
-          @click.native="redirectBack()"
-        >
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,10 +17,9 @@
         <v-toolbar-items>
           <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
           <v-btn 
-            flat
+            flat 
             color="white" 
-            @click.native="logout()"
-          >
+            @click.native="logout()">
             <v-icon right>fa-power-off</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -31,8 +29,7 @@
           <form @submit.prevent="logout()">
             <v-layout 
               v-if="user" 
-              row
-            >
+              row>
               <v-flex 
                 x12 
                 sm12 
@@ -41,30 +38,26 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-card flat>
                   <v-container 
                     fill-height 
-                    fluid
-                  >
+                    fluid>
                     <v-layout fill-height>
                       <v-flex 
                         xs12 
                         text-xs-center 
-                        flexbox
-                      >
+                        flexbox>
                         <v-avatar
                           :tile="tile"
                           :size="avatarSize"
                           class="grey lighten-4"
-                          fill-height 
+                          fill-height
                           fluid
                         >
                           <img 
                             :src="user.photo_url" 
-                            :alt="user.name"
-                          >
+                            :alt="user.name">
                         </v-avatar>
                       </v-flex>
                     </v-layout>
@@ -73,8 +66,7 @@
                     <v-flex 
                       xs12 
                       text-xs-center 
-                      flexbox
-                    >
+                      flexbox>
                       <h5 class="primary--text title">{{ user.name }}</h5>
                     </v-flex>
                   </v-layout>
@@ -90,18 +82,15 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-card-actions>
-                  <v-btn 
-                    block 
-                    flat 
-                    class="white--text" 
-                    color="info" 
+                  <v-btn
+                    block
+                    flat
+                    class="white--text"
+                    color="info"
                     @click.native="redirectBack()"
-                  >
-                    No, I Want To Stay
-                  </v-btn>
+                  >No, I Want To Stay</v-btn>
                   <v-btn
                     :loading="form.busy"
                     :disabled="form.busy"
@@ -116,7 +105,6 @@
             </v-layout>
           </form>
         </v-container>
-
       </v-card-text>
     </v-card>
   </modal-layout>

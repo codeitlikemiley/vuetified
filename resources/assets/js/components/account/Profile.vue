@@ -1,30 +1,24 @@
 <template>
-
   <v-card flat>
-    <v-layout
-      row
-      wrap
-    >
+    <v-layout 
+      row 
+      wrap>
       <v-flex 
         xs12 
         md8 
-        offset-md2
-        text-xs-center
-      >
-        <v-alert 
-          :value="true" 
+        offset-md2 
+        text-xs-center>
+        <v-alert
+          :value="true"
           type="info"
           outline
           icon="fa-info-circle"
-        >
-          Note: This Will be Used as Default for Billing Details
-        </v-alert>
+        >Note: This Will be Used as Default for Billing Details</v-alert>
       </v-flex>
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.contact_no"
@@ -38,8 +32,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.address_1"
@@ -53,8 +46,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.address_2"
@@ -68,8 +60,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.city"
@@ -83,8 +74,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.state"
@@ -98,8 +88,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.zip"
@@ -113,8 +102,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: false }"
           v-model="form.country"
@@ -128,18 +116,17 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
-        <v-btn 
+        offset-md2>
+        <v-btn
           :loading="form.busy"
           :disabled="errors.any()"
-          :class="{primary: !form.busy, error: form.busy}" 
-          block 
-          color="accent" 
+          :class="{primary: !form.busy, error: form.busy}"
+          block
+          color="accent"
           dark
           @click="updateProfile()"
-        >
-          Update Profile <v-icon right>fa-send</v-icon>
+        >Update Profile
+          <v-icon right>fa-send</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
@@ -194,14 +181,14 @@ export default {
       self.$validator.validateAll();
       if (!self.errors.any()) {
         self.form
-        .post(route("api.user.updateProfile"))
-        .then(response => {
-          self.setMe(response.data.data);
-          self.showModal(response.data.message);
-        })
-        .catch(response => {
-          self.form.busy = false;
-        });
+          .post(route("api.user.updateProfile"))
+          .then(response => {
+            self.setMe(response.data.data);
+            self.showModal(response.data.message);
+          })
+          .catch(response => {
+            self.form.busy = false;
+          });
       }
     },
     toProperCase(key) {

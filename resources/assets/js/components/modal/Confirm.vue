@@ -1,19 +1,15 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    width="500"
-  >
+  <v-dialog 
+    v-model="dialog" 
+    width="500">
     <v-card>
-      <v-card-title
-        class="headline error"
-        dark
-      >
+      <v-card-title 
+        class="headline error" 
+        dark>
         <span class="white--text">{{ title }}</span>
       </v-card-title>
 
-      <v-card-text>
-        {{ message }}
-      </v-card-text>
+      <v-card-text>{{ message }}</v-card-text>
 
       <v-divider/>
 
@@ -22,17 +18,13 @@
           flat 
           color="secondary" 
           @click="dialog = false">
-          <v-icon left>arrow_left</v-icon>
-          Back
+          <v-icon left>arrow_left</v-icon>Back
         </v-btn>
         <v-spacer/>
-        <v-btn
-          color="primary"
-          flat
-          @click="confirm()"
-        >
-          {{ action }}
-        </v-btn>
+        <v-btn 
+          color="primary" 
+          flat 
+          @click="confirm()">{{ action }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

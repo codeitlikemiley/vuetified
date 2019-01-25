@@ -5,9 +5,8 @@
         <v-btn 
           flat 
           icon 
-          color="white"
-          @click.native="redirectBack()"
-        >
+          color="white" 
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,8 +17,7 @@
           <v-btn 
             flat 
             color="white" 
-            @click.native="goHome()"
-          >
+            @click.native="goHome()">
             <v-icon>fa-home</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -28,36 +26,29 @@
         <v-container fluid>
           <v-layout 
             row 
-            wrap
-          >
+            wrap>
             <!-- left side -->
             <v-flex 
               d-flex 
               xs12 
               sm12 
               md6 
-              lg6
-            >
+              lg6>
               <v-layout 
                 row 
-                wrap
-              >
+                wrap>
                 <v-flex 
                   d-flex 
                   xs12 
-                  text-xs-center
-                >
+                  text-xs-center>
                   <v-container 
                     fill-height 
-                    fluid
-                  >
-                    
+                    fluid>
                     <v-layout fill-height>
                       <v-flex 
                         xs12 
                         align-end 
-                        flexbox
-                      >
+                        flexbox>
                         <form @submit.prevent="submit">
                           <p class="headline accent--text">Ask Questions</p>
                           <v-text-field
@@ -100,14 +91,13 @@
                             label="Message"
                             data-vv-name="message"
                           />
-                          <v-btn 
-                            :loading="form.busy" 
-                            :disabled="errors.any()" 
-                            block 
-                            type="submit" 
+                          <v-btn
+                            :loading="form.busy"
+                            :disabled="errors.any()"
+                            block
+                            type="submit"
                             color="primary"
-                          >
-                            Sign In 
+                          >Sign In
                             <v-icon right>fa-sign-in</v-icon>
                           </v-btn>
                         </form>
@@ -122,32 +112,28 @@
               xs12 
               sm12 
               md6 
-              lg6
-            >
+              lg6>
               <v-layout 
                 row 
-                wrap
-              >
+                wrap>
                 <v-flex 
                   d-flex 
-                  xs12
-                >
+                  xs12>
                   <v-card 
                     flat 
-                    light 
-                  >
+                    light>
                     <v-card-title class="headline accent--text">Contact Details</v-card-title>
                     <v-card-text class="headline accent--text">
-                      <v-icon color="red">place</v-icon> 225 Pineda St. - Unit 127
+                      <v-icon color="red">place</v-icon>225 Pineda St. - Unit 127
                     </v-card-text>
                     <v-card-text class="headline accent--text">
-                      <v-icon color="indigo">location_city</v-icon> Longwood
+                      <v-icon color="indigo">location_city</v-icon>Longwood
                     </v-card-text>
                     <v-card-text class="headline accent--text">
-                      <v-icon color="info">map</v-icon> FL 32750
+                      <v-icon color="info">map</v-icon>FL 32750
                     </v-card-text>
                     <v-card-text class="headline accent--text">
-                      <v-icon color="light-blue">fa-fa</v-icon> United States
+                      <v-icon color="light-blue">fa-fa</v-icon>United States
                     </v-card-text>
                     <v-card-text class="headline accent--text">
                       <v-icon color="brown">phone</v-icon>(407) 331-1200
@@ -156,7 +142,8 @@
                       <v-icon color="grey">local_printshop</v-icon>(407) 331-0870
                     </v-card-text>
                     <v-card-text class="headline accent--text">
-                      <v-icon color="yellow darken-2">mail</v-icon><span v-text="site.email"/>
+                      <v-icon color="yellow darken-2">mail</v-icon>
+                      <span v-text="site.email"/>
                     </v-card-text>
                   </v-card>
                 </v-flex>

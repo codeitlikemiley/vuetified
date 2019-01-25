@@ -2,7 +2,7 @@
 
 return [
 
-    'models' => [
+    'models'                => [
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -24,11 +24,11 @@ return [
          * `Spatie\Permission\Contracts\Role` contract.
          */
 
-        'role' => App\Models\Role::class,
+        'role'       => App\Models\Role::class
 
     ],
 
-    'table_names' => [
+    'table_names'           => [
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -36,7 +36,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'roles' => 'roles',
+        'roles'                 => 'roles',
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -44,7 +44,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'permissions' => 'permissions',
+        'permissions'           => 'permissions',
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -60,7 +60,7 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'model_has_roles' => 'model_has_roles',
+        'model_has_roles'       => 'model_has_roles',
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -68,7 +68,7 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'role_has_permissions' => 'role_has_permissions',
+        'role_has_permissions'  => 'role_has_permissions'
     ],
 
     /*
@@ -76,5 +76,5 @@ return [
      * role is updated. Then the cache will be flushed immediately.
      */
 
-    'cache_expiration_time' => 60 * 24,
+    'cache_expiration_time' => 60 * 24
 ];

@@ -11,22 +11,17 @@
           hide-details
         />
         <v-spacer/>
-        <v-btn
-          color="teal"
-          dark
-          @click="createUser"
-        >
-          Create New User
-          <v-icon right>
-            person_add
-          </v-icon>
+        <v-btn 
+          color="teal" 
+          dark 
+          @click="createUser">Create New User
+          <v-icon right>person_add</v-icon>
         </v-btn>
       </v-card-title>
-      <v-pagination
-        v-if="!loading"
-        v-model="page"
-        :length="meta.last_page"
-      />
+      <v-pagination 
+        v-if="!loading" 
+        v-model="page" 
+        :length="meta.last_page"/>
       <v-data-table
         v-model="selected"
         :headers="headers"
@@ -44,10 +39,9 @@
           slot="progress" 
           color="blue" 
           indeterminate/>
-        <template
+        <template 
           slot="headers" 
-          slot-scope="props"
-        >
+          slot-scope="props">
           <tr>
             <th>
               <v-checkbox
@@ -61,7 +55,7 @@
             </th>
             <th colspan="5">
               <v-toolbar 
-                flat
+                flat 
                 dense 
                 color="white">
                 <v-overflow-btn
@@ -75,10 +69,9 @@
                   overflow
                 />
 
-                <v-divider
-                  class="mx-2"
-                  vertical
-                />
+                <v-divider 
+                  class="mx-2" 
+                  vertical/>
                 <v-text-field
                   v-model="search"
                   :label="`Search ${filterBy.value.toUpperCase()}`"
@@ -88,49 +81,43 @@
                   px-2
                 />
 
-                <v-divider
-                  class="mx-2"
-                  vertical
-                />
+                <v-divider 
+                  class="mx-2" 
+                  vertical/>
 
                 <v-btn 
-                  icon
-                  flat
+                  icon 
+                  flat 
                   @click="toggleOrderBy">
                   <v-icon :color="orderColor">{{ sortIcon }}</v-icon>
                 </v-btn>
 
-                <v-divider
-                  class="mx-2"
-                  vertical
-                />
+                <v-divider 
+                  class="mx-2" 
+                  vertical/>
                 <div v-if="selected.length>0">
                   <v-btn 
-                    icon
-                    flat
-                    @click="massDeactivate"
-                  >
+                    icon 
+                    flat 
+                    @click="massDeactivate">
                     <v-icon color="amber">block</v-icon>
                   </v-btn>
                   <v-btn 
-                    icon
-                    flat
-                    @click="massActivate"
-                  >
+                    icon 
+                    flat 
+                    @click="massActivate">
                     <v-icon color="green">how_to_reg</v-icon>
                   </v-btn>
                   <v-btn 
-                    icon
-                    flat
-                    @click="viewMassMailModal"
-                  >
+                    icon 
+                    flat 
+                    @click="viewMassMailModal">
                     <v-icon color="yellow darken-1">mail</v-icon>
                   </v-btn>
                   <v-btn 
-                    icon
-                    flat
-                    @click="massDelete"
-                  >
+                    icon 
+                    flat 
+                    @click="massDelete">
                     <v-icon color="error">delete_outline</v-icon>
                   </v-btn>
                 </div>
@@ -139,8 +126,8 @@
           </tr>
           <tr>
             <th/>
-            <th 
-              v-for="header in props.headers" 
+            <th
+              v-for="header in props.headers"
               :key="header.text"
               :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'name' : '', {'text-xs-left': header.align === 'left', 'text-xs-right': header.align === 'right', 'text-xs-center': header.align === 'center'},$vuetify.breakpoint.width >= 600 && 'title']"
               @click="changeSort(header.value)"
@@ -152,8 +139,7 @@
         </template>
         <template 
           slot="items" 
-          slot-scope="props"
-        >
+          slot-scope="props">
           <tr>
             <td class="title text-xs-left">
               <v-checkbox
@@ -162,18 +148,15 @@
                 @click="props.selected = !props.selected"
               />
             </td>
-            <td class="title text-xs-left accent--text">
-              {{ props.item.name }}
-            </td>
+            <td class="title text-xs-left accent--text">{{ props.item.name }}</td>
             <td class="title text-xs-left accent--text">
               <span v-if="props.item.sponsor">{{ props.item.sponsor.name }}</span>
             </td>
             <td class="title text-xs-left accent--text">
-              <v-chip
-                v-for="(role,key) in props.item.roles"
+              <v-chip 
+                v-for="(role,key) in props.item.roles" 
                 :key="key" 
-                dark
-              >
+                dark>
                 <v-avatar
                   :class="{
                     'amber lighten-2': (role === 'admin' && props.item.id < 1000),
@@ -202,11 +185,11 @@
               />
             </td>
             <td class="title text-xs-center">
-              <v-btn 
+              <v-btn
                 :disabled="!can('manage_users')"
-                light 
-                flat 
-                icon 
+                light
+                flat
+                icon
                 class="compress--icon"
                 @click="props.expanded = !props.expanded"
               >
@@ -221,16 +204,15 @@
                 flat 
                 icon 
                 color="blue" 
-                class="compress--icon"
-                @click="editUser(props.item)"
-              >
+                class="compress--icon" 
+                @click="editUser(props.item)">
                 <v-icon>fa-pencil</v-icon>
               </v-btn>
-              <v-btn 
-                :disabled="!can('manage_users')" 
-                flat 
-                icon 
-                color="error" 
+              <v-btn
+                :disabled="!can('manage_users')"
+                flat
+                icon
+                color="error"
                 class="compress--icon"
                 @click="openDialog(props.item)"
               >
@@ -240,46 +222,38 @@
           </tr>
         </template>
 
-        <template 
+        <template
           slot="pageText"
           slot-scope="{ pageStart, pageStop }"
-        >
-          From {{ pageStart }} to {{ pageStop }}
-        </template>
+        >From {{ pageStart }} to {{ pageStop }}</template>
 
         <template 
           slot="expand" 
-          slot-scope="props"
-        >
+          slot-scope="props">
           <v-container fluid>
             <v-card 
               light 
               flat 
-              text-xs-center
-            >
-              <v-img
-                class="white--text blue-grey"
-                height="75px"
-              >
+              text-xs-center>
+              <v-img 
+                class="white--text blue-grey" 
+                height="75px">
                 <v-container 
                   fill-height 
-                  fluid
-                >
+                  fluid>
                   <v-layout fill-height>
                     <v-flex 
                       xs12 
                       align-end 
-                      flexbox
-                    >
+                      flexbox>
                       <v-avatar text-xs-left>
                         <img 
                           :src="props.item.photo_url" 
-                          :alt="props.item.name"
-                        >
+                          :alt="props.item.name">
                       </v-avatar>
                       <span class="headline">{{ props.item.name }}</span>
-                      <v-btn 
-                        v-if="activeLink(props.item.referral_link.active)" 
+                      <v-btn
+                        v-if="activeLink(props.item.referral_link.active)"
                         :href="`http://${ props.item.referral_link.link }.${ domain }`"
                         flat
                         color="cyan lighten-3"
@@ -295,36 +269,30 @@
               <v-card-title>
                 <v-container fluid>
                   <p 
-                    v-if="props.item.sponsor"
-                    class="title accent--text" 
-                  >Sponsor Details</p>
+                    v-if="props.item.sponsor" 
+                    class="title accent--text">Sponsor Details</p>
                   <v-layout 
-                    v-if="props.item.sponsor"
+                    v-if="props.item.sponsor" 
                     row 
                     wrap>
                     <v-flex 
-                      xs12
+                      xs12 
                       px-2>
                       <v-avatar>
-
                         <img 
                           :src="props.item.sponsor.photo_url" 
-                          :alt="props.item.sponsor.name"
-                        >
+                          :alt="props.item.sponsor.name">
                       </v-avatar>
-                      <span 
-                        class="subheading"
-                      >{{ props.item.sponsor.name }}</span>
+                      <span class="subheading">{{ props.item.sponsor.name }}</span>
                     </v-flex>
                   </v-layout>
-                
+
                   <p class="title accent--text">Account Details</p>
                   <v-layout 
                     row 
-                    wrap
-                  >
+                    wrap>
                     <v-flex 
-                      xs6
+                      xs6 
                       px-1>
                       <v-text-field
                         v-model="props.item.username"
@@ -335,7 +303,7 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
+                      xs6 
                       px-1>
                       <v-text-field
                         v-model="props.item.profile.contact_no"
@@ -346,7 +314,7 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
+                      xs6 
                       px-1>
                       <v-text-field
                         v-model="props.item.email"
@@ -357,9 +325,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.address_1"
                         label="Address 1"
@@ -369,9 +336,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.address_2"
                         label="Address 2"
@@ -381,9 +347,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.city"
                         label="City"
@@ -393,9 +358,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.state"
                         label="State"
@@ -405,9 +369,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.zip"
                         label="Zip"
@@ -417,9 +380,8 @@
                       />
                     </v-flex>
                     <v-flex 
-                      xs6
-                      px-1
-                    >
+                      xs6 
+                      px-1>
                       <v-text-field
                         :value="props.item.profile.country"
                         label="Country"
@@ -428,28 +390,21 @@
                         prepend-icon="fa-fa"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6
-                    >
+                    <v-flex xs6>
                       <v-switch
                         v-model="props.item.active"
                         :label="getStatus(props.item.active)"
                         readonly
                       />
                     </v-flex>
-                    
                   </v-layout>
-                  
+
                   <v-layout 
                     row 
-                    wrap
-                  >
+                    wrap>
                     <p 
                       v-if="props.item.roles" 
-                      class="title accent--text"
-                    >
-                      Account Type
-                    </p>
+                      class="title accent--text">Account Type</p>
                     <v-flex xs12>
                       <v-combobox
                         :items="roles"
@@ -462,15 +417,11 @@
                       >
                         <template 
                           slot="selection" 
-                          slot-scope="data"
-                        >
-                          <v-chip
-                            :selected="data.selected"
-                            light
-                          >
-                            <v-avatar
-                              class="primary white--text"
-                            >
+                          slot-scope="data">
+                          <v-chip 
+                            :selected="data.selected" 
+                            light>
+                            <v-avatar class="primary white--text">
                               <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
                             </v-avatar>
                             {{ data.item }}
@@ -481,14 +432,10 @@
                   </v-layout>
                   <p 
                     v-if="props.item.permissions" 
-                    class="title accent--text"
-                  >
-                    Permissions
-                  </p>
+                    class="title accent--text">Permissions</p>
                   <v-layout 
                     row 
-                    wrap
-                  >
+                    wrap>
                     <v-flex xs12>
                       <v-combobox
                         :items="permissions"
@@ -501,15 +448,11 @@
                       >
                         <template 
                           slot="selection" 
-                          slot-scope="data"
-                        >
-                          <v-chip
-                            :selected="data.selected"
-                            light
-                          >
-                            <v-avatar
-                              class="primary white--text"
-                            >
+                          slot-scope="data">
+                          <v-chip 
+                            :selected="data.selected" 
+                            light>
+                            <v-avatar class="primary white--text">
                               <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
                             </v-avatar>
                             {{ data.item }}
@@ -520,15 +463,11 @@
                   </v-layout>
                 </v-container>
               </v-card-title>
-
             </v-card>
-            
           </v-container>
         </template>
       </v-data-table>
-      <confirm 
-        :callback="confirmed(deleteUser)" 
-      />
+      <confirm :callback="confirmed(deleteUser)"/>
       <mass-mail/>
     </v-container>
   </main-layout>
@@ -582,12 +521,7 @@ export default {
       rowsPerPage: 50,
       page: 1
     },
-    rows_per_page_items: [
-      5,
-      10,
-      25,
-      50
-    ],
+    rows_per_page_items: [5, 10, 25, 50],
     current_user: {},
     usersForm: new Form({}),
     toggleForm: new Form({
@@ -636,9 +570,9 @@ export default {
     },
     roles(newValue) {},
     permissions(newValue) {},
-    "page": {
+    page: {
       handler() {
-        this.fetchUsers()
+        this.fetchUsers();
       }
     }
   },
@@ -951,24 +885,25 @@ export default {
     },
     fetchUsers() {
       let self = this;
-      self.loading = true
-      self.items = []
-      let order_by= self.pagination.descending ? "DESC" : "ASC"
+      self.loading = true;
+      self.items = [];
+      let order_by = self.pagination.descending ? "DESC" : "ASC";
       let sort_by = self.pagination.sortBy;
-      let url = `/api/users?sortBy=${sort_by}&order_by=${order_by}`
-      if(self.page > 1){
-          url = `${url}&page=${self.page}`
+      let url = `/api/users?sortBy=${sort_by}&order_by=${order_by}`;
+      if (self.page > 1) {
+        url = `${url}&page=${self.page}`;
       }
-      axios.get(url).then((response)=> {
-        self.items = response.data.data;
-        self.meta = response.data.meta;
-        self.loading = false
+      axios
+        .get(url)
+        .then(response => {
+          self.items = response.data.data;
+          self.meta = response.data.meta;
+          self.loading = false;
         })
-        .catch((errors) => {
-            console.log(errors)
-            self.loading = false
-        })
-
+        .catch(errors => {
+          console.log(errors);
+          self.loading = false;
+        });
     },
     deleteUser(user) {
       let self = this;

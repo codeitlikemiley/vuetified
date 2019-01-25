@@ -30,6 +30,7 @@ class MassMailController extends Controller
         foreach ($users as $key => $user) {
             Mail::to($user)->queue(new Massmail($data, $user));
         }
+
         return 'MASS MAIL SENDING! CHECK YOUR MAILTRAP.IO ACCOUNT';
     }
 
@@ -47,7 +48,7 @@ class MassMailController extends Controller
         $data['button_color']   = $request->button_color ?? 'blue';
         $data['button_message'] = $request->button_message ?? 'Call To Action! Click Here!';
         $data['signature']      = $request->signature ?? 'Thanks!';
-        $user = User::first();
+        $user                   = User::first();
         return (new MassMail($data, $user))->render();
     }
 }

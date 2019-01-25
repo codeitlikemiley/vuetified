@@ -7,7 +7,7 @@ use Vuetified\Contracts\InitialFrontendState as Contract;
 class InitialFrontendState implements Contract
 {
     /**
-     * @param $user
+     * @param  $user
      * @return mixed
      */
     public function forUser($user)

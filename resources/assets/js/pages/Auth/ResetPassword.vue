@@ -1,13 +1,10 @@
 <template>
-  <modal-layout 
-    class="white"
-  >
+  <modal-layout class="white">
     <v-card :flat="true">
       <v-toolbar class="primary">
         <v-btn 
           icon 
-          @click.native="redirectBack()"
-        >
+          @click.native="redirectBack()">
           <v-icon color="white">arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,14 +15,10 @@
           <v-btn 
             class="white--text" 
             flat 
-            @click.native="goHome()"
-          >
+            @click.native="goHome()">
             <v-icon 
-              right
-              color="white"
-            >
-              fa-home
-            </v-icon>
+              right 
+              color="white">fa-home</v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
@@ -41,8 +34,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.email"
@@ -66,8 +58,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|min:6|confirmed:confirmation'"
                   v-model="form.password"
@@ -94,9 +85,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
-
+                offset-xl4>
                 <v-text-field
                   ref="confirmation"
                   v-model="form.password_confirmation"
@@ -119,21 +108,17 @@
               lg4 
               offset-lg4 
               xl4 
-              offset-xl4
-            >
-              <v-btn 
-                :loading="form.busy" 
-                :disabled="errors.any()" 
-                :class="{primary: !form.busy, error: form.busy}" 
-                type="submit" 
+              offset-xl4>
+              <v-btn
+                :loading="form.busy"
+                :disabled="errors.any()"
+                :class="{primary: !form.busy, error: form.busy}"
+                type="submit"
                 block
-              >
-                Reset
-              </v-btn>
+              >Reset</v-btn>
             </v-flex>
           </form>
         </v-container>
-
       </v-card-text>
     </v-card>
   </modal-layout>

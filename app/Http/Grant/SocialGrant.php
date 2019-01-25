@@ -98,7 +98,7 @@ class SocialGrant extends AbstractGrant
     }
 
     /**
-     * @param Request $request
+     * @param  Request $request
      * @return null
      */
     private function getUserFromSocialNetwork(Request $request)

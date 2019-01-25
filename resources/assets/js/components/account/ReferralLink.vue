@@ -3,34 +3,27 @@
     <v-container style="height:75vh;">
       <v-layout 
         row 
-        wrap
-      >
+        wrap>
         <v-flex 
-          xs12
+          xs12 
           md8 
-          offset-md2
-          text-xs-center
-        >
+          offset-md2 
+          text-xs-center>
           <v-alert 
             :value="true" 
-            type="info"
-            outline
-            icon="fa-info-circle"
-          >
+            type="info" 
+            outline 
+            icon="fa-info-circle">
             <v-btn 
               :href="href" 
               flat 
-              color="info"
-            >
-              Referral Link: {{ href }}
-            </v-btn>
+              color="info">Referral Link: {{ href }}</v-btn>
           </v-alert>
         </v-flex>
         <v-flex 
           xs12 
           md8 
-          offset-md2
-        >
+          offset-md2>
           <v-text-field
             v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
             v-model="form.link"
@@ -43,20 +36,19 @@
           />
         </v-flex>
         <v-flex 
-          xs12
+          xs12 
           md8 
-          offset-md2
-        >
-          <v-btn 
+          offset-md2>
+          <v-btn
             :loading="form.busy"
             :disabled="errors.any()"
-            :class="{primary: !form.busy, error: form.busy}" 
+            :class="{primary: !form.busy, error: form.busy}"
             block
-            color="accent" 
+            color="accent"
             dark
             @click="updateLink()"
-          >
-            Update Referral Link <v-icon right>fa-send</v-icon>
+          >Update Referral Link
+            <v-icon right>fa-send</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -108,14 +100,14 @@ export default {
       self.$validator.validateAll();
       if (!self.errors.any()) {
         self.form
-        .post(route("api.user.updateReferralLink"))
-        .then(response => {
-          self.setMe(response.data.data);
-          self.showModal(response.data.message);
-        })
-        .catch(response => {
-          self.form.busy = false;
-        });
+          .post(route("api.user.updateReferralLink"))
+          .then(response => {
+            self.setMe(response.data.data);
+            self.showModal(response.data.message);
+          })
+          .catch(response => {
+            self.form.busy = false;
+          });
       }
     },
     showModal(message) {

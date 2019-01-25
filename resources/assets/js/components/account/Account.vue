@@ -2,14 +2,11 @@
   <v-card flat>
     <v-layout 
       row 
-      wrap
-    >
-
+      wrap>
       <v-flex 
-        xs12
+        xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
           v-model="form.username"
@@ -23,8 +20,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: true, email: true }"
           v-model="form.email"
@@ -38,8 +34,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
           v-model="form.name"
@@ -53,8 +48,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
           v-model="form.old_password"
@@ -71,8 +65,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="'required|min:6|confirmed:confirmation'"
           v-model="form.password"
@@ -90,8 +83,7 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
+        offset-md2>
         <v-text-field
           v-validate="'required|min:6'"
           ref="confirmation"
@@ -109,18 +101,17 @@
       <v-flex 
         xs12 
         md8 
-        offset-md2
-      >
-        <v-btn 
+        offset-md2>
+        <v-btn
           :loading="form.busy"
           :disabled="errors.any()"
-          :class="{primary: !form.busy, error: form.busy}" 
-          block 
-          color="accent" 
+          :class="{primary: !form.busy, error: form.busy}"
+          block
+          color="accent"
           dark
           @click="updateAccount()"
-        >
-          Update Account <v-icon right>fa-send</v-icon>
+        >Update Account
+          <v-icon right>fa-send</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>

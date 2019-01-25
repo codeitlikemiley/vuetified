@@ -11,7 +11,7 @@ return [
     | by the framework. The "local" disk, as well as a variety of cloud
     | based disks are available to your application. Just store away!
     |
-    */
+     */
 
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
@@ -24,9 +24,9 @@ return [
     | reason, you may specify a default "cloud" driver here. This driver
     | will be bound as the Cloud disk implementation in the container.
     |
-    */
+     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud'   => env('FILESYSTEM_CLOUD', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,30 +39,30 @@ return [
     |
     | Supported Drivers: "local", "ftp", "s3", "rackspace"
     |
-    */
+     */
 
-    'disks' => [
+    'disks'   => [
 
-        'local' => [
+        'local'  => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root'   => storage_path('app')
         ],
 
         'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'driver'     => 'local',
+            'root'       => storage_path('app/public'),
+            'url'        => env('APP_URL').'/storage',
+            'visibility' => 'public'
         ],
 
-        's3' => [
+        's3'     => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
+            'key'    => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-        ],
+            'bucket' => env('AWS_BUCKET')
+        ]
 
-    ],
+    ]
 
 ];

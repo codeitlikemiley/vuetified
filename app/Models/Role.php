@@ -7,5 +7,8 @@ use Spatie\Permission\Contracts\Role as Contract;
 
 class Role extends Model implements Contract
 {
+    /**
+     * @var string
+     */
     protected $table = 'roles';
 }

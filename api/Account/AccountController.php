@@ -63,25 +63,25 @@ class AccountController extends Controller
     {
         $user = $request->user_id ? \User::find($request->user_id) : $request->user();
         $data = request()->validate([
-            'contact_no'     => [
-                'nullable',
+            'contact_no' => [
+                'nullable'
             ],
-            'address_1'      => [
-                'nullable',
+            'address_1'  => [
+                'nullable'
             ],
-            'address_2'      => [
-                'nullable',
+            'address_2'  => [
+                'nullable'
             ],
-            'city'           => [
-                'nullable',
+            'city'       => [
+                'nullable'
             ],
-            'country'        => [
-                'nullable',
+            'country'    => [
+                'nullable'
             ],
-            'zip'       => [
-                'nullable',
+            'zip'        => [
+                'nullable'
             ],
-            'state' => [
+            'state'      => [
                 'nullable',
                 'regex:/(^[A-Za-z0-9 ]+$)+/'
             ]

@@ -6,8 +6,7 @@
           flat 
           icon 
           color="white" 
-          @click.native="redirectBack()"
-        >
+          @click.native="redirectBack()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
         <v-spacer/>
@@ -18,8 +17,7 @@
           <v-btn 
             flat 
             color="white" 
-            @click.native="goHome()"
-          >
+            @click.native="goHome()">
             <v-icon>fa-home</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -36,8 +34,7 @@
                 lg4 
                 offset-lg4 
                 xl4 
-                offset-xl4
-              >
+                offset-xl4>
                 <v-text-field
                   v-validate="'required|email'"
                   v-model="form.username"
@@ -54,27 +51,23 @@
             </v-layout>
             <v-flex 
               xs12 
-              sm12
+              sm12 
               md4 
               offset-md4 
               lg4 
               offset-lg4 
               xl4 
-              offset-xl4
-            >
-              <v-btn 
+              offset-xl4>
+              <v-btn
                 :loading="form.busy"
                 :disabled="errors.any()"
-                :class="{primary: !form.busy, error: form.busy}" 
-                type="submit" 
+                :class="{primary: !form.busy, error: form.busy}"
+                type="submit"
                 block
-              >
-                Send Password Reset Email
-              </v-btn>
+              >Send Password Reset Email</v-btn>
             </v-flex>
           </form>
         </v-container>
-
       </v-card-text>
     </v-card>
   </modal-layout>
@@ -127,7 +120,7 @@ export default {
         self.form.busy = true;
         self.form
           .post(route("api.auth.forgotpassword"))
-          .then((response) => {
+          .then(response => {
             self.form.busy = false;
             let modal = swal.mixin({
               confirmButtonClass: "v-btn blue-grey  subheading white--text",

@@ -1,4 +1,4 @@
 <?php
 return [
-    'whitelist' => ['api.*'],
+    'whitelist' => ['api.*']
 ];

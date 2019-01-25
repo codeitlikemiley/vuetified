@@ -61,14 +61,14 @@ class Link extends Model
             /* change this */
             $userID = \Cookie::get('sponsor');
 
-            /* if cookie is present */
+/* if cookie is present */
             if ($userID) {
                 $user             = User::find($userID);
                 $link->sp_user_id = $userID;
                 $link->sp_link_id = $user->referralLink->id;
             }
 
-            /* override cookie with current request */
+/* override cookie with current request */
             if ($sponsor = request()->sponsor_id) {
                 $user             = User::find($sponsor);
                 $link->sp_user_id = $user->id;

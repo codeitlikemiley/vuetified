@@ -18,7 +18,7 @@ return [
      * Defaults to null, which uses the toString() method on your model.
      */
 
-    'source' => null,
+    'source'         => null,
 
     /**
      * The maximum length of a generated slug.  Defaults to "null", which means
@@ -26,7 +26,7 @@ return [
      * want to make sure your slugs aren't too long.
      */
 
-    'maxLength' => null,
+    'maxLength'      => null,
 
     /**
      * If left to "null", then use the cocur/slugify package to generate the slug
@@ -44,13 +44,13 @@ return [
      *    'method' => array('Str','slug'),
      */
 
-    'method' => null,
+    'method'         => null,
 
     /**
      * Separator to use when generating slugs.  Defaults to a hyphen.
      */
 
-    'separator' => '-',
+    'separator'      => '-',
 
     /**
      * Enforce uniqueness of slugs?  Defaults to true.
@@ -62,7 +62,7 @@ return [
      *     my-slug-2
      */
 
-    'unique' => true,
+    'unique'         => true,
 
     /**
      * If you are enforcing unique slugs, the default is to add an
@@ -72,8 +72,8 @@ return [
      * "similar" slugs.  The closure should return the new unique
      * suffix to append to the slug.
      */
-    
-    'uniqueSuffix' => null,
+
+    'uniqueSuffix'   => null,
 
     /**
      * Should we include the trashed items when generating a unique slug?
@@ -108,7 +108,7 @@ return [
      * and continue from there.
      */
 
-    'reserved' => null,
+    'reserved'       => null,
 
     /**
      * Whether to update the slug value when a model is being
@@ -120,7 +120,7 @@ return [
      * is probably not a good idea from an SEO point of view.
      * Only set this to true if you understand the possible consequences.
      */
-    
-    'onUpdate' => false,
+
+    'onUpdate'       => false
 
 ];
