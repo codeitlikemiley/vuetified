@@ -55,6 +55,8 @@ ECHO_ON=false
 ## Adding Git Commit Hooks
 
 - added pre-commit hook file use this type : `cp pre-commit .git/hooks/pre-commit` to use this.
+- make sure it is executable on your system
+  `chmod +x .git/hooks/pre-commit`
 
 ## Stacks Used
 
