@@ -42,6 +42,11 @@
 ```
 ECHO_ON=false
 ```
+- Make sure you uncomment this on your config/app.php
+
+```
+// App\Providers\BroadcastServiceProvider::class,
+```
 
 9. `php artisan migrate:fresh --seed`
 10. node websocket
