@@ -1,0 +1,45 @@
+{
+    "Laravel Setter": {
+        "prefix": "setter",
+        "body": [
+            "public function set${1/(.*)/${1:/capitalize}/}Attribute(\\$value)",
+            "{",
+            "    \\$this->attributes['${1:password}'] = ${2:bcrypt(\\$value)};",
+            "}"
+        ],
+        "description": "Set An Attribute Value"
+    },
+    "Laravel Getters": {
+        "prefix": "getter",
+        "body": [
+            "private readonly ${1} = new Emitter<$2>();",
+            "readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event;",
+            "$0"
+        ],
+        "description": "Example Where _ underscore is removed on another variable"
+    },
+    "HelloWorld": {
+        "prefix": "say_hello",
+        "body": "${1} ${2} -> ${1/Hello/Hallo/} ${2/World/Welt/}",
+        "description": "Replace a World with Welt and Hello With Hallo"
+    },
+    "Add TDD Trait For GraphQL": {
+        "prefix": "trait:graphql",
+        "body": [
+            "public function graphql(${1:string \\$query}, ${2:string \\$method = 'post'})",
+            "{",
+            "    return \\$this->\\${\\$method}('/graphql', [",
+            "        'query' => \\$query",
+            "    ]);",
+            "}"
+        ],
+        "description": "Add This Trait On Your Base Test Case To Use A GraphQL Query method _query"
+    },
+    "Make A GraphQL Query": {
+        "prefix": "_query",
+        "body": [
+            "\\$this->graphql('${1:{\\}}', '${2:post}');"
+        ],
+        "description": "Make A GraphQL Query"
+    }
+}
