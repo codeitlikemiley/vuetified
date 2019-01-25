@@ -26,14 +26,14 @@ class ForgotPasswordController extends Controller
         // Check if the Email is Registered
         $user = User::findByEmail($request->username);
 
-// Throw Exception Email Not Found
+        // Throw Exception Email Not Found
         if (!$user) {
             return response()->json(['message' => 'Password Reset Link Sent!'], 200);
         }
 
-// Check if We Exceeded Password Reset!
+        // Check if We Exceeded Password Reset!
 
-// If Yes then We Show a Message We Reached the Limit and Avoid Sending More Email
+        // If Yes then We Show a Message We Reached the Limit and Avoid Sending More Email
         if ($user->resent >= 3) {
             return response()->json(['message' => 'Request Limit of ('.$user->resent.') Exceeded.'], 429);
         }
@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
 
         $sendingResponse = $broker->sendResetLink(['email' => $request->username]);
 
-// Check if We Sent The Email
+        // Check if We Sent The Email
         if (Password::RESET_LINK_SENT !== $sendingResponse) {
             return response()->json(['message' => 'Failed To Send Reset Link.'], 500);
         }

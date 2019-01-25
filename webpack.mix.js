@@ -14,19 +14,19 @@ mix.webpackConfig({
     /* Path Shortcuts */
     alias: {
       /* root */
-      "~": path.resolve(__dirname, "resources/assets/js"),
-      Components: path.resolve(__dirname, "resources/assets/js/components"),
-      Routes: path.resolve(__dirname, "resources/assets/js/routes"),
-      Pages: path.resolve(__dirname, "resources/assets/js/pages"),
+      "~": path.resolve(__dirname, "resources/js"),
+      Components: path.resolve(__dirname, "resources/js/components"),
+      Routes: path.resolve(__dirname, "resources/js/routes"),
+      Pages: path.resolve(__dirname, "resources/js/pages"),
       /* vuex modules */
-      Modules: path.resolve(__dirname, "resources/assets/js/modules"),
-      Layouts: path.resolve(__dirname, "resources/assets/js/layouts"),
-      Partials: path.resolve(__dirname, "resources/assets/js/partials"),
-      Services: path.resolve(__dirname, "resources/assets/js/services"),
-      Api: path.resolve(__dirname, "resources/assets/js/api"),
-      Mixins: path.resolve(__dirname, "resources/assets/js/mixins"),
+      Modules: path.resolve(__dirname, "resources/js/modules"),
+      Layouts: path.resolve(__dirname, "resources/js/layouts"),
+      Partials: path.resolve(__dirname, "resources/js/partials"),
+      Services: path.resolve(__dirname, "resources/js/services"),
+      Api: path.resolve(__dirname, "resources/js/api"),
+      Mixins: path.resolve(__dirname, "resources/js/mixins"),
       /* Jquery Plugins */
-      Plugins: path.resolve(__dirname, "resources/assets/js/plugins")
+      Plugins: path.resolve(__dirname, "resources/js/plugins")
     }
   }
 });
@@ -44,8 +44,8 @@ mix.options({
   },
   postCss: []
 });
-mix.js("resources/assets/js/app.js", "public/js");
-mix.sass("resources/assets/sass/app.scss", "public/css");
+mix.js("resources/js/app.js", "public/js");
+mix.sass("resources/sass/app.scss", "public/css");
 mix.sourceMaps();
 
 if (mix.inProduction()) {

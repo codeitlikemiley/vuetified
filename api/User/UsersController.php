@@ -277,12 +277,13 @@ class UsersController extends Controller
                 'nullable',
                 Rule::unique('users')->ignore($user->id)
             ],
-            'contact_no'            => 'required',
+            'contact_no'            => 'nullable',
             'address_1'             => 'nullable',
             'address_2'             => 'nullable',
             'city'                  => 'nullable',
             'state'                 => 'nullable',
             'zip'                   => [
+                'nullable',
                 new ValidateZip
             ],
             'roles'                 => [
