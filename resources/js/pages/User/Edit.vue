@@ -2,16 +2,19 @@
   <modal-layout class="white">
     <v-card :flat="true">
       <v-toolbar class="primary">
-        <v-btn 
-          flat 
-          icon 
-          color="white" 
-          @click.native="redirectBack()">
+        <v-btn
+          flat
+          icon
+          color="white"
+          @click.native="redirectBack()"
+        >
           <v-icon>arrow_back</v-icon>
         </v-btn>
-        <v-spacer/>
-        <v-toolbar-title class="text-xs-center white--text">Edit User</v-toolbar-title>
-        <v-spacer/>
+        <v-spacer />
+        <v-toolbar-title class="text-xs-center white--text">
+          Edit User
+        </v-toolbar-title>
+        <v-spacer />
         <v-toolbar-items>
           <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
           <v-btn
@@ -20,22 +23,27 @@
             flat
             color="white"
             @click.native="submit()"
-          >Save
-            <v-icon right>save</v-icon>
+          >
+            Save
+            <v-icon right>
+              save
+            </v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <v-layout 
-        row 
-        wrap>
-        <v-flex 
-          xs8 
-          md6 
-          offset-md2 
-          px-2>
+      <v-layout
+        row
+        wrap
+      >
+        <v-flex
+          xs8
+          md6
+          offset-md2
+          px-2
+        >
           <v-text-field
-            v-validate="'required'"
             v-model="form.name"
+            v-validate="'required'"
             :error-messages="errorMessages('name')"
             :class="{ 'error--text': hasErrors('name') }"
             class="primary--text"
@@ -46,21 +54,24 @@
             prepend-icon="fa-user"
           />
         </v-flex>
-        <v-flex 
-          class="xs4 md2" 
-          px-2>
-          <v-switch 
-            v-model="form.active" 
-            :label="getStatus(form.active)"/>
+        <v-flex
+          class="xs4 md2"
+          px-2
+        >
+          <v-switch
+            v-model="form.active"
+            :label="getStatus(form.active)"
+          />
         </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          offset-md2 
-          px-2>
+        <v-flex
+          xs12
+          md4
+          offset-md2
+          px-2
+        >
           <v-text-field
-            v-validate="{ email: true }"
             v-model="form.email"
+            v-validate="{ email: true }"
             :error-messages="errorMessages('email')"
             :class="{ 'error--text': hasErrors('email') }"
             label="Email"
@@ -68,20 +79,22 @@
             data-vv-name="email"
           />
         </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          px-2>
-          <v-text-field 
-            v-model="form.contact_no" 
-            label="Phone" 
-            prepend-icon="phone"/>
+        <v-flex
+          xs12
+          md4
+          px-2
+        >
+          <v-text-field
+            v-model="form.contact_no"
+            label="Phone"
+            prepend-icon="phone"
+          />
         </v-flex>
         <v-flex class="xs12 offset-md2 md8">
           <v-autocomplete
+            v-model="form.roles"
             v-validate="'required'"
             :items="roles"
-            v-model="form.roles"
             :error-messages="errorMessages('roles')"
             :class="{ 'error--text': hasErrors('roles') }"
             required
@@ -96,14 +109,15 @@
           />
         </v-flex>
 
-        <v-flex 
-          xs12 
-          md4 
-          offset-md2 
-          px-2>
+        <v-flex
+          xs12
+          md4
+          offset-md2
+          px-2
+        >
           <v-text-field
-            v-validate="'min:6|confirmed:password_confirmation'"
             v-model="form.password"
+            v-validate="'min:8|confirmed:password_confirmation'"
             :append-icon="icon"
             :type="!password_visible ? 'password' : 'text'"
             :error-messages="errorMessages('password')"
@@ -117,10 +131,11 @@
             @click:append="() => (password_visible = !password_visible)"
           />
         </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          px-2>
+        <v-flex
+          xs12
+          md4
+          px-2
+        >
           <v-text-field
             ref="password_confirmation"
             v-model="form.password_confirmation"
@@ -134,52 +149,61 @@
             @click:append="() => (password_visible = !password_visible)"
           />
         </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          offset-md2 
-          px-2>
-          <v-text-field 
-            v-model="form.address_1" 
-            label="Address 1" 
-            prepend-icon="looks_one"/>
-        </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          px-2>
-          <v-text-field 
-            v-model="form.address_2" 
-            label="Address 2" 
-            prepend-icon="looks_two"/>
-        </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          offset-md2 
-          px-2>
-          <v-text-field 
-            v-model="form.city" 
-            label="City" 
-            prepend-icon="location_city"/>
-        </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          px-2>
-          <v-text-field 
-            v-model="form.state" 
-            label="State" 
-            prepend-icon="map"/>
-        </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          offset-md2 
-          px-2>
+        <v-flex
+          xs12
+          md4
+          offset-md2
+          px-2
+        >
           <v-text-field
-            v-validate="{ regex: /^\d{5}(?:[-\s]\d{4})?$/ }"
+            v-model="form.address_1"
+            label="Address 1"
+            prepend-icon="looks_one"
+          />
+        </v-flex>
+        <v-flex
+          xs12
+          md4
+          px-2
+        >
+          <v-text-field
+            v-model="form.address_2"
+            label="Address 2"
+            prepend-icon="looks_two"
+          />
+        </v-flex>
+        <v-flex
+          xs12
+          md4
+          offset-md2
+          px-2
+        >
+          <v-text-field
+            v-model="form.city"
+            label="City"
+            prepend-icon="location_city"
+          />
+        </v-flex>
+        <v-flex
+          xs12
+          md4
+          px-2
+        >
+          <v-text-field
+            v-model="form.state"
+            label="State"
+            prepend-icon="map"
+          />
+        </v-flex>
+        <v-flex
+          xs12
+          md4
+          offset-md2
+          px-2
+        >
+          <v-text-field
             v-model="form.zip"
+            v-validate="{ regex: /^\d{5}(?:[-\s]\d{4})?$/ }"
             :error-messages="errorMessages('zip')"
             :class="{ 'error--text': hasErrors('zip') }"
             label="Zip"
@@ -187,27 +211,33 @@
             data-vv-name="zip"
           />
         </v-flex>
-        <v-flex 
-          xs12 
-          md4 
-          px-2>
-          <v-text-field 
-            v-model="form.country" 
-            label="Country" 
-            prepend-icon="fa-fa"/>
+        <v-flex
+          xs12
+          md4
+          px-2
+        >
+          <v-text-field
+            v-model="form.country"
+            label="Country"
+            prepend-icon="fa-fa"
+          />
         </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2>
+        <v-flex
+          xs12
+          md8
+          offset-md2
+        >
           <v-btn
             :loading="form.busy"
             :disabled="errors.any() || form.busy"
             block
             color="accent"
             @click="submit()"
-          >Save
-            <v-icon right>save</v-icon>
+          >
+            Save
+            <v-icon right>
+              save
+            </v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -280,7 +310,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          validationModal({
+          validationModal.fire({
             title: `Validation Error`,
             html: `<p class="title">Please Fix Form Errors</p>`,
             type: "warning",
@@ -303,7 +333,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          successModal({
+          successModal.fire({
             title: "Success!",
             html: `<p class="title">User Updated!</p>`,
             type: "success",

@@ -1,15 +1,17 @@
 <template>
   <v-card flat>
-    <v-layout 
-      row 
-      wrap>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
           v-model="form.username"
+          v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
           :error-messages="errorMessages('username')"
           :class="{ 'error--text': hasErrors('username') }"
           label="Username"
@@ -17,13 +19,14 @@
           data-vv-name="username"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: true, email: true }"
           v-model="form.email"
+          v-validate="{ required: true, email: true }"
           :error-messages="errorMessages('email')"
           :class="{ 'error--text': hasErrors('email') }"
           label="Email"
@@ -31,13 +34,14 @@
           data-vv-name="email"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
           v-model="form.name"
+          v-validate="{ required: true, regex: /^[a-zA-Z0-9 ]+$/ }"
           :error-messages="errorMessages('name')"
           :class="{ 'error--text': hasErrors('name') }"
           label="Account Name"
@@ -45,13 +49,14 @@
           data-vv-name="name"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
           v-model="form.old_password"
+          v-validate="{ min: 6,regex: /^([a-zA-Z0-9@*#]{6,15})$/ }"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
           :error-messages="errorMessages('old_password')"
@@ -62,13 +67,14 @@
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="'required|min:6|confirmed:confirmation'"
           v-model="form.password"
+          v-validate="'required|min:8|confirmed:confirmation'"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
           :error-messages="errorMessages('password')"
@@ -80,16 +86,17 @@
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="'required|min:6'"
           ref="confirmation"
+          v-model="form.password_confirmation"
+          v-validate="'required|min:8'"
           :append-icon="icon"
           :type="!password_visible ? 'password' : 'text'"
-          v-model="form.password_confirmation"
           :error-messages="errorMessages('password_confirmation')"
           :class="{ 'error--text': hasErrors('password_confirmation') }"
           label="Confirm New Password"
@@ -98,10 +105,11 @@
           @click:append="() => (password_visible = !password_visible)"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-btn
           :loading="form.busy"
           :disabled="errors.any()"
@@ -110,8 +118,11 @@
           color="accent"
           dark
           @click="updateAccount()"
-        >Update Account
-          <v-icon right>fa-send</v-icon>
+        >
+          Update Account
+          <v-icon right>
+            fa-send
+          </v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
@@ -193,7 +204,7 @@ export default {
         confirmButtonClass: "v-btn success  subheading white--text",
         buttonsStyling: false
       });
-      Modal({
+      Modal.fire({
         title: "Success!",
         html: '<p class="title">' + message + "</p>",
         type: "success",

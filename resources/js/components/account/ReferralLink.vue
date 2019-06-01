@@ -1,32 +1,39 @@
 <template>
   <v-card flat>
     <v-container style="height:75vh;">
-      <v-layout 
-        row 
-        wrap>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2 
-          text-xs-center>
-          <v-alert 
-            :value="true" 
-            type="info" 
-            outline 
-            icon="fa-info-circle">
-            <v-btn 
-              :href="href" 
-              flat 
-              color="info">Referral Link: {{ href }}</v-btn>
+      <v-layout
+        row
+        wrap
+>
+        <v-flex
+          xs12
+          md8
+          offset-md2
+          text-xs-center
+>
+          <v-alert
+            :value="true"
+            type="info"
+            outline
+            icon="fa-info-circle"
+>
+            <v-btn
+              :href="href"
+              flat
+              color="info"
+>
+Referral Link: {{ href }}
+</v-btn>
           </v-alert>
         </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2>
+        <v-flex
+          xs12
+          md8
+          offset-md2
+>
           <v-text-field
-            v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
             v-model="form.link"
+            v-validate="{ required: true, regex: /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/ }"
             :error-messages="errorMessages('link')"
             :class="{ 'error--text': hasErrors('link') }"
             label="Referral Link"
@@ -35,10 +42,11 @@
             data-vv-name="link"
           />
         </v-flex>
-        <v-flex 
-          xs12 
-          md8 
-          offset-md2>
+        <v-flex
+          xs12
+          md8
+          offset-md2
+>
           <v-btn
             :loading="form.busy"
             :disabled="errors.any()"
@@ -47,8 +55,11 @@
             color="accent"
             dark
             @click="updateLink()"
-          >Update Referral Link
-            <v-icon right>fa-send</v-icon>
+          >
+Update Referral Link
+            <v-icon right>
+fa-send
+</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -115,7 +126,7 @@ export default {
         confirmButtonClass: "v-btn success  subheading white--text",
         buttonsStyling: false
       });
-      Modal({
+      Modal.fire({
         title: "Success!",
         html: '<p class="title">' + message + "</p>",
         type: "success",

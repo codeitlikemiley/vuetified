@@ -1,27 +1,32 @@
 <template>
   <v-card flat>
-    <v-layout 
-      row 
-      wrap>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2 
-        text-xs-center>
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex
+        xs12
+        md8
+        offset-md2
+        text-xs-center
+      >
         <v-alert
           :value="true"
           type="info"
           outline
           icon="fa-info-circle"
-        >Note: This Will be Used as Default for Billing Details</v-alert>
+        >
+          Note: This Will be Used as Default for Billing Details
+        </v-alert>
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.contact_no"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('contact_no')"
           :class="{ 'error--text': hasErrors('contact_no') }"
           label="Contact No."
@@ -29,13 +34,14 @@
           data-vv-name="contact_no"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.address_1"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('address_1')"
           :class="{ 'error--text': hasErrors('address_1') }"
           label="Address 1"
@@ -43,13 +49,14 @@
           data-vv-name="address_1"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.address_2"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('address_2')"
           :class="{ 'error--text': hasErrors('address_2') }"
           label="Address 2"
@@ -57,13 +64,14 @@
           data-vv-name="address_2"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.city"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('city')"
           :class="{ 'error--text': hasErrors('city') }"
           label="City"
@@ -71,13 +79,14 @@
           data-vv-name="city"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.state"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('state')"
           :class="{ 'error--text': hasErrors('state') }"
           label="State/Province"
@@ -85,13 +94,14 @@
           data-vv-name="state"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.zip"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('zip')"
           :class="{ 'error--text': hasErrors('zip') }"
           label="Zip Code"
@@ -99,13 +109,14 @@
           data-vv-name="zip"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-text-field
-          v-validate="{ required: false }"
           v-model="form.country"
+          v-validate="{ required: false }"
           :error-messages="errorMessages('country')"
           :class="{ 'error--text': hasErrors('country') }"
           label="Country"
@@ -113,10 +124,11 @@
           data-vv-name="country"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        md8 
-        offset-md2>
+      <v-flex
+        xs12
+        md8
+        offset-md2
+      >
         <v-btn
           :loading="form.busy"
           :disabled="errors.any()"
@@ -125,8 +137,11 @@
           color="accent"
           dark
           @click="updateProfile()"
-        >Update Profile
-          <v-icon right>fa-send</v-icon>
+        >
+          Update Profile
+          <v-icon right>
+            fa-send
+          </v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
@@ -202,7 +217,7 @@ export default {
         confirmButtonClass: "v-btn success  subheading white--text",
         buttonsStyling: false
       });
-      Modal({
+      Modal.fire({
         title: "Success!",
         html: '<p class="title">' + message + "</p>",
         type: "success",

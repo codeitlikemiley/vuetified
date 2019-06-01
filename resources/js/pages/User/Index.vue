@@ -10,18 +10,23 @@
           single-line
           hide-details
         />
-        <v-spacer/>
-        <v-btn 
-          color="teal" 
-          dark 
-          @click="createUser">Create New User
-          <v-icon right>person_add</v-icon>
+        <v-spacer />
+        <v-btn
+          color="teal"
+          dark
+          @click="createUser"
+        >
+          Create New User
+          <v-icon right>
+            person_add
+          </v-icon>
         </v-btn>
       </v-card-title>
-      <v-pagination 
-        v-if="!loading" 
-        v-model="page" 
-        :length="meta.last_page"/>
+      <v-pagination
+        v-if="!loading"
+        v-model="page"
+        :length="meta.last_page"
+      />
       <v-data-table
         v-model="selected"
         :headers="headers"
@@ -35,13 +40,15 @@
         item-key="id"
         expand
       >
-        <v-progress-linear 
-          slot="progress" 
-          color="blue" 
-          indeterminate/>
-        <template 
-          slot="headers" 
-          slot-scope="props">
+        <v-progress-linear
+          slot="progress"
+          color="blue"
+          indeterminate
+        />
+        <template
+          slot="headers"
+          slot-scope="props"
+        >
           <tr>
             <th>
               <v-checkbox
@@ -54,10 +61,11 @@
               />
             </th>
             <th colspan="5">
-              <v-toolbar 
-                flat 
-                dense 
-                color="white">
+              <v-toolbar
+                flat
+                dense
+                color="white"
+              >
                 <v-overflow-btn
                   v-model="filterBy"
                   :items="filters"
@@ -69,9 +77,10 @@
                   overflow
                 />
 
-                <v-divider 
-                  class="mx-2" 
-                  vertical/>
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
                 <v-text-field
                   v-model="search"
                   :label="`Search ${filterBy.value.toUpperCase()}`"
@@ -81,51 +90,68 @@
                   px-2
                 />
 
-                <v-divider 
-                  class="mx-2" 
-                  vertical/>
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
 
-                <v-btn 
-                  icon 
-                  flat 
-                  @click="toggleOrderBy">
-                  <v-icon :color="orderColor">{{ sortIcon }}</v-icon>
+                <v-btn
+                  icon
+                  flat
+                  @click="toggleOrderBy"
+                >
+                  <v-icon :color="orderColor">
+                    {{ sortIcon }}
+                  </v-icon>
                 </v-btn>
 
-                <v-divider 
-                  class="mx-2" 
-                  vertical/>
+                <v-divider
+                  class="mx-2"
+                  vertical
+                />
                 <div v-if="selected.length>0">
-                  <v-btn 
-                    icon 
-                    flat 
-                    @click="massDeactivate">
-                    <v-icon color="amber">block</v-icon>
+                  <v-btn
+                    icon
+                    flat
+                    @click="massDeactivate"
+                  >
+                    <v-icon color="amber">
+                      block
+                    </v-icon>
                   </v-btn>
-                  <v-btn 
-                    icon 
-                    flat 
-                    @click="massActivate">
-                    <v-icon color="green">how_to_reg</v-icon>
+                  <v-btn
+                    icon
+                    flat
+                    @click="massActivate"
+                  >
+                    <v-icon color="green">
+                      how_to_reg
+                    </v-icon>
                   </v-btn>
-                  <v-btn 
-                    icon 
-                    flat 
-                    @click="viewMassMailModal">
-                    <v-icon color="yellow darken-1">mail</v-icon>
+                  <v-btn
+                    icon
+                    flat
+                    @click="viewMassMailModal"
+                  >
+                    <v-icon color="yellow darken-1">
+                      mail
+                    </v-icon>
                   </v-btn>
-                  <v-btn 
-                    icon 
-                    flat 
-                    @click="massDelete">
-                    <v-icon color="error">delete_outline</v-icon>
+                  <v-btn
+                    icon
+                    flat
+                    @click="massDelete"
+                  >
+                    <v-icon color="error">
+                      delete_outline
+                    </v-icon>
                   </v-btn>
                 </div>
               </v-toolbar>
             </th>
           </tr>
           <tr>
-            <th/>
+            <th />
             <th
               v-for="header in props.headers"
               :key="header.text"
@@ -137,9 +163,10 @@
             </th>
           </tr>
         </template>
-        <template 
-          slot="items" 
-          slot-scope="props">
+        <template
+          slot="items"
+          slot-scope="props"
+        >
           <tr>
             <td class="title text-xs-left">
               <v-checkbox
@@ -148,15 +175,20 @@
                 @click="props.selected = !props.selected"
               />
             </td>
-            <td class="title text-xs-left accent--text">{{ props.item.name }}</td>
             <td class="title text-xs-left accent--text">
-              <span v-if="props.item.sponsor">{{ props.item.sponsor.name }}</span>
+              {{ props.item.name }}
             </td>
             <td class="title text-xs-left accent--text">
-              <v-chip 
-                v-for="(role,key) in props.item.roles" 
-                :key="key" 
-                dark>
+              <span v-if="props.item.sponsor">
+                {{ props.item.sponsor.name }}
+              </span>
+            </td>
+            <td class="title text-xs-left accent--text">
+              <v-chip
+                v-for="(role,key) in props.item.roles"
+                :key="key"
+                dark
+              >
                 <v-avatar
                   :class="{
                     'amber lighten-2': (role === 'admin' && props.item.id < 1000),
@@ -166,21 +198,31 @@
                     'lime darken-2': (role === 'customer')
                   }"
                 >
-                  <span 
-                    v-if="props.item.id < 1000" 
-                    class="headline">S</span>
-                  <span 
-                    v-else 
-                    class="headline">{{ role.charAt(0).toUpperCase() }}</span>
+                  <span
+                    v-if="props.item.id < 1000"
+                    class="headline"
+                  >
+                    S
+                  </span>
+                  <span
+                    v-else
+                    class="headline"
+                  >
+                    {{ role.charAt(0).toUpperCase() }}
+                  </span>
                 </v-avatar>
-                <span v-if="props.item.id < 1000">Super Admin</span>
-                <span v-else>{{ role }}</span>
+                <span v-if="props.item.id < 1000">
+                  Super Admin
+                </span>
+                <span v-else>
+                  {{ role }}
+                </span>
               </v-chip>
             </td>
             <td class="title text-xs-left accent--text">
               <v-switch
-                :label="getStatus(props.item.active)"
                 v-model="props.item.active"
+                :label="getStatus(props.item.active)"
                 @change="toggleStatus(props.item)"
               />
             </td>
@@ -193,19 +235,26 @@
                 class="compress--icon"
                 @click="props.expanded = !props.expanded"
               >
-                <v-icon 
-                  v-if="!props.expanded" 
-                  color="teal">fa-expand</v-icon>
-                <v-icon 
-                  v-if="props.expanded" 
-                  color="amber">fa-compress</v-icon>
+                <v-icon
+                  v-if="!props.expanded"
+                  color="teal"
+                >
+                  fa-expand
+                </v-icon>
+                <v-icon
+                  v-if="props.expanded"
+                  color="amber"
+                >
+                  fa-compress
+                </v-icon>
               </v-btn>
-              <v-btn 
-                flat 
-                icon 
-                color="blue" 
-                class="compress--icon" 
-                @click="editUser(props.item)">
+              <v-btn
+                flat
+                icon
+                color="blue"
+                class="compress--icon"
+                @click="editUser(props.item)"
+              >
                 <v-icon>fa-pencil</v-icon>
               </v-btn>
               <v-btn
@@ -225,33 +274,43 @@
         <template
           slot="pageText"
           slot-scope="{ pageStart, pageStop }"
-        >From {{ pageStart }} to {{ pageStop }}</template>
+        >
+          From {{ pageStart }} to {{ pageStop }}
+        </template>
 
-        <template 
-          slot="expand" 
-          slot-scope="props">
+        <template
+          slot="expand"
+          slot-scope="props"
+        >
           <v-container fluid>
-            <v-card 
-              light 
-              flat 
-              text-xs-center>
-              <v-img 
-                class="white--text blue-grey" 
-                height="75px">
-                <v-container 
-                  fill-height 
-                  fluid>
+            <v-card
+              light
+              flat
+              text-xs-center
+            >
+              <v-img
+                class="white--text blue-grey"
+                height="75px"
+              >
+                <v-container
+                  fill-height
+                  fluid
+                >
                   <v-layout fill-height>
-                    <v-flex 
-                      xs12 
-                      align-end 
-                      flexbox>
+                    <v-flex
+                      xs12
+                      align-end
+                      flexbox
+                    >
                       <v-avatar text-xs-left>
-                        <img 
-                          :src="props.item.photo_url" 
-                          :alt="props.item.name">
+                        <img
+                          :src="props.item.photo_url"
+                          :alt="props.item.name"
+                        >
                       </v-avatar>
-                      <span class="headline">{{ props.item.name }}</span>
+                      <span class="headline">
+                        {{ props.item.name }}
+                      </span>
                       <v-btn
                         v-if="activeLink(props.item.referral_link.active)"
                         :href="`http://${ props.item.referral_link.link }.${ domain }`"
@@ -259,7 +318,9 @@
                         color="cyan lighten-3"
                         target="_blank"
                       >
-                        <v-icon left>fa-link</v-icon>
+                        <v-icon left>
+                          fa-link
+                        </v-icon>
                         <span>{{ props.item.referral_link.link }}</span>
                       </v-btn>
                     </v-flex>
@@ -268,32 +329,44 @@
               </v-img>
               <v-card-title>
                 <v-container fluid>
-                  <p 
-                    v-if="props.item.sponsor" 
-                    class="title accent--text">Sponsor Details</p>
-                  <v-layout 
-                    v-if="props.item.sponsor" 
-                    row 
-                    wrap>
-                    <v-flex 
-                      xs12 
-                      px-2>
+                  <p
+                    v-if="props.item.sponsor"
+                    class="title accent--text"
+                  >
+                    Sponsor Details
+                  </p>
+                  <v-layout
+                    v-if="props.item.sponsor"
+                    row
+                    wrap
+                  >
+                    <v-flex
+                      xs12
+                      px-2
+                    >
                       <v-avatar>
-                        <img 
-                          :src="props.item.sponsor.photo_url" 
-                          :alt="props.item.sponsor.name">
+                        <img
+                          :src="props.item.sponsor.photo_url"
+                          :alt="props.item.sponsor.name"
+                        >
                       </v-avatar>
-                      <span class="subheading">{{ props.item.sponsor.name }}</span>
+                      <span class="subheading">
+                        {{ props.item.sponsor.name }}
+                      </span>
                     </v-flex>
                   </v-layout>
 
-                  <p class="title accent--text">Account Details</p>
-                  <v-layout 
-                    row 
-                    wrap>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                  <p class="title accent--text">
+                    Account Details
+                  </p>
+                  <v-layout
+                    row
+                    wrap
+                  >
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         v-model="props.item.username"
                         label="Username"
@@ -302,9 +375,10 @@
                         readonly
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         v-model="props.item.profile.contact_no"
                         label="Phone"
@@ -313,9 +387,10 @@
                         prepend-icon="phone"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         v-model="props.item.email"
                         label="Email"
@@ -324,9 +399,10 @@
                         readonly
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.address_1"
                         label="Address 1"
@@ -335,9 +411,10 @@
                         prepend-icon="looks_one"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.address_2"
                         label="Address 2"
@@ -346,9 +423,10 @@
                         prepend-icon="looks_two"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.city"
                         label="City"
@@ -357,9 +435,10 @@
                         prepend-icon="location_city"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.state"
                         label="State"
@@ -368,9 +447,10 @@
                         prepend-icon="map"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.zip"
                         label="Zip"
@@ -379,9 +459,10 @@
                         prepend-icon="markunread_mailbox"
                       />
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      px-1>
+                    <v-flex
+                      xs6
+                      px-1
+                    >
                       <v-text-field
                         :value="props.item.profile.country"
                         label="Country"
@@ -399,30 +480,38 @@
                     </v-flex>
                   </v-layout>
 
-                  <v-layout 
-                    row 
-                    wrap>
-                    <p 
-                      v-if="props.item.roles" 
-                      class="title accent--text">Account Type</p>
+                  <v-layout
+                    row
+                    wrap
+                  >
+                    <p
+                      v-if="props.item.roles"
+                      class="title accent--text"
+                    >
+                      Account Type
+                    </p>
                     <v-flex xs12>
                       <v-combobox
-                        :items="roles"
                         v-model="props.item.roles"
+                        :items="roles"
                         color="primary"
                         light
                         disabled
                         multiple
                         prepend-icon="fa-tags"
                       >
-                        <template 
-                          slot="selection" 
-                          slot-scope="data">
-                          <v-chip 
-                            :selected="data.selected" 
-                            light>
+                        <template
+                          slot="selection"
+                          slot-scope="data"
+                        >
+                          <v-chip
+                            :selected="data.selected"
+                            light
+                          >
                             <v-avatar class="primary white--text">
-                              <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
+                              <span class="headline">
+                                {{ data.item.charAt(0).toUpperCase() }}
+                              </span>
                             </v-avatar>
                             {{ data.item }}
                           </v-chip>
@@ -430,30 +519,38 @@
                       </v-combobox>
                     </v-flex>
                   </v-layout>
-                  <p 
-                    v-if="props.item.permissions" 
-                    class="title accent--text">Permissions</p>
-                  <v-layout 
-                    row 
-                    wrap>
+                  <p
+                    v-if="props.item.permissions"
+                    class="title accent--text"
+                  >
+                    Permissions
+                  </p>
+                  <v-layout
+                    row
+                    wrap
+                  >
                     <v-flex xs12>
                       <v-combobox
-                        :items="permissions"
                         v-model="props.item.permissions"
+                        :items="permissions"
                         color="brown"
                         light
                         disabled
                         multiple
                         prepend-icon="pan_tool"
                       >
-                        <template 
-                          slot="selection" 
-                          slot-scope="data">
-                          <v-chip 
-                            :selected="data.selected" 
-                            light>
+                        <template
+                          slot="selection"
+                          slot-scope="data"
+                        >
+                          <v-chip
+                            :selected="data.selected"
+                            light
+                          >
                             <v-avatar class="primary white--text">
-                              <span class="headline">{{ data.item.charAt(0).toUpperCase() }}</span>
+                              <span class="headline">
+                                {{ data.item.charAt(0).toUpperCase() }}
+                              </span>
                             </v-avatar>
                             {{ data.item }}
                           </v-chip>
@@ -467,8 +564,8 @@
           </v-container>
         </template>
       </v-data-table>
-      <confirm :callback="confirmed(deleteUser)"/>
-      <mass-mail/>
+      <confirm :callback="confirmed(deleteUser)" />
+      <mass-mail />
     </v-container>
   </main-layout>
 </template>
@@ -603,7 +700,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          toggleModal({
+          toggleModal.fire({
             title: "Success!",
             html: '<p class="title">' + response.data.message + "</p>",
             type: "success",
@@ -625,7 +722,7 @@ export default {
               confirmButtonClass: "v-btn blue-grey  subheading white--text",
               buttonsStyling: false
             });
-            toggleModal({
+            toggleModal.fire({
               title: "Oops! Something Went Wrong...",
               html: '<p class="title">' + errors.response.data.message + "</p>",
               type: "warning",
@@ -643,7 +740,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          toggleModal({
+          toggleModal.fire({
             title: "Success!",
             html: '<p class="title">' + response.data.message + "</p>",
             type: "success",
@@ -659,7 +756,7 @@ export default {
               confirmButtonClass: "v-btn blue-grey  subheading white--text",
               buttonsStyling: false
             });
-            toggleModal({
+            toggleModal.fire({
               title: "Oops! Something Went Wrong...",
               html: '<p class="title">' + errors.response.data.message + "</p>",
               type: "error",
@@ -693,7 +790,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          toggleModal({
+          toggleModal.fire({
             title: "Success!",
             html: '<p class="title">User Status Updated!</p>',
             type: "success",
@@ -705,7 +802,7 @@ export default {
             confirmButtonClass: "v-btn blue-grey  subheading white--text",
             buttonsStyling: false
           });
-          toggleModal({
+          toggleModal.fire({
             title: "Oops! Forbidden Action!",
             html: '<p class="title">' + errors.response.data.message + "</p>",
             type: "warning",
@@ -746,7 +843,7 @@ export default {
           confirmButtonClass: "v-btn blue-grey  subheading white--text",
           buttonsStyling: false
         });
-        toggleModal({
+        toggleModal.fire({
           title: "Success",
           html: `<p class="title">${payload.data.message}</p>`,
           type: "success",
@@ -783,7 +880,7 @@ export default {
           confirmButtonClass: "v-btn blue-grey  subheading white--text",
           buttonsStyling: false
         });
-        toggleModal({
+        toggleModal.fire({
           title: "Success",
           html: `<p class="title">${payload.data.message}</p>`,
           type: "success",
@@ -810,7 +907,7 @@ export default {
         let payload = await axios.get(
           route("api.user.link.activate", { id: user.id })
         );
-        toggleModal({
+        toggleModal.fire({
           title: "Success!",
           html: `<p class="title">${payload.data.message}</p>`,
           type: "success",
@@ -819,7 +916,7 @@ export default {
         user.referral_link.active = true;
       } catch ({ message }) {
         if (message) {
-          toggleModal({
+          toggleModal.fire({
             title: "Error!",
             html: `<p class="title">${message}</p>`,
             type: "error",
@@ -838,7 +935,7 @@ export default {
           route("api.user.link.deactivate", { id: user.id })
         );
         user.referral_link.active = false;
-        toggleModal({
+        toggleModal.fire({
           title: "Success!",
           html: `<p class="title">${payload.data.message}</p>`,
           type: "success",
@@ -846,7 +943,7 @@ export default {
         });
       } catch ({ message }) {
         if (message) {
-          toggleModal({
+          toggleModal.fire({
             title: "Error!",
             html: `<p class="title">${message}</p>`,
             type: "error",
@@ -915,7 +1012,7 @@ export default {
       });
       self.deleteUserForm.post(route("api.user.delete")).then(response => {
         if (response.data.status === true) {
-          toggleModal({
+          toggleModal.fire({
             title: "Success",
             html: `<p class="title">User Deleted!</p>`,
             type: "success",
@@ -923,7 +1020,7 @@ export default {
           });
           self.$delete(self.items, index);
         } else {
-          toggleModal({
+          toggleModal.fire({
             title: "Forbidden Action!",
             html: `<p class="title">Cannot Delete Super Admin!</p>`,
             type: "warning",
@@ -955,14 +1052,14 @@ export default {
         self.rolesForm = new Form({
           roles: []
         });
-        toggleModal({
+        toggleModal.fire({
           title: "Success",
           html: `<p class="title">User Role Change!</p>`,
           type: "success",
           confirmButtonText: "Back"
         });
       } catch (errors) {
-        toggleModal({
+        toggleModal.fire({
           title: "Error!",
           html: `<p class="title">${errors.response.data.message}</p>`,
           type: "error",

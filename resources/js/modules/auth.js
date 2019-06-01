@@ -58,7 +58,7 @@ const actions = {
           confirmButtonClass: "v-btn blue-grey  subheading white--text",
           buttonsStyling: false
         });
-        modal({
+        modal.fire({
           title: `${error.response.data.error}`,
           html: `<p class="title">${error.response.data.message}</p>`,
           type: "error",
@@ -138,7 +138,7 @@ const actions = {
           confirmButtonClass: "v-btn blue-grey  subheading white--text",
           buttonsStyling: false
         });
-        modal({
+        modal.fire({
           title: `${error.response.status} Error!`,
           html: `<p class="title">${error.response.data.message}</p>`,
           type: "error",

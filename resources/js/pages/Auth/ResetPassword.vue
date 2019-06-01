@@ -2,23 +2,32 @@
   <modal-layout class="white">
     <v-card :flat="true">
       <v-toolbar class="primary">
-        <v-btn 
-          icon 
-          @click.native="redirectBack()">
-          <v-icon color="white">arrow_back</v-icon>
+        <v-btn
+          icon
+          @click.native="redirectBack()"
+        >
+          <v-icon color="white">
+            arrow_back
+          </v-icon>
         </v-btn>
-        <v-spacer/>
-        <v-toolbar-title class="text-xs-center white--text">Reset Password</v-toolbar-title>
-        <v-spacer/>
+        <v-spacer />
+        <v-toolbar-title class="text-xs-center white--text">
+          Reset Password
+        </v-toolbar-title>
+        <v-spacer />
         <v-toolbar-items>
           <!-- If There is no User Account Login Yet Redirect to Authentication Page -->
-          <v-btn 
-            class="white--text" 
-            flat 
-            @click.native="goHome()">
-            <v-icon 
-              right 
-              color="white">fa-home</v-icon>
+          <v-btn
+            class="white--text"
+            flat
+            @click.native="goHome()"
+          >
+            <v-icon
+              right
+              color="white"
+            >
+              fa-home
+            </v-icon>
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
@@ -26,18 +35,19 @@
         <v-container fluid>
           <form @submit.prevent="resetPassword()">
             <v-layout row>
-              <v-flex 
-                xs12 
-                sm12 
-                md4 
-                offset-md4 
-                lg4 
-                offset-lg4 
-                xl4 
-                offset-xl4>
+              <v-flex
+                xs12
+                sm12
+                md4
+                offset-md4
+                lg4
+                offset-lg4
+                xl4
+                offset-xl4
+              >
                 <v-text-field
-                  v-validate="'required|email'"
                   v-model="form.email"
+                  v-validate="'required|email'"
                   :error-messages="errorMessages('email')"
                   :class="{ 'error--text': hasErrors('email') }"
                   class="primary--text"
@@ -50,18 +60,19 @@
               </v-flex>
             </v-layout>
             <v-layout row>
-              <v-flex 
-                xs12 
-                sm12 
-                md4 
-                offset-md4 
-                lg4 
-                offset-lg4 
-                xl4 
-                offset-xl4>
+              <v-flex
+                xs12
+                sm12
+                md4
+                offset-md4
+                lg4
+                offset-lg4
+                xl4
+                offset-xl4
+              >
                 <v-text-field
-                  v-validate="'required|min:6|confirmed:confirmation'"
                   v-model="form.password"
+                  v-validate="'required|min:8|confirmed:confirmation'"
                   :append-icon="icon"
                   :type="!password_visible ? 'password' : 'text'"
                   :error-messages="errorMessages('password')"
@@ -77,15 +88,16 @@
               </v-flex>
             </v-layout>
             <v-layout row>
-              <v-flex 
-                xs12 
-                sm12 
-                md4 
-                offset-md4 
-                lg4 
-                offset-lg4 
-                xl4 
-                offset-xl4>
+              <v-flex
+                xs12
+                sm12
+                md4
+                offset-md4
+                lg4
+                offset-lg4
+                xl4
+                offset-xl4
+              >
                 <v-text-field
                   ref="confirmation"
                   v-model="form.password_confirmation"
@@ -100,22 +112,25 @@
                 />
               </v-flex>
             </v-layout>
-            <v-flex 
-              xs12 
-              sm12 
-              md4 
-              offset-md4 
-              lg4 
-              offset-lg4 
-              xl4 
-              offset-xl4>
+            <v-flex
+              xs12
+              sm12
+              md4
+              offset-md4
+              lg4
+              offset-lg4
+              xl4
+              offset-xl4
+            >
               <v-btn
                 :loading="form.busy"
                 :disabled="errors.any()"
                 :class="{primary: !form.busy, error: form.busy}"
                 type="submit"
                 block
-              >Reset</v-btn>
+              >
+                Reset
+              </v-btn>
             </v-flex>
           </form>
         </v-container>
