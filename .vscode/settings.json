@@ -1,281 +1,285 @@
 // Place your settings in this file to overwrite the default settings
 {
-  // change this every project
-  "sync.gist": "1338c1068ef5eabb715e1fe13373b121",
-  "emmet.triggerExpansionOnTab": false, // enable tab to expanse emmet tags
-  // <!-- html -->
-  "auto-close-tag.enableAutoCloseTag": true,
-  "auto-close-tag.excludedTags": [
-    "area",
-    "base",
-    "br",
-    "col",
-    "command",
-    "embed",
-    "hr",
-    "img",
-    "input",
-    "keygen",
-    "link",
-    "meta",
-    "param",
-    "source",
-    "track",
-    "wbr"
-  ],
-  "auto-close-tag.enableAutoCloseSelfClosingTag": true,
-  // css
-  "css.fileExtensions": ["css", "scss", "styl"],
-  "css.remoteStyleSheets": [
-    // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-  ],
-  // php
-  "php.suggest.basic": false,
-  // php namespace resolver plugin
-  "namespaceResolver.exclude": "**/node_modules/**", // Exclude glob pattern while finding files
-  "namespaceResolver.showMessageOnStatusBar": false, // Show message on status bar instead of notification box
-  "namespaceResolver.autoSort": true, // Auto sort after imports
-  "namespaceResolver.sortOnSave": false, // Auto sort when a file is saved
-  "namespaceResolver.sortAlphabetically": false, // Sort imports in alphabetical order instead of line length
-  "namespaceResolver.sortNatural": false, // Sort imports using a 'natural order' algorithm
-  "namespaceResolver.leadingSeparator": true, // Expand class with leading namespace separator
-  // <!-- phpcs plugin -->
-  "phpcs.standard": "./phpcs.xml",
-  "phpcs.executablePath": "./vendor/bin/phpcs",
-  "phpcs.ignorePatterns": [
-    "*/storage/",
-    "*/vendor/*",
-    "*/node_modules/*",
-    "*/database/*",
-    "*/resources/*"
-  ],
-  "php.validate.run": "onSave",
-  // <!-- phpfpmt plugin -->
-  "phpfmt.passes": [
-    "PSR2KeywordsLowerCase",
-    "PSR2LnAfterNamespace",
-    "PSR2CurlyOpenNextLine",
-    "PSR2ModifierVisibilityStaticOrder",
-    "PSR2SingleEmptyLineAndStripClosingTag",
-    "ReindentSwitchBlocks",
-    "AlignDoubleArrow",
-    "AlignDoubleSlashComments",
-    "AlignGroupDoubleArrow",
-    "AlignConstVisibilityEquals",
-    "AlignEquals",
-    "AlignPHPCode",
-    "AlignTypehint",
-    "ConvertOpenTagWithEcho",
-    "GeneratePHPDoc",
-    "AlignTypehint",
-    "PrettyPrintDocBlocks",
-    "DoubleToSingleQuote",
-    "OrderAndRemoveUseClauses",
-    "GeneratePHPDoc",
-    "IndentTernaryConditions",
-    "ReindentAndAlignObjOps",
-    "ReindentSwitchBlocks",
-    "ClassToSelf",
-    "OrderMethodAndVisibility",
-    "PHPDocTypesToFunctionTypehint",
-    "SpaceAroundControlStructures",
-    "StripExtraCommaInArray",
-    "ReplaceIsNull",
-    "StripExtraCommaInArray",
-    "StripNewlineAfterClassOpen",
-    "StripNewlineAfterCurlyOpen",
-    "StripSpaceWithinControlStructures",
-    "TightConcat",
-    "TrimSpaceBeforeSemicolon",
-    "ReturnNull",
-    "SortUseNameSpace",
-    "ClassToStatic",
-    "WrongConstructorName",
-    "YodaComparisons",
-    "ShortArray"
-  ],
-  "phpfmt.exclude": ["ReindentComments", "StripNewlineWithinClassBody"],
-  "phpfmt.psr2": true,
-  "phpfmt.smart_linebreak_after_curly": true,
-  "phpfmt.indent_with_space": 4,
-  "phpfmt.detect_indent": false,
-  // <!-- npm plugin -->
-  "npm.runInTerminal": false,
-  // <!-- mysql plugin -->
-  "vscode-mysql.enableTelemetry": false,
-  // <!-- js -->
-  "javascript.validate.enable": false,
-  // <!-- eslint configs -->
-  "eslint.enable": true,
-  "eslint.options": {
-    "extensions": [".html", ".js", ".vue", ".jsx"]
-  },
-  "eslint.validate": [
-    {
-      "language": "html",
-      "autoFix": true
+    // change this every project
+    "sync.gist": "1338c1068ef5eabb715e1fe13373b121",
+    "emmet.triggerExpansionOnTab": false, // enable tab to expanse emmet tags
+    // <!-- html -->
+    "auto-close-tag.enableAutoCloseTag": true,
+    "auto-close-tag.excludedTags": [
+        "area",
+        "base",
+        "br",
+        "col",
+        "command",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "keygen",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr"
+    ],
+    "auto-close-tag.enableAutoCloseSelfClosingTag": true,
+    // css
+    "css.fileExtensions": ["css", "scss", "styl"],
+    "css.remoteStyleSheets": [
+        // "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    ],
+    // php
+    "php.suggest.basic": false,
+    // php namespace resolver plugin
+    "namespaceResolver.exclude": "**/node_modules/**", // Exclude glob pattern while finding files
+    "namespaceResolver.showMessageOnStatusBar": false, // Show message on status bar instead of notification box
+    "namespaceResolver.autoSort": true, // Auto sort after imports
+    "namespaceResolver.sortOnSave": false, // Auto sort when a file is saved
+    "namespaceResolver.sortAlphabetically": false, // Sort imports in alphabetical order instead of line length
+    "namespaceResolver.sortNatural": false, // Sort imports using a 'natural order' algorithm
+    "namespaceResolver.leadingSeparator": true, // Expand class with leading namespace separator
+    // <!-- phpcs plugin -->
+    "phpcs.standard": "./phpcs.xml",
+    "phpcs.executablePath": "./vendor/bin/phpcs",
+    "phpcs.ignorePatterns": [
+        "*/storage/",
+        "*/vendor/*",
+        "*/node_modules/*",
+        "*/database/*",
+        "*/resources/*"
+    ],
+    "php.validate.run": "onSave",
+    // <!-- phpfpmt plugin -->
+    "phpfmt.passes": [
+        "PSR2KeywordsLowerCase",
+        "PSR2LnAfterNamespace",
+        "PSR2CurlyOpenNextLine",
+        "PSR2ModifierVisibilityStaticOrder",
+        "PSR2SingleEmptyLineAndStripClosingTag",
+        "ReindentSwitchBlocks",
+        "AlignDoubleArrow",
+        "AlignDoubleSlashComments",
+        "AlignGroupDoubleArrow",
+        "AlignConstVisibilityEquals",
+        "AlignEquals",
+        "AlignPHPCode",
+        "AlignTypehint",
+        "ConvertOpenTagWithEcho",
+        "GeneratePHPDoc",
+        "AlignTypehint",
+        "PrettyPrintDocBlocks",
+        "DoubleToSingleQuote",
+        "OrderAndRemoveUseClauses",
+        "GeneratePHPDoc",
+        "IndentTernaryConditions",
+        "ReindentAndAlignObjOps",
+        "ReindentSwitchBlocks",
+        "ClassToSelf",
+        "OrderMethodAndVisibility",
+        "PHPDocTypesToFunctionTypehint",
+        "SpaceAroundControlStructures",
+        "StripExtraCommaInArray",
+        "ReplaceIsNull",
+        "StripExtraCommaInArray",
+        "StripNewlineAfterClassOpen",
+        "StripNewlineAfterCurlyOpen",
+        "StripSpaceWithinControlStructures",
+        "TightConcat",
+        "TrimSpaceBeforeSemicolon",
+        "ReturnNull",
+        "SortUseNameSpace",
+        "ClassToStatic",
+        "WrongConstructorName",
+        "YodaComparisons",
+        "ShortArray"
+    ],
+    "phpfmt.exclude": ["ReindentComments", "StripNewlineWithinClassBody"],
+    "phpfmt.psr2": true,
+    "phpfmt.smart_linebreak_after_curly": true,
+    "phpfmt.indent_with_space": 4,
+    "phpfmt.detect_indent": false,
+    // <!-- npm plugin -->
+    "npm.runInTerminal": false,
+    // <!-- mysql plugin -->
+    "vscode-mysql.enableTelemetry": false,
+    // <!-- js -->
+    "javascript.validate.enable": false,
+    // <!-- eslint configs -->
+    "eslint.enable": true,
+    "eslint.options": {
+        "extensions": [".html", ".js", ".vue", ".jsx"]
     },
-    {
-      "language": "vue",
-      "autoFix": true
+    "eslint.validate": [
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.run": "onSave",
+    "eslint.autoFixOnSave": true,
+    // <!--blade-->
+    "blade.format.enable": true, // if you would like to enable blade format
+    // <!--autosave-->
+    // editor per language spacing
+    "[php]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 4
     },
-    {
-      "language": "javascript",
-      "autoFix": true
+    "[blade]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 4
     },
-    {
-      "language": "javascriptreact",
-      "autoFix": true
-    }
-  ],
-  "eslint.run": "onSave",
-  "eslint.autoFixOnSave": true,
-  // <!--blade-->
-  "blade.format.enable": true, // if you would like to enable blade format
-  // <!--autosave-->
-  // editor per language spacing
-  "[php]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 4
-  },
-  "[blade]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 4
-  },
-  "[vue]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2,
-    // <-- vuetify plugins -->
-    "editor.quickSuggestions": {
-      "strings": true
-    }
-  },
-  "[html]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[json]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[javascript]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[scss]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[sass]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[css]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  "[stylus]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
-  },
-  // <!-- emmet -->
-  "emmet.includeLanguages": {
-    "blade": "html",
-    "vue-html": "html"
-  },
-  // <!-- autorename -->
-  "auto-rename-tag.activationOnLanguage": [
-    "html",
-    "blade",
-    "xml",
-    "php",
-    "javascript",
-    "blade",
-    "vue"
-  ]
-  // "vim.easymotion": true,
-  // "vim.sneak": true,
-  // "vim.incsearch": true,
-  // "vim.useSystemClipboard": true,
-  // "vim.useCtrlKeys": true,
-  // "vim.hlsearch": true,
-  // "vim.insertModeKeyBindings": [
-  //     {
-  //         "before": ["j", "j"],
-  //         "after": ["<Esc>"]
-  //     }
-  // ],
-  // "vim.normalModeKeyBindingsNonRecursive": [
-  //     {
-  //         "before": ["<leader>", "d"],
-  //         "after": ["d", "d"]
-  //     },
-  //     {
-  //         "before": ["j"],
-  //         "after": ["g", "j"]
-  //     },
-  //     {
-  //         "before": ["<C-n>"],
-  //         "commands": [":nohl"]
-  //     },
-  //     {
-  //         "before": [":"],
-  //         "commands": ["workbench.action.showCommands"]
-  //     },
-  //     {
-  //         "before": ["Z", "Z"],
-  //         "commands": [":wq"]
-  //     },
-  //     {
-  //         "before": ["<leader>", "m"],
-  //         "commands": ["bookmarks.toggle"]
-  //     },
-  //     {
-  //         "before": ["<leader>", "b"],
-  //         "commands": ["bookmarks.list"]
-  //     },
-  //     {
-  //         "before": ["leader", "w"],
-  //         "commands": ["workbench.action.files.save"]
-  //     }
-  // ],
-  // "vim.visualModeKeyBindingsNonRecursive": [
-  //     {
-  //         "before": ["p"],
-  //         "after": ["p", "g", "v", "y"]
-  //     },
-  //     {
-  //         "before": [">"],
-  //         "commands": ["editor.action.indentLines"]
-  //     },
-  //     {
-  //         "before": ["<"],
-  //         "commands": ["editor.action.outdentLines"]
-  //     }
-  // ],
-  // "vim.leader": "space",
-  // "vim.handleKeys": {
-  //     "<C-a>": false,
-  //     "<C-f>": false,
-  //     "<C-w>": false,
-  //     "<C-d>": false,
-  //     "<C-s>": false,
-  //     "<C-b>": false
-  // },
-  // "vim.surround": true,
-  // "vim.statusBarColorControl": true,
-  // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
-  // "vim.statusBarColors.insert": "#FF4081",
-  // "vim.statusBarColors.visual": "#B48EAD",
-  // "vim.statusBarColors.visualline": "#B48EAD",
-  // "vim.statusBarColors.visualblock": "#A3BE8C",
-  // "vim.statusBarColors.replace": "#D08770",
-  // "vim.easymotionMarkerFontWeight": "normal",
-  // "vim.easymotionMarkerFontSize": "15",
-  // "vim.easymotionMarkerFontFamily": "operator mono lig",
-  // "vim.easymotionMarkerBackgroundColor": "#BG616A",
-  // "vim.easymotionMarkerHeight": 10,
-  // "vim.easymotionMarkerWidthPerChar": 15,
-  // "vim.easymotionMarkerForegroundColorOneChar": "#e53935",
-  // "vim.easymotionMarkerForegroundColorTwoChar": "#BF360C"
+    "[vue]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2,
+        // <-- vuetify plugins -->
+        "editor.quickSuggestions": {
+            "strings": true
+        }
+    },
+    "[html]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[scss]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[sass]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    "[stylus]": {
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2
+    },
+    // <!-- emmet -->
+    "emmet.includeLanguages": {
+        "blade": "html",
+        "vue-html": "html"
+    },
+    // <!-- autorename -->
+    "auto-rename-tag.activationOnLanguage": [
+        "html",
+        "blade",
+        "xml",
+        "php",
+        "javascript",
+        "blade",
+        "vue"
+    ],
+    "stylelint.enable": true,
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false
+    // "vim.easymotion": true,
+    // "vim.sneak": true,
+    // "vim.incsearch": true,
+    // "vim.useSystemClipboard": true,
+    // "vim.useCtrlKeys": true,
+    // "vim.hlsearch": true,
+    // "vim.insertModeKeyBindings": [
+    //     {
+    //         "before": ["j", "j"],
+    //         "after": ["<Esc>"]
+    //     }
+    // ],
+    // "vim.normalModeKeyBindingsNonRecursive": [
+    //     {
+    //         "before": ["<leader>", "d"],
+    //         "after": ["d", "d"]
+    //     },
+    //     {
+    //         "before": ["j"],
+    //         "after": ["g", "j"]
+    //     },
+    //     {
+    //         "before": ["<C-n>"],
+    //         "commands": [":nohl"]
+    //     },
+    //     {
+    //         "before": [":"],
+    //         "commands": ["workbench.action.showCommands"]
+    //     },
+    //     {
+    //         "before": ["Z", "Z"],
+    //         "commands": [":wq"]
+    //     },
+    //     {
+    //         "before": ["<leader>", "m"],
+    //         "commands": ["bookmarks.toggle"]
+    //     },
+    //     {
+    //         "before": ["<leader>", "b"],
+    //         "commands": ["bookmarks.list"]
+    //     },
+    //     {
+    //         "before": ["leader", "w"],
+    //         "commands": ["workbench.action.files.save"]
+    //     }
+    // ],
+    // "vim.visualModeKeyBindingsNonRecursive": [
+    //     {
+    //         "before": ["p"],
+    //         "after": ["p", "g", "v", "y"]
+    //     },
+    //     {
+    //         "before": [">"],
+    //         "commands": ["editor.action.indentLines"]
+    //     },
+    //     {
+    //         "before": ["<"],
+    //         "commands": ["editor.action.outdentLines"]
+    //     }
+    // ],
+    // "vim.leader": "space",
+    // "vim.handleKeys": {
+    //     "<C-a>": false,
+    //     "<C-f>": false,
+    //     "<C-w>": false,
+    //     "<C-d>": false,
+    //     "<C-s>": false,
+    //     "<C-b>": false
+    // },
+    // "vim.surround": true,
+    // "vim.statusBarColorControl": true,
+    // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+    // "vim.statusBarColors.insert": "#FF4081",
+    // "vim.statusBarColors.visual": "#B48EAD",
+    // "vim.statusBarColors.visualline": "#B48EAD",
+    // "vim.statusBarColors.visualblock": "#A3BE8C",
+    // "vim.statusBarColors.replace": "#D08770",
+    // "vim.easymotionMarkerFontWeight": "normal",
+    // "vim.easymotionMarkerFontSize": "15",
+    // "vim.easymotionMarkerFontFamily": "operator mono lig",
+    // "vim.easymotionMarkerBackgroundColor": "#BG616A",
+    // "vim.easymotionMarkerHeight": 10,
+    // "vim.easymotionMarkerWidthPerChar": 15,
+    // "vim.easymotionMarkerForegroundColorOneChar": "#e53935",
+    // "vim.easymotionMarkerForegroundColorTwoChar": "#BF360C"
 }

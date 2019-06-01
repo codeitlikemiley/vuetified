@@ -35,7 +35,7 @@ class RegisterController extends Controller
         request()->validate([
             'name'                  => 'required',
             'username'              => 'required|email',
-            'password'              => 'required|min:6|confirmed',
+            'password'              => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
             'role'                  => [
                 'sometimes',

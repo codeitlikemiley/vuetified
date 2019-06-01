@@ -44,7 +44,7 @@ class AccountController extends Controller
                 'required',
                 new MustMatchPassword($user->password)
             ],
-            'password'              => 'required_with:old_password|min:6|confirmed',
+            'password'              => 'required_with:old_password|min:8|confirmed',
             'password_confirmation' => 'required_with:password'
         ]);
         // fill will only assign those in the fillable fields of user

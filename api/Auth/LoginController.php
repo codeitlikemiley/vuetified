@@ -52,7 +52,7 @@ class LoginController extends Controller
                 'required',
                 new MustBeEmailOrUsername
             ],
-            'password' => 'required|min:6'
+            'password' => 'required|min:8'
         ]);
 
         return $this->issueToken($request, 'password');

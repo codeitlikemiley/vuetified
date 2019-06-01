@@ -32,7 +32,7 @@ class UsersController extends Controller
             'name'                  => 'required',
             'username'              => 'nullable',
             'email'                 => 'nullable|email|unique:users',
-            'password'              => 'required|min:6|confirmed',
+            'password'              => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
             'roles'                 => [
                 'sometimes',
@@ -271,7 +271,7 @@ class UsersController extends Controller
                 Rule::unique('users')->ignore($user->id)
             ],
             'active'                => 'required|boolean',
-            'password'              => 'nullable|min:6|confirmed',
+            'password'              => 'nullable|min:8|confirmed',
             'password_confirmation' => 'required_with:password',
             'email'                 => [
                 'nullable',
