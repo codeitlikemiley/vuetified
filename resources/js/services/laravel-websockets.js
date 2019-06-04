@@ -15,6 +15,7 @@ if (process.env.MIX_ECHO_SSL) {
     // encrypted: true // uncomment this if you are using SSL
   });
 } else {
+  console.log('no-ssl')
   window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
