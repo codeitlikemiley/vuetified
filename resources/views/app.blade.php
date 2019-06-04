@@ -87,4 +87,13 @@
 <script src="{{mix('/js/app.js')}}"></script>
 @endif
 
+<!-- Test if websockets is working -->
+@if(config('websockets.ssl.on'))
+<script>
+    Echo.channel('home').listen('NewMessage', (e) =>{
+                console.log(e.message);
+            });
+</script>
+@endif
+
 @endpush
