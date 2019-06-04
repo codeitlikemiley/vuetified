@@ -44,7 +44,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "promise": "^8.0.2",
-    "pusher-js": "^4.4.0",
+    "pusher-js": "4.3.0",
     "sweetalert2": "^8.0.1",
     "vee-validate": "^2.1.5",
     "vform": "^1.0.0",

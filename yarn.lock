@@ -6281,21 +6281,22 @@ punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-pusher-js@^3.2.1:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-3.2.4.tgz#29dfc5c58ffa576dc71afba07815a3f895a71dc5"
-  dependencies:
-    faye-websocket "0.9.4"
-    xmlhttprequest "^1.8.0"
-
-pusher-js@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-4.4.0.tgz#c52e758c418f8ff9b3221b22291865ffbbc56e32"
-  integrity sha512-oxSEG764hqeGAqW9Ryq5KdGQrbM/2sBy5L6Jsh62GyRbRO4z0qI9EjQ6IfQSDhR59b/tY0ANuXD8+ZOZY9AOyg==
+pusher-js@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-4.3.0.tgz#b24319a5b0b784dc49498515274994488eff2f10"
+  integrity sha512-HCZckrbIlIBOl6nH5tXhFWel9ZzyLQNAyrdlX0XWI3wGbOhU0IjsvtNDTdO+oa45priH06BwYo2ecUPvZOXBMw==
   dependencies:
     faye-websocket "0.9.4"
     tweetnacl "^1.0.0"
     tweetnacl-util "^0.15.0"
+    xmlhttprequest "^1.8.0"
+
+pusher-js@^3.2.1:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-3.2.4.tgz#29dfc5c58ffa576dc71afba07815a3f895a71dc5"
+  integrity sha1-Kd/FxY/6V23HGvugeBWj+JWnHcU=
+  dependencies:
+    faye-websocket "0.9.4"
     xmlhttprequest "^1.8.0"
 
 q@^1.1.2:
