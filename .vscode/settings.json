@@ -196,90 +196,92 @@
     "stylelint.enable": true,
     "css.validate": false,
     "less.validate": false,
-    "scss.validate": false
-    // "vim.easymotion": true,
-    // "vim.sneak": true,
-    // "vim.incsearch": true,
-    // "vim.useSystemClipboard": true,
-    // "vim.useCtrlKeys": true,
-    // "vim.hlsearch": true,
-    // "vim.insertModeKeyBindings": [
-    //     {
-    //         "before": ["j", "j"],
-    //         "after": ["<Esc>"]
-    //     }
-    // ],
-    // "vim.normalModeKeyBindingsNonRecursive": [
-    //     {
-    //         "before": ["<leader>", "d"],
-    //         "after": ["d", "d"]
-    //     },
-    //     {
-    //         "before": ["j"],
-    //         "after": ["g", "j"]
-    //     },
-    //     {
-    //         "before": ["<C-n>"],
-    //         "commands": [":nohl"]
-    //     },
-    //     {
-    //         "before": [":"],
-    //         "commands": ["workbench.action.showCommands"]
-    //     },
-    //     {
-    //         "before": ["Z", "Z"],
-    //         "commands": [":wq"]
-    //     },
-    //     {
-    //         "before": ["<leader>", "m"],
-    //         "commands": ["bookmarks.toggle"]
-    //     },
-    //     {
-    //         "before": ["<leader>", "b"],
-    //         "commands": ["bookmarks.list"]
-    //     },
-    //     {
-    //         "before": ["leader", "w"],
-    //         "commands": ["workbench.action.files.save"]
-    //     }
-    // ],
-    // "vim.visualModeKeyBindingsNonRecursive": [
-    //     {
-    //         "before": ["p"],
-    //         "after": ["p", "g", "v", "y"]
-    //     },
-    //     {
-    //         "before": [">"],
-    //         "commands": ["editor.action.indentLines"]
-    //     },
-    //     {
-    //         "before": ["<"],
-    //         "commands": ["editor.action.outdentLines"]
-    //     }
-    // ],
-    // "vim.leader": "space",
-    // "vim.handleKeys": {
-    //     "<C-a>": false,
-    //     "<C-f>": false,
-    //     "<C-w>": false,
-    //     "<C-d>": false,
-    //     "<C-s>": false,
-    //     "<C-b>": false
-    // },
-    // "vim.surround": true,
-    // "vim.statusBarColorControl": true,
-    // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
-    // "vim.statusBarColors.insert": "#FF4081",
-    // "vim.statusBarColors.visual": "#B48EAD",
-    // "vim.statusBarColors.visualline": "#B48EAD",
-    // "vim.statusBarColors.visualblock": "#A3BE8C",
-    // "vim.statusBarColors.replace": "#D08770",
-    // "vim.easymotionMarkerFontWeight": "normal",
-    // "vim.easymotionMarkerFontSize": "15",
-    // "vim.easymotionMarkerFontFamily": "operator mono lig",
-    // "vim.easymotionMarkerBackgroundColor": "#BG616A",
-    // "vim.easymotionMarkerHeight": 10,
-    // "vim.easymotionMarkerWidthPerChar": 15,
-    // "vim.easymotionMarkerForegroundColorOneChar": "#e53935",
-    // "vim.easymotionMarkerForegroundColorTwoChar": "#BF360C"
+    "scss.validate": false,
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "d"],
+            "after": ["d", "d"]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": [":"],
+            "commands": ["workbench.action.showCommands"]
+        },
+        {
+            "before": ["Z", "Z"],
+            "commands": [":wq"]
+        },
+        {
+            "before": ["<leader>", "m"],
+            "commands": ["bookmarks.toggle"]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "commands": ["bookmarks.list"]
+        },
+        {
+            "before": ["leader", "w"],
+            "commands": ["workbench.action.files.save"]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["p"],
+            "after": ["p", "g", "v", "y"]
+        },
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        }
+    ],
+    "vim.leader": "space",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-w>": false,
+        "<C-d>": false,
+        "<C-s>": false,
+        "<C-b>": false
+    },
+    "vim.surround": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+    "vim.statusBarColors.insert": "#FF4081",
+    "vim.statusBarColors.visual": "#B48EAD",
+    "vim.statusBarColors.visualline": "#B48EAD",
+    "vim.statusBarColors.visualblock": "#A3BE8C",
+    "vim.statusBarColors.replace": "#D08770",
+    "vim.easymotionMarkerFontWeight": "normal",
+    "vim.easymotionMarkerFontSize": "15",
+    "vim.easymotionMarkerFontFamily": "operator mono lig",
+    "vim.easymotionMarkerBackgroundColor": "#BG616A",
+    "vim.easymotionMarkerHeight": 10,
+    "vim.easymotionMarkerWidthPerChar": 15,
+    "vim.easymotionMarkerForegroundColorOneChar": "#e53935",
+    "vim.easymotionMarkerForegroundColorTwoChar": "#BF360C"
 }
