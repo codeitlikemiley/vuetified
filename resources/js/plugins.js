@@ -2,9 +2,9 @@
 //! Primary Services Add Here
 import "./services/vuetify";
 import "./services/vue-axios";
+import "./services/laravel-websockets"
 import "./services/bus";
 import "./services/vuex";
-import "./services/echo";
 import "./services/initial-state";
 // import('./services/forms')
 import "./services/vee-validate";
