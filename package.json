@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-vue": "^5.1.0",
     "expect": "^23.6.0",
-    "jsdom": "^13.2.0",
+    "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
     "mocha-webpack": "^1.1.0",
