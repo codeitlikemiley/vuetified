@@ -16,6 +16,7 @@ trait ProvidesScriptVariables
     public static function scriptVariables()
     {
         return [
+            'ssl_on'       => config('websockets.ssl.on'),
             'csrfToken'    => csrf_token(),
             'env'          => config('app.env'),
             'api_endpoint' => config('app.api'),
@@ -33,10 +34,8 @@ trait ProvidesScriptVariables
                 'username' => $user->username,
                 'profile'  => $user->profile
             ];
-        }
-
-        // We Will Return a Default Sponsor
-        else {
+        } else {
+            // We Will Return a Default Sponsor
             $user = Vuetified::user()->first()->load('profile');
             return [
                 'user_id'  => $user->id,

@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Console\ConfirmableTrait;
 
-class GenerateEchoAppKey extends Command
+class GenerateLaravelWebsocketsAppKey extends Command
 {
     use ConfirmableTrait;
 
@@ -15,14 +15,14 @@ class GenerateEchoAppKey extends Command
      *
      * @var string
      */
-    protected $description = 'Set Laravel Echo Server Client Key';
+    protected $description = 'Set the Laravel Websocket App Key';
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'echo:key
+    protected $signature = 'websockets:key
                         {--show : Display the key instead of modifying files}
                         {--force : Force the operation to run when in production}';
 
@@ -49,18 +49,13 @@ class GenerateEchoAppKey extends Command
             return $this->line('<comment>'.$key.'</comment>');
         }
 
-// Next, we will replace the application key in the environment file so it is
-
-// automatically setup for this developer. This key gets generated using a
-
-// secure random byte generator and is later base64 encoded for storage.
         if (!$this->setKeyInEnvironmentFile($key)) {
             return;
         }
 
-        $this->laravel['config']['echo.client_key'] = $key;
+        $this->laravel['config']['websockets.apps.0.key'] = $key;
 
-        $this->info("Laravel Echo Server Client KEY: [$key] set successfully.");
+        $this->info("Laravel Websocket App Key: [$key] set successfully.");
     }
 
     protected function generateRandomKey()
@@ -77,9 +72,9 @@ class GenerateEchoAppKey extends Command
      */
     protected function keyReplacementPattern()
     {
-        $escaped = preg_quote('='.$this->laravel['config']['echo.client_key'], '/');
+        $escaped = preg_quote('='.$this->laravel['config']['websockets.apps.0.key'], '/');
 
-        return "/^ECHO_CLIENT_KEY{$escaped}/m";
+        return "/^PUSHER_APP_KEY{$escaped}/m";
     }
 
     /**
@@ -87,7 +82,7 @@ class GenerateEchoAppKey extends Command
      */
     protected function setKeyInEnvironmentFile($key)
     {
-        $currentKey = $this->laravel['config']['echo.client_key'];
+        $currentKey = $this->laravel['config']['websockets.apps.0.key'];
 
         if (strlen($currentKey) !== 0 && (!$this->confirmToProceed())) {
             return false;
@@ -108,7 +103,7 @@ class GenerateEchoAppKey extends Command
     {
         file_put_contents($this->laravel->environmentFilePath(), preg_replace(
             $this->keyReplacementPattern(),
-            'ECHO_CLIENT_KEY='.$key,
+            'PUSHER_APP_KEY='.$key,
             file_get_contents($this->laravel->environmentFilePath())
         ));
     }

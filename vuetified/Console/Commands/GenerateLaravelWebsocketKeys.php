@@ -4,21 +4,21 @@ namespace Vuetified\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class GenerateEchoKeys extends Command
+class GenerateLaravelWebsocketKeys extends Command
 {
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate Client App ID and Client App Key in Laravel Echo Server';
+    protected $description = 'Generate Client App ID, Key and Secret in Laravel Websockets';
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'echo:generate';
+    protected $signature = 'websockets:generate';
 
     /**
      * Create a new command instance.
@@ -37,7 +37,8 @@ class GenerateEchoKeys extends Command
      */
     public function handle()
     {
-        $this->call('echo:id');
-        $this->call('echo:key');
+        $this->call('websockets:id');
+        $this->call('websockets:key');
+        $this->call('websockets:secret');
     }
 }

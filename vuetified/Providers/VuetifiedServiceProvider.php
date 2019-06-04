@@ -5,9 +5,10 @@ namespace Vuetified\Providers;
 use Vuetified\Vuetified;
 use Illuminate\Support\ServiceProvider;
 use Vuetified\Console\Commands\VersionCommand;
-use Vuetified\Console\Commands\GenerateEchoKeys;
-use Vuetified\Console\Commands\GenerateEchoAppID;
-use Vuetified\Console\Commands\GenerateEchoAppKey;
+use Vuetified\Console\Commands\GenerateLaravelWebsocketKeys;
+use Vuetified\Console\Commands\GenerateLaravelWebsocketsAppID;
+use Vuetified\Console\Commands\GenerateLaravelWebsocketsAppKey;
+use Vuetified\Console\Commands\GenerateLaravelWebsocketsSecretKey;
 
 class VuetifiedServiceProvider extends ServiceProvider
 {
@@ -25,9 +26,10 @@ class VuetifiedServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 VersionCommand::class,
-                GenerateEchoAppID::class,
-                GenerateEchoAppKey::class,
-                GenerateEchoKeys::class
+                GenerateLaravelWebsocketsAppID::class,
+                GenerateLaravelWebsocketsAppKey::class,
+                GenerateLaravelWebsocketsSecretKey::class,
+                GenerateLaravelWebsocketKeys::class
                 // Add Console Command Here
             ]);
         }
