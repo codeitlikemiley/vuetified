@@ -41,7 +41,7 @@
     "laravel-echo": "^1.5.2",
     "laravel-echo-server": "^1.5.0",
     "laravel-mix": "^2.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "promise": "^8.0.2",
     "sweetalert2": "^8.0.1",
