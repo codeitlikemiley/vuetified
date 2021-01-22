@@ -2,4 +2,5 @@ import "./vee-validate";
 import "./route";
 import "./bus";
 import "./store";
-import "./session"
+import "./session";
+import "./websocket";
