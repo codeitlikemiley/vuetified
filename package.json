@@ -22,7 +22,7 @@
         "deepmerge": "^4.2.2",
         "eslint-plugin-import": "^2.19.1",
         "eslint-plugin-vue": "^6.0.1",
-        "fibers": "^4.0.3",
+        "fibers": "^5.0.0",
         "font-awesome": "^4.7.0",
         "laravel-mix": "5.0.9",
         "lodash": "^4.17.20",
