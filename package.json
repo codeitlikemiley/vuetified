@@ -47,7 +47,7 @@
         "object-to-formdata": "^2.3.1",
         "pusher-js": "^7.0.2",
         "sweetalert2": "^9.17.2",
-        "vee-validate": "^2.2.15",
+        "vee-validate": "^3.4.5",
         "vform": "^1.0.1",
         "vue-axios": "^2.1.5",
         "vue-sessionstorage": "^1.0.0",
