@@ -10,7 +10,7 @@
             </v-toolbar-title>
         </v-app-bar>
 
-        <v-content>
+        <v-main>
             <section id="hero">
                 <v-row no-gutters>
                     <v-img
@@ -356,12 +356,12 @@
                         </v-col>
                     </v-row>
                     <h2 class="text-center headline font-weight-medium pt-12">
-                        Already Our Backer? Go Inside Our Investor's Portal
+                        Already A Member?
                     </h2>
 
                     <v-responsive class="mx-auto mb-12 text-center">
                         <v-avatar class="elevation-12 mb-12" size="128">
-                            <v-img src="/images/avatar.svg"></v-img>
+                            <v-img src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"></v-img>
                         </v-avatar>
 
                         <div></div>
@@ -378,7 +378,7 @@
 
                 <div class="py-12"></div>
             </section>
-        </v-content>
+        </v-main>
 
         <v-footer class="justify-center" color="#292929" height="100">
             <div
@@ -396,6 +396,12 @@ export default {
         year: new Date().getFullYear(),
         domain: "goldcoders.app",
         trademark: "",
+        stats: [
+          ['24k', 'Licenses Sold'],
+          ['330+', 'Features Added'],
+          ['24k', 'Apps  Deployed'],
+          ['1m', 'Features Request'],
+        ],
         items: [
             {
                 icon: "fa-desktop",
