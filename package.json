@@ -24,7 +24,7 @@
         "eslint-plugin-vue": "^6.0.1",
         "fibers": "^4.0.3",
         "font-awesome": "^4.7.0",
-        "laravel-mix": "5.0.1",
+        "laravel-mix": "5.0.9",
         "lodash": "^4.17.20",
         "material-design-icons-iconfont": "^5.0.1",
         "resolve-url-loader": "^3.1.2",
