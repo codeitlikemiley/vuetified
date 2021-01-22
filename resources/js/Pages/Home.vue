@@ -101,7 +101,7 @@
             class="elevation-12 mb-12"
             size="128"
           >
-            <v-img src="https://scontent.fcrk1-2.fna.fbcdn.net/v/t1.0-9/87372254_2769415686512834_4711647890433376256_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGmVZLE5G4eusVPZDx_1iQU1UAjSnuhrUrVQCNKe6GtSrU5ZzsVCzvVC-WjAYEWaYr6EAf9yPyAuFmdFEWVxmYd&_nc_ohc=fMzrCQ8uPW0AX8PqgYu&_nc_ht=scontent.fcrk1-2.fna&oh=1bb06a8a2a9d62532b33691d892f3719&oe=6030A8B0"></v-img>
+            <v-img src="https://scontent.fcrk1-2.fna.fbcdn.net/v/t1.0-9/97679798_164697788407517_5975813171175227392_o.jpg?_nc_cat=111&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFnh0LFMpeIx-mgLbyWppe9y9wbunDVfvLL3Bu6cNV-8i254ea4CazethgYXVRLT8f0imCk1YWt1jE4NFWH7BRL&_nc_ohc=sn47W2Pjm0MAX_KuOJL&_nc_ht=scontent.fcrk1-2.fna&oh=1ab4a43902a887ff01d074df99bedb85&oe=602FF974"></v-img>
           </v-avatar>
 
           <div></div>
