@@ -3630,14 +3630,15 @@ eslint-plugin-import@^2.19.1:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-vue@^6.0.1:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-6.2.2.tgz#27fecd9a3a24789b0f111ecdd540a9e56198e0fe"
-  integrity sha512-Nhc+oVAHm0uz/PkJAWscwIT4ijTrK5fqNqz9QB1D35SbbuMG1uB6Yr5AJpvPSWg+WOw7nYNswerYh0kOk64gqQ==
+eslint-plugin-vue@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-7.5.0.tgz#cc6d983eb22781fa2440a7573cf39af439bb5725"
+  integrity sha512-QnMMTcyV8PLxBz7QQNAwISSEs6LYk2LJvGlxalXvpCtfKnqo7qcY0aZTIxPe8QOnHd7WCwiMZLOJzg6A03T0Gw==
   dependencies:
+    eslint-utils "^2.1.0"
     natural-compare "^1.4.0"
-    semver "^5.6.0"
-    vue-eslint-parser "^7.0.0"
+    semver "^7.3.2"
+    vue-eslint-parser "^7.4.1"
 
 eslint-scope@^4.0.3:
   version "4.0.3"
@@ -9921,7 +9922,7 @@ vue-axios@^2.1.5:
   resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-2.1.5.tgz#1af4bf1218ed71309c76afb38d0f683e312c24a7"
   integrity sha512-th5xVbInVoyIoe+qY+9GCflEVezxAvztD4xpFF39SRQYqpoKD2qkmX8yv08jJG9a2SgNOCjirjJGSwg/wTrbmA==
 
-vue-eslint-parser@^7.0.0:
+vue-eslint-parser@^7.4.1:
   version "7.4.1"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.4.1.tgz#e4adcf7876a7379758d9056a72235af18a587f92"
   integrity sha512-AFvhdxpFvliYq1xt/biNBslTHE/zbEvSnr1qfHA/KxRIpErmEDrQZlQnvEexednRHmLfDNOMuDYwZL5xkLzIXQ==
