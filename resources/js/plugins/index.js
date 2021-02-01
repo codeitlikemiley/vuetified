@@ -1,5 +1,7 @@
 import "./vee-validate";
-import "./route";
+//uncomment if you are going for production
+// import "./route";
+import "./route-local";
 import "./bus";
 import "./store";
 import "./session";

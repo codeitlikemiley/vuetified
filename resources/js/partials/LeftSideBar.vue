@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     leave() {
-      this.$inertia.visit(this.route("impersonate.leave").url());
+      this.$inertia.visit(this.route("impersonate.leave"));
     }
   }
 };

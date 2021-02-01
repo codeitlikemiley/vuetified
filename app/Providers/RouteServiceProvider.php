@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,9 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/';
+    public const HOME      = '/';
     public const DASHBOARD = '/dashboard';
-
 
     /**
      * The controller namespace for the application.
@@ -37,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->setRoutePatterns();
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
@@ -61,5 +62,17 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    protected function setRoutePatterns()
+    {
+        Route::pattern('id', '[0-9]+');
+        Route::pattern('user', '[0-9]+');
+        Route::pattern('hash', '[a-z0-9]+');
+        Route::pattern('hex', '[a-f0-9]+');
+        Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+        Route::pattern('base', '[a-zA-Z0-9]+');
+        Route::pattern('slug', '[a-z0-9-]+');
+        Route::pattern('username', '[a-z0-9_-]{3,16}');
     }
 }

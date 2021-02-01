@@ -1,0 +1,35 @@
+
+{
+    "phpfmt.passes": [
+        "PSR2KeywordsLowerCase",
+        "PSR2LnAfterNamespace",
+        "PSR2CurlyOpenNextLine",
+        "PSR2ModifierVisibilityStaticOrder",
+        "PSR2SingleEmptyLineAndStripClosingTag",
+        "ReindentSwitchBlocks",
+        "AlignConstVisibilityEquals",
+        "AlignDoubleArrow",
+        "AlignEquals",
+        "AlignGroupDoubleArrow",
+        "AutoSemicolon",
+        "ClassToStatic",
+        "DoubleToSingleQuote",
+        "SortUseNameSpace",
+        "SpaceBetweenMethods",
+        "ShortArray",
+        "RestoreComments",
+        "OrderMethodAndVisibility",
+        "ReindentAndAlignObjOps",
+        "ReindentSwitchBlocks",
+    ],
+    "phpfmt.psr2": false,
+    "phpfmt.exclude": [
+        "ReindentComments",
+        "StripNewlineWithinClassBody"
+    ],
+    "phpfmt.php_bin": "C:\\tools\\php80\\php.exe",
+    "phpfmt.smart_linebreak_after_curly": true,
+    "phpfmt.indent_with_space": 4,
+    "phpfmt.detect_indent": false,
+    "phpfmt.yoda": true,
+}

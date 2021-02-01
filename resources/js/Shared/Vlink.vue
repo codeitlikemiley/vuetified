@@ -97,7 +97,7 @@ export default {
       } else if (this.routeExists(href)) {
         /* when using vue router path */
 
-        this.$inertia.visit(this.route(href).url());
+        this.$inertia.visit(this.route(href));
       } else {
         this.$inertia.visit(href);
       }
