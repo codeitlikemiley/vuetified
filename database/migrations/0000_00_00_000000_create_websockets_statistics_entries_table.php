@@ -1,11 +1,21 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateWebSocketsStatisticsEntriesTable extends Migration
 {
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('websockets_statistics_entries');
+    }
+
     /**
      * Run the migrations.
      *
@@ -21,15 +31,5 @@ class CreateWebSocketsStatisticsEntriesTable extends Migration
             $table->integer('api_message_count');
             $table->nullableTimestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('websockets_statistics_entries');
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Console\ConfirmableTrait;
 
 class GenerateLaravelWebsocketsAppID extends Command
 {
