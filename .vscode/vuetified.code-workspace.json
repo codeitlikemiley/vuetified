@@ -1,0 +1,48 @@
+{
+    // rename this file, remove .json and use vscode to launch it
+    "folders": [
+        {
+            "path": "..\\www\\projectx",
+            "name": "Backend"
+        },
+        {
+            "path": "..\\App\\thriftshop",
+            "name": "Mobile App"
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "pkief.material-icon-theme",
+            "alefragnani.bookmarks",
+            "usernamehw.errorlens",
+            "aaron-bond.better-comments",
+            "bungcip.better-toml",
+            "coenraads.bracket-pair-colorizer-2",
+            "irongeek.vscode-env",
+            "sleistner.vscode-fileutils",
+            "mhutchie.git-graph",
+            "donjayamanne.githistory",
+            "codezombiech.gitignore",
+            "eamodio.gitlens",
+            "sirtori.indenticator",
+            "pascalsenn.keyboard-quickfix",
+            "pkief.material-icon-theme",
+            "asvetliakov.vscode-neovim",
+            "ionutvmi.path-autocomplete",
+            "luxcium.pop-n-lock-theme-vscode",
+            "ms-vscode.powershell",
+            "esbenp.prettier-vscode",
+            "plibither8.remove-comments",
+            "humao.rest-client",
+            "devonray.snippet",
+            "jock.svg",
+            "simonsiefke.svg-preview",
+            "hbenl.vscode-test-explorer",
+            "wayou.vscode-todo-highlight",
+            "fabiospampinato.vscode-todo-plus",
+            "xadillax.viml",
+            "visualstudioexptteam.vscodeintellicode",
+            "redhat.vscode-yaml",
+        ]
+    },
+}

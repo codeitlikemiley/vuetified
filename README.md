@@ -29,12 +29,10 @@
 
 ## Development
 - npm run watch
-- php artisan ziggy:generate (needed to run this command everytime you change route)
 
-## Testing
-> for guide on making a test on laravel inertia go to 
-
-https://github.com/claudiodekker/inertia-laravel-testing  and https://laravel.com/docs/8.x/http-tests
+## Production
+- php artisan ziggy:generate
+- uncomment routes.js on plugins and comment route-local.js
 
 ## Issues
 If you have seen any bugs please report it by making an [issue.](https://github.com/codeitlikemiley/vuetified/issues)

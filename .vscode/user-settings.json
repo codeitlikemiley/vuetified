@@ -1,0 +1,174 @@
+
+{
+  "[blade]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4
+  },
+  "[css]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "kokororin.vscode-phpfmt",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4
+  },
+  "[scss]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[sass]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[vue]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "auto-rename-tag.activationOnLanguage": [
+    "html",
+    "xml",
+    "php",
+    "javascript",
+    "blade",
+    "vue"
+  ],
+  "blade.format.enable": true,
+  "composer.executablePath": "C:\\ProgramData\\ComposerSetup\\bin\\composer.bat",
+  "css.validate": false,
+  "dart.openDevTools": "flutter",
+  "editor.suggestSelection": "first",
+  "dart.debugExternalLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.previewLsp": true,
+  "editor.lineNumbers": "relative",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "underline",
+  "editor.fontFamily": "operator mono",
+  "editor.fontLigatures": true,
+  "editor.tabCompletion": "on",
+  "editor.scrollBeyondLastLine": false,
+  "editor.minimap.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "emmet.includeLanguages": {
+    "blade": "html",
+    "vue-html": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "eslint.run": "onSave",
+  "eslint.runtime": "C:\\Users\\masterpowers\\AppData\\Local\\Temp\\fnm_multishell_11136_1611955286198\\eslint.ps1",
+  "eslint.options": {
+    "extensions": [
+      ".html",
+      ".js",
+      ".vue",
+      ".jsx"
+    ]
+  },
+  "eslint.validate": [
+    "html",
+    "vue",
+    "javascript",
+    "javascriptreact"
+  ],
+  "files.autoSave": "off",
+  "files.eol": "\n",
+  "intelephense.diagnostics.undefinedProperties": false,
+  "intelephense.diagnostics.undefinedMethods": false,
+  "javascript.validate.enable": false,
+  "namespaceResolver.sortOnSave": true,
+  "namespaceResolver.showMessageOnStatusBar": false,
+  "phpcs.standard": "./phpcs.xml",
+  "phpcs.executablePath": "./vendor/bin/phpcs",
+  "phpcs.ignorePatterns": [
+    "*/storage/",
+    "*/vendor/*",
+    "*/node_modules/*",
+    "*/database/*",
+    "*/resources/*"
+  ],
+  "phpfmt.passes": [
+    "PSR2KeywordsLowerCase",
+    "PSR2LnAfterNamespace",
+    "PSR2CurlyOpenNextLine",
+    "PSR2ModifierVisibilityStaticOrder",
+    "PSR2SingleEmptyLineAndStripClosingTag",
+    "ReindentSwitchBlocks",
+    "AlignConstVisibilityEquals",
+    "AlignDoubleArrow",
+    "AlignEquals",
+    "AlignGroupDoubleArrow",
+    "AutoSemicolon",
+    "ClassToStatic",
+    "DoubleToSingleQuote",
+    "SortUseNameSpace",
+    "SpaceBetweenMethods",
+    "ShortArray",
+    "RestoreComments",
+    "OrderMethodAndVisibility",
+    "ReindentAndAlignObjOps",
+    "ReindentSwitchBlocks",
+  ],
+  "phpfmt.psr2": false,
+  "phpfmt.exclude": [
+    "ReindentComments",
+    "StripNewlineWithinClassBody"
+  ],
+  "phpfmt.php_bin": "C:\\tools\\php80\\php.exe",
+  "phpfmt.smart_linebreak_after_curly": true,
+  "phpfmt.indent_with_space": 4,
+  "phpfmt.detect_indent": false,
+  "phpfmt.yoda": true,
+  "terminal.integrated.splitCwd": "workspaceRoot",
+  "scss.validate": false,
+  "terminal.integrated.cursorWidth": 2,
+  "terminal.external.windowsExec": "C:\\Program Files (x86)\\PowerShell\\7\\pwsh.exe",
+  "terminal.integrated.shell.windows": "C:\\Program Files (x86)\\PowerShell\\7\\pwsh.exe",
+  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+  "vscode-neovim.neovimExecutablePaths.win32": "C:\\Users\\masterpowers\\scoop\\apps\\neovim-nightly\\current\\bin\\nvim.exe",
+  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\masterpowers\\AppData\\Local\\nvim\\init.vim",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.colorTheme": "Pop N' Lock Theme by Luxcium ✨ Alexis's Black ⛷",
+  "workbench.editor.enablePreview": false,
+  "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+}

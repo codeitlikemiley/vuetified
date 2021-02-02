@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function findForPassport($identifier)
+    {
+        return $this->orWhere('email', $identifier)->orWhere('username', $identifier)->first();
+    }
 }
