@@ -920,10 +920,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/ziggy-js@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@types/ziggy-js/-/ziggy-js-0.9.0.tgz#ca0e626290b94c6562a91ab2e633a7983d7bbac3"
-  integrity sha512-/hUu4foNeAHtHNpng5+eXyvbBRHH2IB0PtF6N8gbEazc4sNxYpYRqbRhBZ8lqf3GWmQn9SFpacKiGYRhHcwhbw==
+"@types/ziggy-js@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/ziggy-js/-/ziggy-js-1.0.0.tgz#5cbb2fc3bbe4e4b5afef016793f120b84176cd61"
+  integrity sha512-Wn3xZ6dmjH5O9ux30niVohHJkZ8H27bYnl5tP38USjalJkpSvuMpVCQwAdbtzx/i44djyw3xi/QX7wmUhgoBzw==
 
 "@vue/component-compiler-utils@^3.1.0":
   version "3.2.0"
