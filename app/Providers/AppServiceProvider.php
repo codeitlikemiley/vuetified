@@ -2,21 +2,12 @@
 
 namespace App\Providers;
 
+use Closure;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->registerLengthAwarePaginator();
-    }
-
     /**
      * Bootstrap any application services.
      *
@@ -25,6 +16,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->registerLengthAwarePaginator();
     }
 
     /**
@@ -72,8 +73,8 @@ class AppServiceProvider extends ServiceProvider
                             'page'        => $this->currentPage(),
                             'total_pages' => $total_pages,
                             'per_page'    => $this->perPage(),
-                            'visible'     => $show_pagination
-                        ]
+                            'visible'     => $show_pagination,
+                        ],
                     ];
                 }
             };
