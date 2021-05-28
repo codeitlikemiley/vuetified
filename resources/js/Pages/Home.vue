@@ -22,7 +22,7 @@
       </v-toolbar-title>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <section id="hero">
         <v-row no-gutters>
           <v-img
@@ -337,7 +337,7 @@
 
         <div class="py-12"></div>
       </v-sheet>
-    </v-content>
+    </v-main>
 
     <v-footer
       class="justify-center"
