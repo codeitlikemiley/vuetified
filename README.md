@@ -32,7 +32,7 @@
 
 ## Production
 - php artisan ziggy:generate
-- uncomment routes.js on plugins and comment route-local.js
+- uncomment routes.js on plugins
 
 ## Issues
 If you have seen any bugs please report it by making an [issue.](https://github.com/codeitlikemiley/vuetified/issues)
