@@ -52,7 +52,7 @@ return [
         'extensions' => [
 
             'vue',
-            'svelte',
+            // 'svelte',
 
         ],
 
