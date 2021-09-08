@@ -46,7 +46,7 @@
         "sweetalert2": "^9.17.2",
         "vee-validate": "^2.2.15",
         "vform": "^1.0.1",
-        "vue-axios": "^2.1.5",
+        "vue-axios": "^3.3.4",
         "vue-sessionstorage": "^1.0.0",
         "vue2-storage": "^5.0.0",
         "ziggy": "github:tightenco/ziggy"
