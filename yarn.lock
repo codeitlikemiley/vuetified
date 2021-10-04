@@ -864,10 +864,10 @@
   dependencies:
     nprogress "^0.2.0"
 
-"@mdi/font@^4.9.95":
-  version "4.9.95"
-  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-4.9.95.tgz#00ed2ffe289c9230f146e74559c07542d3f4475a"
-  integrity sha512-m2sbAs+SMwRnWpkMriBxEulwuhmqRyh6X+hdOZlqSxYZUM2C2TaDnQ4gcilzdoAgru2XYnWViZ/xPuSDGgRXVw==
+"@mdi/font@^6.2.95":
+  version "6.2.95"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-6.2.95.tgz#7084ad939253a3d62e38f77d85f6c0c38508fbb2"
+  integrity sha512-0RKkhabkFZP3ALwKqrjhdKdhydQpoydIjX6cvjIwLyjADCsE0pG68YkGY+S3qnfdErmhS4m8adwvgrAFXp2AYQ==
 
 "@mdi/js@^5.9.55":
   version "5.9.55"
