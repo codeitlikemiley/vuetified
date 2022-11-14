@@ -910,10 +910,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*":
-  version "14.14.22"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
-  integrity sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
+"@types/node@*", "@types/node@^14.14.31":
+  version "14.18.33"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.33.tgz#8c29a0036771569662e4635790ffa9e057db379b"
+  integrity sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==
 
 "@types/q@^1.5.1":
   version "1.5.4"
@@ -6402,11 +6402,12 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-pusher-js@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-7.0.2.tgz#f577778674b20a909bcd95ccaf0d0ddf4f0cffe7"
-  integrity sha512-qNDTFfLTBHWJ9G/d083o2KQfS49vEotfX1PJVMQdo7XnNlQR9X01IASAMlt5iesASLy3Cv/VV1K/sQN/MNDMUQ==
+pusher-js@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-7.4.1.tgz#7e0b2086c340e60afeefd259d6cf72529c0ee971"
+  integrity sha512-M+i3Q+Lqnql6g1/AQwIkriJ2NG28cngQgarRbtQCe0r/+Gcx3Z5yIQqd318qhHDq3HpU+k1JOE7z8bydAcG0WQ==
   dependencies:
+    "@types/node" "^14.14.31"
     tweetnacl "^1.0.3"
 
 q@^1.1.2:
